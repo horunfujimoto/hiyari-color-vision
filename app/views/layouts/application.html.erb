@@ -7,11 +7,14 @@
     <%= csp_meta_tag %>
 
     <script src="https://kit.fontawesome.com/e8ca5afb42.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100" style="color: #3B240B; background-color: #F6D8CE; font-family: 'Kiwi Maru', serif;">
+    <%= render 'layouts/header' %>
     <%= yield %>
+    <%= render 'layouts/footer' %>
   </body>
 </html>

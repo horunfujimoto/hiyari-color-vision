@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     resources :members, only: [:index, :show, :update]
+    resources :posts, only: [:index, :show, :destroy]
     resources :tags, only: [:index, :create, :edit, :update, :destroy]
   end
 
