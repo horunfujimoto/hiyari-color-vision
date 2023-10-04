@@ -14,6 +14,7 @@
 
   <body class="d-flex flex-column h-100" style="color: #3B240B; background-color: #F6D8CE; font-family: 'Kiwi Maru', serif;">
     <%= render 'layouts/header' %>
+    <%= link_to "投稿", new_post_path %> <!--後で消す！-->
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>
