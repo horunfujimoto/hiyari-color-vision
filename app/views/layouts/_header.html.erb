@@ -12,11 +12,11 @@
           <% if member_signed_in? %>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-regular fa-user"></i>
-              <%= link_to "マイページ", members_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <%= link_to "マイページ", member_path(current_member), class: "text-decoration-none align-middle", style: "color: #3B240B" %>
             </li>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-solid fa-cake-candles"></i>
-              <%= link_to "投稿", posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <%= link_to "投稿", new_post_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
             </li>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-solid fa-cake-candles"></i>

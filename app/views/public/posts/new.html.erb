@@ -12,11 +12,11 @@
         </tr>
         <tr>
           <td><%= f.label :ヒヤリハット詳細説明 %></td>
-          <td><%= f.text_area :description, class: "form-control", rows: 5 %></td>
+          <td><%= f.text_area :body, class: "form-control", rows: 5 %></td>
         </tr>
         <tr>
           <td><%= f.label :画像 %></td>
-          <td><%= f.file_field :item_image, accept: "image/*" %></td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
         </tr>
         <tr>
           <td><%= f.label :発生場所 %></td>

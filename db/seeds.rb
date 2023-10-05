@@ -12,12 +12,15 @@ Admin.create!(
   company_password: '000000'
 )
 
-# Member.create!(
-#   name: '0さん',
-#   email: '0@0',
-#   password: '000000',
-#   company_password: '000000'
-# )
+Member.create!(
+  email: '0@0',
+  password: '000000',
+  name: '0さん',
+  company_password: '000000',
+  company_password_confirmation: '000000',
+  industry: '業界',
+  company: '会社'
+)
 
 Tag.create([
   { name: '労働安全' },

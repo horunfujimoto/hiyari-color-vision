@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+
   def index
   end
 
@@ -11,8 +12,12 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.save
-    redirect_to posts_path #後で修正！
+    @post.member_id = current_member.id
+    if @post.save
+    redirect_to post_path(@post)
+    else
+
+    end
   end
 
   def edit
@@ -21,6 +26,6 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:member_id, :tag_id, :title, :body, :place, :open_status, :level_status )
+    params.require(:post).permit(:title, :body, :image, :place, :tag_id, :level_status,:open_status )
   end
 end
