@@ -1,2 +1,18 @@
-<h1>Admin::Tags#edit</h1>
-<p>Find me in app/views/admin/tags/edit.html.erb</p>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-11 mx-auto">
+
+      <h3>ジャンル編集</h3>
+
+      <!--バリデーション部分-->
+      <!--後ほどrender 'layouts/error', obj: @tag %>-->
+
+      <!--form部分-->
+        <%= form_with model: @tag, url: admin_tag_path,method: :patch do |f| %>
+          <td><%= f.label :"タグ名", class: "mr-3" %></td>
+          <td><%= f.text_field :name, placeholder: "タグ名",class: "mr-5" %></td>
+          <td><%= f.submit "変更を保存", class: "btn btn-dark" %></td>
+        <% end %>
+    </div>
+  </div>
+</div>

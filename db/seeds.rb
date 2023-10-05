@@ -11,3 +11,21 @@ Admin.create!(
   password: '000000',
   company_password: '000000'
 )
+
+# Member.create!(
+#   name: '0さん',
+#   email: '0@0',
+#   password: '000000',
+#   company_password: '000000'
+# )
+
+Tag.create([
+  { name: '労働安全' },
+  { name: '交通安全' },
+  { name: '製造業' },
+  { name: '医療安全' },
+  { name: 'ITセキュリティ' },
+  { name: '環境安全' },
+  { name: '教育訓練' },
+  { name: '安全規定' }
+])
