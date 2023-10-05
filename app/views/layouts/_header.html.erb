@@ -11,58 +11,58 @@
         <ul class="row justify-content-end my-2 list-unstyled">
           <% if member_signed_in? %>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-regular fa-user"></i>
-              <%= link_to "マイページ", member_path(current_member), class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-face-smile">
+              <%= link_to "マイページ", member_path(current_member), class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-cake-candles"></i>
-              <%= link_to "投稿", new_post_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-pen-to-square">
+              <%= link_to "投稿", new_post_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-cake-candles"></i>
-              <%= link_to "ヒヤリ集", posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-clipboard">
+              <%= link_to "ヒヤリ集", posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-cart-shopping"></i>
-              <%= link_to "改善案", visions_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-star">
+              <%= link_to "改善案", visions_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-right-from-bracket"></i>
-              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-solid fa-right-from-bracket">
+              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
           <% elsif admin_signed_in? %>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-users"></i>
-              <%= link_to "会員一覧", admin_members_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-user">
+              <%= link_to "会員一覧", admin_members_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-cart-flatbed-suitcase"></i>
-              <%= link_to "ヒヤリ一覧", admin_posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-clipboard">
+              <%= link_to "ヒヤリ一覧", admin_posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-cookie-bite"></i>
-              <%= link_to "タグ一覧", admin_tags_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-solid fa-tag">
+              <%= link_to "タグ一覧", admin_tags_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-right-from-bracket"></i>
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-solid fa-right-from-bracket">
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
           <% else %>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-store"></i>
-              <%= link_to "About", about_path, class: "text-decoration-none align-middle align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-heart">
+              <%= link_to "About", about_path, class: "text-decoration-none align-middle align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-cake-candles"></i>
-              <%= link_to "ヒヤリ集", posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-clipboard">
+              <%= link_to "ヒヤリ集", posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-regular fa-handshake"></i>
-              <%= link_to "新規登録", new_member_registration_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-regular fa-user">
+              <%= link_to "新規登録", new_member_registration_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
             <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-right-to-bracket"></i>
-              <%= link_to "ログイン", new_member_session_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %>
+              <i class="fa-solid fa-arrow-right-to-bracket">
+              <%= link_to "ログイン", new_member_session_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
           <% end %>
         </ul>
