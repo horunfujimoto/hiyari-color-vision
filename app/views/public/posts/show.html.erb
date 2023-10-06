@@ -3,38 +3,43 @@
     <h3 class="px-4 title-background">ヒヤリハット詳細</h3>
   </div>
 
-    <div class="row justify-content-center">
-      <table class="table table-borderless">
-        <tr>
-          <td>タイトル</td>
-          <td><%= @post.title %></td>
-        </tr>
-        <tr>
-          <td>詳細説明</td>
-          <td><%= @post.body %></td>
-        </tr>
-        <tr>
-          <td>画像</td>
-          <td><%= image_tag @post.get_image(300,250) %></td> <!--画像拡大機能を付けたいかも-->
-        </tr>
-        <tr>
-          <td>発生場所</td>
-          <td><%= @post.place %></td>
-        </tr>
-        <tr>
-          <td>タグ</td>
-          <td><%= @post.tag.name %></td> <!--tag_id.nameではなく"tagモデル内のnameカラム"を持ってくるためこの記述-->
-        </tr>
-        <tr>
-          <td>重度</td>
-          <td><%= @post.level_status_i18n %></td>
-        </tr>
-        <tr>
-          <td>公開設定</td>
-          <td><%= @post.open_status_i18n %></td>
-        </tr>
-      </table>
+  <div class="row justify-content-center">
+    <table class="table table-borderless">
+      <tr>
+        <td>タイトル</td>
+        <td><%= @post.title %></td>
+      </tr>
+      <tr>
+        <td>詳細説明</td>
+        <td><%= @post.body %></td>
+      </tr>
+      <tr>
+        <td>画像</td>
+        <td><%= image_tag @post.get_image(300,250) %></td> <!--画像拡大機能を付けたいかも-->
+      </tr>
+      <tr>
+        <td>発生場所</td>
+        <td><%= @post.place %></td>
+      </tr>
+      <tr>
+        <td>タグ</td>
+        <td><%= @post.tag.name %></td> <!--tag_id.nameではなく"tagモデル内のnameカラム"を持ってくるためこの記述-->
+      </tr>
+      <tr>
+        <td>重度</td>
+        <td><%= @post.level_status_i18n %></td>
+      </tr>
+      <tr>
+        <td>公開設定</td>
+        <td><%= @post.open_status_i18n %></td>
+      </tr>
+    </table>
+    <div class="mx-3">
       <%= link_to "編集", edit_post_path(@post), class: "btn btn-dark" %>
-      </div>
     </div>
+    <div class="mx-3">
+      <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
+    </div>
+  </div>
+
 </div>
