@@ -1,1 +1,45 @@
-<%= render 'list', posts: @posts %>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-11 mx-auto">
+      <h3>ヒヤリハット一覧</h3>
+
+      <table class="table table-bordered">
+        <div class="py-3">
+          <thead>
+            <tr>
+              <th>作成日時</th> <!--発生日時にするかは後ほど検討-->
+              <th>場所</th>
+              <th>タイトル</th>
+              <th>改善案の有無</th>
+              <th>コメント数</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @open_posts.each do |post| %>
+            <tr>
+              <td>
+                <%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+              </td>
+              <td>
+                <%= post.place %>
+              </td>
+              <td>
+                <!--タイトルのみでなく行を選択してshowに移動できるよう後ほど修正-->
+                <%= link_to post.title, post_path(post), class: "text-reset" %>
+              </td>
+              <td>
+                <!-- 改善案が存在する場合はtrueで返すような記述-->
+              </td>
+              <td>
+                <!-- コメント機能実装後記述-->
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </div>
+      </table>
+    </div>
+  </div>
+  <%= paginate @open_posts %>
+</div>

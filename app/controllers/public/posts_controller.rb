@@ -1,9 +1,15 @@
 class Public::PostsController < ApplicationController
 
   def index
+    #公開もしくは全体公開のどちらかを選択した場合は表示される
+    @open_posts = Post.where(open_status: [0, 2])
+                  .order(created_at: :desc)
+                  .page(params[:page])
+                  .per(10)
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -14,9 +20,11 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.member_id = current_member.id
     if @post.save
-    redirect_to post_path(@post)
+      flash[:notice] = "投稿が完了しました。"
+      redirect_to post_path(@post)
     else
-
+      flash[:notice] = "投稿内容に不備があります。"
+      render :new
     end
   end
 

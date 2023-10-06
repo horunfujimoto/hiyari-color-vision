@@ -12,7 +12,15 @@ class Post < ApplicationRecord
   validates :place,       presence: :true
 
   has_one_attached :image #imageカラムが追記されたかのように扱うことができる
-  enum open_status: { open: 0, unopened: 1, full_disclosure: 2 }
+  def get_image(width, height)
+    unless image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')# 画像がない場合はimages/no-image.jpgを参照
+      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    image
+  end
+
+  enum open_status: { disclosure: 0, unopened: 1, full_disclosure: 2 }
   enum level_status: { mild: 0, moderate: 1, severe: 2 }
 
 end

@@ -7,7 +7,7 @@ ja:
         inactive: "無効"
     post:
       open_status:
-        open: "公開"
+        disclosure: "公開"
         unopened: "非公開"
         full_disclosure: "全体公開"
       level_status:
