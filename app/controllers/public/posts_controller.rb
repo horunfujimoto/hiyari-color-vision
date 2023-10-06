@@ -29,11 +29,25 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "投稿情報を更新しました。"
+      redirect_to post_path(@post)
+    else
+      flash[:notice] = "投稿内容に不備があります。"
+      render :edit
+    end
+  end
+
 
   private
 
   def post_params
     params.require(:post).permit(:title, :body, :image, :place, :tag_id, :level_status,:open_status )
   end
+  
 end
