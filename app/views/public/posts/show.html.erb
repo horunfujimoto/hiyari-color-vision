@@ -34,26 +34,39 @@
         <td><%= @post.open_status_i18n %></td>
       </tr>
     </table>
-    <% if @post.member == current_member %>
-      <div class="mx-3">
-        <%= link_to "編集", edit_post_path(@post), class: "btn btn-dark" %>
-      </div>
-      <div class="mx-3">
-        <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
-      </div>
-    <% end %>
 
-    <% if @post.visions.present? %> <!--改善案が作成済の場合は誰にでも表示-->
-      <div class="mx-3">
-        <%= link_to "改善案表示", post_visions_path(@post, @visions), class: "btn btn-dark" %>
-      </div>
-    <% end %>
+    <div class="row">
+      <% if @post.member == current_member %>
+        <div class="mx-3">
+          <%= link_to "編集", edit_post_path(@post), class: "btn btn-dark" %>
+        </div>
+        <div class="mx-3">
+          <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
+        </div>
+      <% end %>
 
-    <% if !@post.visions.present? && @post.member == current_member %> <!--改善案が未作成の場合は作成者にのみ表示-->
-      <div class="mx-3">
-        <%= link_to "改善案作成", new_post_vision_path(@post), class: "btn btn-dark" %>
+      <% if @post.visions.present? %> <!--改善案が作成済の場合は誰にでも表示-->
+        <div class="mx-3">
+          <%= link_to "改善案表示", post_visions_path(@post, @visions), class: "btn btn-dark" %>
+        </div>
+      <% end %>
+
+      <% if !@post.visions.present? && @post.member == current_member %> <!--改善案が未作成の場合は作成者にのみ表示-->
+        <div class="mx-3">
+          <%= link_to "改善案作成", new_post_vision_path(@post), class: "btn btn-dark" %>
+        </div>
+      <% end %>
+    </div>
+
+    <!--コメント機能-->
+    <div class=" row mt-3 mb-3 offset-1 ">
+      <div id ="comment-form">
+        <%= render "public/comments/form", post: @post, comment: @comment %>
       </div>
-    <% end %>
+      <div id ="comments">
+        <%= render "public/comments/show", post: @post, comment: @comment %>
+      </div>
+    </div>
 
   </div>
 
