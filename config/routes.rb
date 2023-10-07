@@ -24,16 +24,17 @@ Rails.application.routes.draw do
     resources :members, only: [:show, :edit, :update] do
       collection do
         get 'favorite'
-        get 'favorite'
+        get 'confirm'
         patch 'withdraw'
       end
     end
     resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy]
+      resources :visions, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+        resource :favorites, only: [:create, :destroy]
+      end
     end
-    resources :visions, only: [:index, :show, :new, :create, :edit, :update, :destroy]do
-      resource :favorites, only: [:create, :destroy]
-    end
+
     resources :searches, only: [:index]
     resources :tags, only: [:show]
     resources :notifications, only: [:destroy] do

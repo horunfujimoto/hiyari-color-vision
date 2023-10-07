@@ -40,6 +40,9 @@
     <div class="mx-3">
       <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
     </div>
+    <div class="mx-3">
+      <%= link_to "改善案作成", new_post_vision_path(@post), class: "btn btn-dark" %>
+    </div>
   </div>
 
 </div>
