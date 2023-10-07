@@ -28,13 +28,19 @@
     </table>
 
     <% if @post.member == current_member %>
-      <div class="mx-3">
+      <div class = "mx-3">
         <%= link_to "編集", edit_post_vision_path(@post, @vision), class: "btn btn-dark" %>
       </div>
-      <div class="mx-3">
+      <div class = "mx-3">
         <%= link_to "削除", post_vision_path(@post, @vision), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
       </div>
     <% end %>
+
+    <!--いいね機能-->
+    <td id = "favorite_buttons_<%= @vision.id %>" >
+      <%= render "public/favorites/favorite", vision: @vision, post: @post %>
+    </td>
+
   </div>
 
 </div>

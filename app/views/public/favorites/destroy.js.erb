@@ -1,0 +1,2 @@
+$('#favorite_buttons_<%= @vision.id %>').html("<%= j(render partial: 'favorites/favorite', locals: { vision: @vision }) %>");
+<!--指定したセレクタ(idの部分)のみHTMLをrenderして部分的に更新-->

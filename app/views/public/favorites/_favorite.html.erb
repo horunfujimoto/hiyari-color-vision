@@ -1,0 +1,15 @@
+<% if vision.favorited_by?(current_member) %>
+  <p>
+    <%= link_to post_vision_favorites_path(post, vision), method: :delete, remote: true, data: {"turbolinks" => false} do %>
+      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+      <%= vision.favorites.count %> 既読
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_vision_favorites_path(post, vision), method: :post, remote: true, data: {"turbolinks" => false} do %>
+      <i class="fas fa-heart" aria-hidden="true"></i>
+      <%= vision.favorites.count %> 既読
+    <% end %>
+  </p>
+<% end %>

@@ -10,4 +10,9 @@ class Vision < ApplicationRecord
   validates :improvement,   presence: :true, length: { in: 1..1000 }
   validates :double_check,  presence: :true, length: { in: 1..20 }
 
+  #引数で渡されたユーザidがFavoritesテーブル内に存在（exists?）するかどうかを調べ存在していればtrue
+  def favorited_by?(member)
+    favorites.exists?(member_id: member.id)
+  end
+
 end
