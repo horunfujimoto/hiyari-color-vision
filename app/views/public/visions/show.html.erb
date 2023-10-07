@@ -26,12 +26,15 @@
         <td><%= @vision.double_check %></td>
       </tr>
     </table>
-    <div class="mx-3">
-      <%= link_to "編集", edit_post_vision_path(@post, @vision), class: "btn btn-dark" %>
-    </div>
-    <div class="mx-3">
-      <%= link_to "削除", post_vision_path(@post, @vision), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
-    </div>
+
+    <% if @post.member == current_member %>
+      <div class="mx-3">
+        <%= link_to "編集", edit_post_vision_path(@post, @vision), class: "btn btn-dark" %>
+      </div>
+      <div class="mx-3">
+        <%= link_to "削除", post_vision_path(@post, @vision), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
+      </div>
+    <% end %>
   </div>
 
 </div>
