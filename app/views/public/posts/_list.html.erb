@@ -4,7 +4,11 @@
     <thead>
       <tr>
         <th>作成日時</th> <!--発生日時にするかは後ほど検討-->
-        <th>場所</th>
+          <% if member_signed_in? %>
+            <th>場所</th>
+          <% else admin_signed_in? %>
+            <th>公開ステータス</th>
+          <% end %>
         <th>タイトル</th>
         <th>改善案の有無</th>
         <th>コメント数</th>
@@ -13,28 +17,36 @@
 
     <tbody>
       <% posts.each do |post| %>
-      <tr>
-        <td>
-          <%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
-        </td>
-        <td>
-          <%= post.place %>
-        </td>
-        <td>
-          <!--タイトルのみでなく行を選択してshowに移動できるよう後ほど修正-->
-          <%= link_to post.title, post_path(post), class: "text-reset" %>
-        </td>
-        <td>
-          <% if post.vision.present? %> <!-- post.vision.present? ? 'あり' : 'なし' %>でも記述できる！-->
-            <u><%= link_to "あり", post_vision_path(post, post.vision), class: "text-reset" %></u>
-          <% else %>
-            なし
-          <% end %>
-        </td>
-        <td>
-          <span id = "comment_count" ><%= post.comments.count %></span>
-        </td>
-      </tr>
+        <% if member_signed_in? %>
+          <tr>
+            <td><%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+            <td><%= post.place %></td>
+            <td>
+              <u><%= link_to post.title, post_path(post), class: "text-reset" %></u>
+            </td>
+            <td>
+              <% if post.vision.present? %> <!-- post.vision.present? ? 'あり' : 'なし' %>でも記述できる！-->
+                <u><%= link_to 'あり', post_vision_path(post, post.vision), class: "text-reset" %></u>
+              <% else %>
+                なし
+              <% end %>
+            </td>
+            <td><span id = "comment_count" ><%= post.comments.count %></span></td>
+          </tr>
+
+        <% else admin_signed_in? %>
+          <tr>
+            <td><%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+            <td><%= post.open_status_i18n %></td>
+            <td>
+              <u><%= link_to post.title, admin_post_path(post), class: "text-reset" %></u>
+            </td>
+            <td>
+              <%= post.vision.present? ? 'あり' : 'なし' %> <!--三項演算子の記述-->
+            </td>
+            <td><span id = "comment_count" ><%= post.comments.count %></span></td>
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
 

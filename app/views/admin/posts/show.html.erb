@@ -1,2 +1,63 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container py-5">
+  <div class="row mt-3 mb-3 offset-1 text-center">
+    <h3 class="px-4 title-background">ヒヤリハット詳細</h3>
+  </div>
+
+  <div class="row justify-content-center">
+    <table class="table table-borderless">
+      <tr>
+        <td>タイトル</td>
+        <td><%= @post.title %></td>
+      </tr>
+      <tr>
+        <td>詳細説明</td>
+        <td><%= @post.body %></td>
+      </tr>
+      <tr>
+        <td>画像</td>
+        <td><%= image_tag @post.get_image(300,250) %></td> <!--画像拡大機能を付けたいかも-->
+      </tr>
+      <tr>
+        <td>発生場所</td>
+        <td><%= @post.place %></td>
+      </tr>
+      <tr>
+        <td>タグ</td>
+        <td><%= @post.tag.name %></td> <!--tag_id.nameではなく"tagモデル内のnameカラム"を持ってくるためこの記述-->
+      </tr>
+      <tr>
+        <td>重度</td>
+        <td><%= @post.level_status_i18n %></td>
+      </tr>
+      <tr>
+        <td>公開設定</td>
+        <td><%= @post.open_status_i18n %></td>
+      </tr>
+      <% if @post.vision.present? %>
+        <tr>
+          <td>改善締切日</td>
+          <td><%= @post.vision.closing_day.strftime("%Y年%m月%d日") %></td>
+        </tr>
+        <tr>
+          <td>確認者</td>
+          <td><%= @post.vision.double_check %></td>
+        </tr>
+        <tr>
+          <td>改善案</td>
+          <td><%= @post.vision.improvement %></td>
+        </tr>
+      <% else %>
+        <tr>
+          <td></td>
+          <td>※改善案未作成</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <!--コメント機能-->
+  <h4 class="px-4 title-background">コメント</h4>
+  <div id ="comments">
+    <%= render "public/comments/show", post: @post, comment: @comment %>
+  </div>
+</div>

@@ -5,8 +5,8 @@
         <td><%= comment.member.name %></td>
         <td><%= comment.comment %></td>
         <td>
-          <% if comment.member == current_member %>
-            <%= link_to "Destroy", post_comment_path(post, comment), method: :delete, class: "btn btn-dark pull-right", remote: true %>
+          <% if comment.member == current_member || current_admin.present? %>
+            <%= link_to "削除", post_comment_path(post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark pull-right", remote: true %>
           <% end %>
         </td>
       </tr>
