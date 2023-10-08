@@ -4,8 +4,22 @@
   </div>
 
   <div class="row justify-content-center">
-    <table class="table table-borderless">
-
-    </table>
+    <%= form_with model: @member, url: member_path, method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>氏名</td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td>業種</td>
+          <td><%= f.text_field :industry %></td>
+        </tr>
+        <tr>
+          <td>会社名</td>
+          <td><%= f.text_field :company %></td>
+        </tr>
+      </table>
+      <%= f.submit "変更を保存", class: "btn btn-dark" %>
+    <% end %>
   </div>
 </div>
