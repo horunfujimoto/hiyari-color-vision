@@ -18,7 +18,7 @@
       <div class="modal-body">
         <div class="container-fluid">
           <a data-toggle="collapse" href="#headerTag" aria-expanded="false" aria-controls="#headerTag">
-            タグから検索
+            タグから検索<i class="fa-regular fa-circle-down"></i>
           </a>
         </div>
       </div>
@@ -32,6 +32,17 @@
               <% end %>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <div class="my-2 my-lg-0">
+          <%= form_with url: searches_path, method: :get, class:"d-flex" do |f| %>
+            <%= f.text_field :keyword, value: keyword, placeholder:"投稿キーワードを入力",required: true, class:"form-control col-9å" %>
+            <%= button_tag type:'submit', class:"btn btn-outline-secondary mx-2" do %>
+              <i class="fas fa-search"></i>
+            <% end %>
+          <% end %>
         </div>
       </div>
 

@@ -21,7 +21,7 @@ class Post < ApplicationRecord
   end
 
   def self.search(keyword)
-    where(["title LIKE? or introduction LIKE? or place_name LIKE?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+    where(["title LIKE? or body LIKE? or place LIKE?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
   end
 
   enum open_status: { disclosure: 0, unopened: 1, full_disclosure: 2 }
