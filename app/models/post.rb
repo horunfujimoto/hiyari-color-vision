@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 
   belongs_to :member
   belongs_to :tag
-  has_many :visions, dependent: :destroy
+  has_one :vision, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   validates :tag_id,      presence: :true

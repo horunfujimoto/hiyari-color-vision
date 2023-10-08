@@ -29,7 +29,11 @@
                 <%= link_to post.title, post_path(post), class: "text-reset" %>
               </td>
               <td>
-                <!-- 改善案が存在する場合はtrueで返すような記述-->
+                <% if post.vision.present? %> <!-- post.vision.present? ? 'あり' : 'なし' %>でも記述できる！-->
+                  <u><%= link_to "あり", post_vision_path(post, post.vision), class: "text-reset" %></u>
+                <% else %>
+                  なし
+                <% end %>
               </td>
               <td>
                 <span id = "comment_count" ><%= post.comments.count %></span>
@@ -37,6 +41,7 @@
             </tr>
             <% end %>
           </tbody>
+
         </div>
       </table>
     </div>

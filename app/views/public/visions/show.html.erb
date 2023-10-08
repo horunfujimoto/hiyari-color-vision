@@ -37,9 +37,9 @@
     <% end %>
 
     <!--いいね機能-->
-    <td id = "favorite_buttons_<%= @vision.id %>" >
+    <div id = "favorite_buttons_<%= @vision.id %>" >
       <%= render "public/favorites/favorite", vision: @vision, post: @post %>
-    </td>
+    </div>
 
   </div>
 
