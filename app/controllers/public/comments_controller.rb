@@ -7,6 +7,15 @@ class Public::CommentsController < ApplicationController
     comment.post_id = @post.id
     comment.save
     # redirect_to request.referer #非同期だから消す
+
+    #通知機能
+    ActiveRecord::Base.transaction do
+      if @comment.save
+        @post.create_notification_comment!(current_member, @comment.id)
+      else
+        render 'errors'
+      end
+    end
   end
 
   def destroy

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-
+  before_action :notice, if: :member_signed_in?
   before_action :search_tag
   before_action :search_post
 
@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
 
   def search_tag
     @tags = Tag.all
+  end
+
+  def notice
+    @notices = current_member.passive_notifications
+    @unchecked_notices = current_member.passive_notifications.where(checked: false)
   end
 
 end

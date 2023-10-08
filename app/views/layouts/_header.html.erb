@@ -17,6 +17,10 @@
             <li class="nav-item mx-2 mt-2">
               <%= render 'public/searches/search', keyword: @keyword, tags: @tags %>
             </li>
+            <!--通知機能-->
+            <li class="nav-item mx-2 mt-2">
+              <%= render 'public/notifications/notification', unchecked_notices: @unchecked_notices, notices: @notices %>
+            </li>
             <li class="nav-item mx-2 mt-2">
               <i class="fa-regular fa-face-smile">
               <%= link_to "マイページ", member_path(current_member), class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
