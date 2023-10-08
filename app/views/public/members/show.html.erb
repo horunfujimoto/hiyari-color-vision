@@ -1,2 +1,75 @@
-<h1>Public::Members#show</h1>
-<p>Find me in app/views/public/members/show.html.erb</p>
+<%= javascript_pack_tag 'tab' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 text-center">
+    <h1 class="my-5"><%= "#{@member.name}さんのマイページ" %></h1>
+
+    <!--ログインユーザー自身の場合-->
+    <% if @member == current_member %>
+      <div class = "mx-3">
+        <%= link_to "編集", edit_member_path(current_member), class: "btn btn-dark" %>
+      </div>
+      <div class = "mx-3">
+        <%= link_to "退会", confirm_members_path(current_member), class: "btn btn-dark" %>
+      </div>
+    <% end %>
+
+    </div>
+
+    <div class="col-10 mt-5">
+
+      <ul class="list-group list-group-horizontal">
+        <li class="list-group-item col-4 tab tab-active">
+          <i class="fa-solid fa-bookmark">既読済み一覧</i>
+        </li>
+        <li class="list-group-item col-4 tab">
+          <i class="fa-solid fa-rectangle-list">投稿一覧</i>
+        </li>
+        <li class="list-group-item col-4 tab">
+          <i class="fa-solid fa-pen-to-square">非公開一覧</i>
+        </li>
+      </ul>
+
+      <!--タブ：既読-->
+      <!--<div class="tabbox-contents">-->
+      <!--  <div class="tabbox box-show">-->
+      <!--    % if @favorite_posts.empty? %>-->
+      <!--      <h6 class='mt-4'>既読した投稿はありません。</h6>-->
+      <!--    % else %>-->
+      <!--      <div class="d-flex flex-wrap">-->
+      <!--        %= render "public/posts/list", posts: @favorite_posts %>-->
+      <!--      </div>-->
+      <!--    % end %>-->
+      <!--  </div>-->
+      <!--  <div class="d-flex justify-content-center">%= paginate @favorite_posts %></div>-->
+      <!--</div>-->
+
+      <!--タブ：投稿-->
+      <div class="tabbox">
+        <% if @member_posts.empty? %>
+          <h6 class='mt-4'>投稿はまだありません。</h6>
+        <% else %>
+          <div class="d-flex flex-wrap">
+            <%= render "public/posts/list", posts: @member_posts %>
+          </div>
+        <% end %>
+        <div class="d-flex justify-content-center"><%= paginate @member_posts %></div>
+      </div>
+
+      <!--タブ：非公開-->
+      <div class="tabbox">
+        <% if @unopened_posts.empty? %>
+          <h6 class='mt-4'>非公開の投稿はありません。</h6>
+        <% else %>
+          <div class="d-flex flex-wrap">
+            <%= render "public/posts/list", posts: @unopened_posts %>
+          </div>
+        <% end %>
+        <div class="d-flex justify-content-center"><%= paginate @unopened_posts %></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

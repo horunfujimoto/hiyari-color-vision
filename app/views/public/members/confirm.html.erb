@@ -1,2 +1,14 @@
-<h1>Public::Members#confirm</h1>
-<p>Find me in app/views/public/members/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col my-5 text-center">
+      <h1>本当に退会しますか？</h1>
+        <p class="my-5">
+          退会すると、会員登録情報や<br>
+          これまでの履歴が閲覧できなくなります。<br>
+          退会する場合は、「退会する」をクリックしてください。
+        </p>
+      <%= link_to "退会しない", member_path(current_member), :class => "btn btn-dark ms-3" %>
+      <%= link_to "退会する", member_registration_path, method: :patch, :class => "btn btn-danger ms-3", data: { confirm: "本当に退会しますか？" }  %>
+    </div>
+  </div>
+</div>

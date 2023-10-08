@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     comment = current_member.comments.new(comment_params)
     comment.post_id = @post.id
     comment.save
-    # redirect_to request.referer
+    # redirect_to request.referer #非同期だから消す
   end
 
   def destroy

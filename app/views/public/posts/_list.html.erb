@@ -1,0 +1,42 @@
+<table class="table table-bordered">
+  <div class="py-3">
+
+    <thead>
+      <tr>
+        <th>作成日時</th> <!--発生日時にするかは後ほど検討-->
+        <th>場所</th>
+        <th>タイトル</th>
+        <th>改善案の有無</th>
+        <th>コメント数</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% posts.each do |post| %>
+      <tr>
+        <td>
+          <%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %>
+        </td>
+        <td>
+          <%= post.place %>
+        </td>
+        <td>
+          <!--タイトルのみでなく行を選択してshowに移動できるよう後ほど修正-->
+          <%= link_to post.title, post_path(post), class: "text-reset" %>
+        </td>
+        <td>
+          <% if post.vision.present? %> <!-- post.vision.present? ? 'あり' : 'なし' %>でも記述できる！-->
+            <u><%= link_to "あり", post_vision_path(post, post.vision), class: "text-reset" %></u>
+          <% else %>
+            なし
+          <% end %>
+        </td>
+        <td>
+          <span id = "comment_count" ><%= post.comments.count %></span>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+
+  </div>
+</table>

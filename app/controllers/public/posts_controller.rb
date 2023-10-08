@@ -10,7 +10,6 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    # @visions = @post.visions # ポストに関連づけられたビジョンを取得
     @comment = Comment.new
   end
 

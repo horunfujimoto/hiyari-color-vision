@@ -1,16 +1,21 @@
 <header style="background-color: #F5A9A9;">
   <div class="container-fluid">
-    <div class="row mx-auto">
 
+      <!--タイトル-->
+    <div class="row justify-content-center">
+        <%= image_tag 'title.png', style: " width: 400px; height: 80px;" %>
+    </div>
+
+    <div class="row mx-auto">
       <!--ロゴ-->
-      <div class="col-3">
+      <div class="col-3 mb-2">
         <%= link_to root_path do %>
-          <%= image_tag 'no_image.jpg', style: "object-fit: cover; width: 150px; height: 80px;" %>
+          <%= image_tag 'logo.png', style: " width: 100px; height: 50px;" %>
         <% end %>
       </div>
 
       <!--ページ遷移-->
-      <div class="col-6">
+      <div class="col-9">
         <ul class="row justify-content-end my-2 list-unstyled">
           <% if member_signed_in? %>
             <li class="nav-item mx-2 mt-2">
