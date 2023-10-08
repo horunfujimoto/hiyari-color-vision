@@ -4,7 +4,7 @@ ja:
       is_active:
         active: "有効"
         banned: "停止中"
-        inactive: "無効"
+        inactive: "退会"
     post:
       open_status:
         disclosure: "公開"

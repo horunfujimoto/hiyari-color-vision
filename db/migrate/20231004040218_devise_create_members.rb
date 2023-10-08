@@ -37,7 +37,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[6.1]
       t.string :company_password_confirmation, null: false
       t.string :industry
       t.string :company
-      t.string :is_active, null: false, default: 0
+      t.integer :is_active, null: false, default: 0
 
       t.timestamps null: false
     end

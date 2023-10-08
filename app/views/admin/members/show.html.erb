@@ -1,2 +1,40 @@
-<h1>Admin::Members#show</h1>
-<p>Find me in app/views/admin/members/show.html.erb</p>
+<%= javascript_pack_tag 'tab' %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-10 text-center">
+    <h1 class="my-5"><%= "#{@member.name}さんのマイページ" %></h1>
+    <table class="table table-bordered">
+      <tr>
+        <td>氏名</td>
+        <td><%= @member.name %></td>
+      </tr>
+      <tr>
+        <td>業種</td>
+        <td><%= @member.industry %></td>
+      </tr>
+      <tr>
+        <td>会社名</td>
+        <td><%= @member.company %></td>
+      </tr>
+      <tr>
+        <td>投稿数</td>
+        <td><%= @member.posts.count %></td>
+      </tr>
+    <%= form_with model: @member, local: true do |f| %>
+      <tr>
+        <td><%= f.label :会員ステータス %></td>
+        <td>
+          <%= f.select :is_active,Member.is_actives_i18n.invert, {}, {class:"form-control"} %>
+        </td>
+      </tr>
+    </table>
+      <%= f.submit "変更を保存",class: "btn btn-dark" %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+   <%= render "public/members/tab", member_posts: @member_posts, unopened_posts: @unopened_posts %> <!--@favorite_postsを後で追加-->
+  </div>
+</div>

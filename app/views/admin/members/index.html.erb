@@ -1,2 +1,33 @@
-<h1>Admin::Members#index</h1>
-<p>Find me in app/views/admin/members/index.html.erb</p>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-11 mx-auto">
+      <h3>会員一覧</h3>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>氏名</th>
+            <th>業種</th>
+            <th>会社名</th>
+            <th>投稿数</th>
+            <th>会員ステータス</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @member.each do |member| %>
+            <tr>
+              <td><u><%= link_to member.name, admin_member_path(member), class: "text-reset" %></u></td>
+              <td><%= member.industry %></td>
+              <td><%= member.company %></td>
+              <td><%= member.posts.count %></td>
+              <td><%= member.is_active_i18n %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  <%= paginate @member %>
+</div>

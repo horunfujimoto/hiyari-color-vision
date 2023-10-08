@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2023_10_04_050532) do
     t.string "company_password_confirmation", null: false
     t.string "industry"
     t.string "company"
-    t.string "is_active", default: "0", null: false
+    t.integer "is_active", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_members_on_email", unique: true

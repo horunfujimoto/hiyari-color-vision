@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     get "/about" => "homes#about", as: "about"
     resources :members, only: [:show, :edit, :update] do
       collection do
-        get 'favorite'
         get 'confirm'
         patch 'withdraw'
       end
