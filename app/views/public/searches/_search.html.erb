@@ -1,0 +1,43 @@
+<div data-toggle="modal" data-target="#exampleModal">
+  <i class="fa-solid fa-magnifying-glass fa-beat-fade"></i>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">検索</h5>
+        <button type="button" class="btn-close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+
+      <!--タグ検索-->
+      <div class="modal-body">
+        <div class="container-fluid">
+          <a data-toggle="collapse" href="#headerTag" aria-expanded="false" aria-controls="#headerTag">
+            タグから検索
+          </a>
+        </div>
+      </div>
+
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="collapse" id="headerTag">
+            <div class="d-flex">
+              <% tags.each do |tag| %>
+                <h5><%= link_to tag.name, tag_path(tag), class:"text-dark mr-3" %></h5>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+

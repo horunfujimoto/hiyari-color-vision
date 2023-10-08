@@ -20,6 +20,10 @@ class Post < ApplicationRecord
     image
   end
 
+  def self.search(keyword)
+    where(["title LIKE? or introduction LIKE? or place_name LIKE?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
+  end
+
   enum open_status: { disclosure: 0, unopened: 1, full_disclosure: 2 }
   enum level_status: { mild: 0, moderate: 1, severe: 2 }
 
