@@ -13,18 +13,17 @@
   </ul>
 
   <!--タブ：既読-->
-  <!--<div class="tabbox-contents">-->
-  <!--  <div class="tabbox box-show">-->
-  <!--    % if favorite_posts.empty? %>-->
-  <!--      <h6 class='mt-4'>既読した投稿はありません。</h6>-->
-  <!--    % else %>-->
-  <!--      <div class="d-flex flex-wrap">-->
-  <!--        %= render "public/posts/list", posts: favorite_posts %>-->
-  <!--      </div>-->
-  <!--    % end %>-->
-  <!--  </div>-->
-  <!--  <div class="d-flex justify-content-center">%= paginate favorite_posts %></div>-->
-  <!--</div>-->
+  <div class="tabbox-contents">
+    <div class="tabbox box-show">
+      <% if favorite_posts.empty? %>
+        <h6 class='mt-4'>既読した投稿はありません。</h6>
+      <% else %>
+        <div class="d-flex flex-wrap">
+          <%= render "public/posts/list", posts: favorite_posts %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
   <!--タブ：投稿-->
   <div class="tabbox">
