@@ -21,10 +21,9 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: "homes#top"
     get "/about" => "homes#about", as: "about"
-    resources :members, only: [:show, :edit, :update] do
+    resources :members, only: [:show, :edit, :update, :destroy] do
       collection do
         get 'confirm'
-        patch 'withdraw'
       end
     end
     resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do

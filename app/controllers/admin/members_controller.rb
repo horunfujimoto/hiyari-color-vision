@@ -1,4 +1,5 @@
 class Admin::MembersController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @member = Member.order(created_at: :desc).page(params[:page]).per(10)
@@ -21,15 +22,13 @@ class Admin::MembersController < ApplicationController
   end
 
   def update
-  @member = Member.find(params[:id]) # 更新対象の会員を取得
-    # current_admin がログインしていることを確認
-    if current_admin.present?
-      if @member.update(member_params) # 会員のステータスを更新
-        flash[:notice] = "会員のステータスを更新しました。"
-      else
-        flash[:alert] = "ステータスの更新に失敗しました。"
-        redirect_to admin_member_path(@member)
-      end
+    @member = Member.find(params[:id]) # 更新対象の会員を取得
+    if @member.update(member_params) # 会員のステータスを更新
+      flash[:notice] = "会員のステータスを更新しました。"
+      redirect_to admin_member_path(@member)
+    else
+      flash[:alert] = "ステータスの更新に失敗しました。"
+      render :show
     end
   end
 

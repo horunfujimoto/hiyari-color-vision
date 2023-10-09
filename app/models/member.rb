@@ -18,4 +18,8 @@ class Member < ApplicationRecord
 
   enum is_active: { active: 0, banned: 1, inactive: 2 }
 
+  def active_for_authentication?
+   super && (is_active == 'active')
+  end
+
 end

@@ -7,7 +7,7 @@ class Comment < ApplicationRecord
   # コメントが投稿された際に通知を作成するメソッド
   def create_notification_comment!(current_member, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
-    other_commenters_ids = Comment.select(:user_id).where(post_id: id).where.not(member_id: current_member.id).distinct.pluck(:user_id)
+    other_commenters_ids = Comment.select(:member_id).where(post_id: id).where.not(member_id: current_member.id).distinct.pluck(:member_id)
 
     # 各コメントユーザーに対して通知を作成
     other_commenters_ids.each do |commenter_id|

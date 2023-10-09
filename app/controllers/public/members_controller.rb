@@ -1,6 +1,5 @@
 class Public::MembersController < ApplicationController
 
-
   def show
     @member = Member.find(params[:id])
     @favorite_posts = Vision.includes(:post, :favorites)
@@ -32,14 +31,15 @@ class Public::MembersController < ApplicationController
     end
   end
 
-  def withdraw
-    @member = Member.find(params[:id])
-    # is_activeカラムを2に変更することにより削除フラグを立てる
-    @member.update(is_active: 2)
-    reset_session
-    flash[:notice] = "退会処理を実行いたしました。"
-    redirect_to root_path
+  def destroy
+    @member = current_member
+    @member.update(is_active: :inactive)
+    sign_out(@member)
+    flash[:notice] = "退会しました。"
+    redirect_to root_url
   end
+
+  def confirm; end
 
   def member_params
     params.require(:member).permit(:email, :name, :company_password, :industry, :company, :is_active )

@@ -29,8 +29,8 @@ class Post < ApplicationRecord
   def create_notification_comment!(current_member, comment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     others_comment_ids = Comment.select(:member_id).where(post_id: id).where.not(member_id: current_member.id).distinct #distinctする場合は、selectとしてから
-    others_comment_ids.each do |comment_id|
-      save_notification_comment!(current_member, comment_id, comment_id['member_id'])
+    others_comment_ids.each do |other_comment_id|
+      save_notification_comment!(current_member, @comment.id, other_comment_id['member_id'])
     end
     save_notification_comment!(current_member, comment_id, member_id) if others_comment_ids.blank?
   end

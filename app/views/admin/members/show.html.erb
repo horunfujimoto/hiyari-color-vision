@@ -1,5 +1,3 @@
-<%= javascript_pack_tag 'tab' %>
-
 <div class="container">
   <div class="row">
     <div class="col-10 text-center">
@@ -21,19 +19,24 @@
         <td>投稿数</td>
         <td><%= @member.posts.count %></td>
       </tr>
-    <%= form_with model: @member, url: admin_member_path, local: true do |f| %>
-      <tr>
-        <td><%= f.label :会員ステータス %></td>
-        <td>
-          <%= f.select :is_active,Member.is_actives_i18n.invert, {}, {class:"form-control"} %>
-        </td>
-      </tr>
     </table>
-      <%= f.submit "変更を保存",class: "btn btn-dark" %>
-    <% end %>
-    </div>
-  </div>
 
+      <div class="row">
+        <div class="col-12 text-center">
+          <%= form_with model: @member, url: admin_member_path, local: true do |f| %>
+            <div class="form-group d-flex justify-content-center">
+              <label for="member_is_active" class="mx-5">会員ステータス</label>
+                <%= f.select :is_active, Member.is_actives_i18n.invert, {}, { class: "form-control", style: "width: 300px;" } %>
+            </div>
+            <div class="text-center">
+              <%= f.submit "変更を保存", class: "btn btn-dark" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+  </div>
   <div class="row justify-content-center">
    <%= render "public/members/tab", member_posts: @member_posts, unopened_posts: @unopened_posts,favorite_posts: @favorite_posts %> <!--@favorite_postsを後で追加-->
   </div>
