@@ -21,7 +21,7 @@
         <td>投稿数</td>
         <td><%= @member.posts.count %></td>
       </tr>
-    <%= form_with model: @member, local: true do |f| %>
+    <%= form_with model: @member, url: admin_member_path, local: true do |f| %>
       <tr>
         <td><%= f.label :会員ステータス %></td>
         <td>

@@ -12,7 +12,7 @@ class Post < ApplicationRecord
   validates :body,        presence: :true, length: { in: 1..500 }
   validates :place,       presence: :true
 
-  has_one_attached :image #imageカラムが追記されたかのように扱うことができる
+  has_one_attached :image # imageカラムが追記されたかのように扱うことができる
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')# 画像がない場合はimages/no-image.jpgを参照
@@ -27,7 +27,7 @@ class Post < ApplicationRecord
 
   # 通知機能Comment method (create)
   def create_notification_comment!(current_member, comment_id)
-     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
+    # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     others_comment_ids = Comment.select(:member_id).where(post_id: id).where.not(member_id: current_member.id).distinct #distinctする場合は、selectとしてから
     others_comment_ids.each do |comment_id|
       save_notification_comment!(current_member, comment_id, comment_id['member_id'])
