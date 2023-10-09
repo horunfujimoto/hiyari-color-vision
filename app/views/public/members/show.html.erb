@@ -17,8 +17,7 @@
         </tr>
       </table>
 
-      <!--ログインユーザー自身の場合-->
-      <% unless @member.guest_member? %>
+      <% unless @member.guest_member? %> <!--ゲストログインは編集できない-->
       <div class="row justify-content-center">
         <% if @member == current_member %>
           <div class = "mx-3">
