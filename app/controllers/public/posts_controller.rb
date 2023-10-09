@@ -1,8 +1,11 @@
 class Public::PostsController < ApplicationController
 
   def index
-    #公開もしくは全体公開のどちらかを選択した場合は表示される
+    # 公開もしくは全体公開のどちらかを選択した場合は表示される
+    # current_member の company_password カラムと一致する投稿のみを取得
     @open_posts = Post.where(open_status: [0, 2])
+                  .joins(:member) #これが必要
+                  .where(members: { company_password: current_member.company_password })
                   .order(created_at: :desc)
                   .page(params[:page])
                   .per(10)
