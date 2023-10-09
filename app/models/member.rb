@@ -22,4 +22,22 @@ class Member < ApplicationRecord
    super && (is_active == 'active')
   end
 
+  GUEST_MEMBER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_MEMBER_EMAIL) do |member|
+      member.password = SecureRandom.urlsafe_base64
+      member.name = "guest member"
+      member.company_password = "000000"
+      member.company_password_confirmation = "000000"
+      member.industry = "業界"
+      member.company = "会社"
+
+    end
+  end
+
+  def guest_member?
+    email == GUEST_MEMBER_EMAIL
+  end
+
 end
