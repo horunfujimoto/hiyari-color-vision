@@ -1,4 +1,5 @@
 class Admin::TagsController < ApplicationController
+  before_action :authenticate_admin!
   before_action :get_genre_id, only: [:edit, :update]
 
   def index

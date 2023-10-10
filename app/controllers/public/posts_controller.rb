@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_member!
 
   def index
     # 公開もしくは全体公開のどちらかを選択した場合は表示される

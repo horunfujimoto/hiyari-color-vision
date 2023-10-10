@@ -1,4 +1,5 @@
 class Public::VisionsController < ApplicationController
+  before_action :authenticate_member!
 
   def index
   end
