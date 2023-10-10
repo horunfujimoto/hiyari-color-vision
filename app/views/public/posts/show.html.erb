@@ -60,6 +60,10 @@
       <% end %>
     </div>
 
+    <div class = "mx-3">
+      <%= link_to "PDFを表示", post_show_pdf_index_path(@post, @vision, format: "pdf") %>
+    </div>
+
     <!--コメント機能-->
     <div class=" row mt-3 mb-3 offset-1 ">
       <div id ="comment-form">

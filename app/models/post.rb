@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   has_one :vision, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :record_pdfs, dependent: :destroy
 
   validates :tag_id,      presence: :true
   validates :image,       presence: :false

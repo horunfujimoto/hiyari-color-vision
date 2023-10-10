@@ -18,6 +18,9 @@ module HiyariColorVision
     # in config/environments, which are processed later.
     #
     config.time_zone = 'Asia/Tokyo'
+    # 下記PDF化
+    config.paths.add 'app/assets/pdfs', eager_load: true
+    #config.eager_load_paths += %W(#{Rails.root}/lib/pdf)
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end

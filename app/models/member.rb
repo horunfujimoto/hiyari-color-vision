@@ -10,6 +10,7 @@ class Member < ApplicationRecord
   has_many :visions, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :record_pdfs, dependent: :destroy
 
   # 通知機能
   # 外部キーを設定することで、Userモデルのidカラムが、Notificationモデルのvisitor_idとvisited_idと関連付けられる
