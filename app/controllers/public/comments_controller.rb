@@ -5,16 +5,16 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_member.comments.new(comment_params)
     @comment.post_id = @post.id
-    @comment.save
 
-    # #通知機能
-    # ActiveRecord::Base.transaction do
-    #   if @comment.save
-    #     @post.create_notification_comment!(current_member, @comment.id)
-    #   else
-    #     render 'errors'
-    #   end
-    # end
+    #ここから通知機能
+    ActiveRecord::Base.transaction do
+      if @comment.save
+        @post.create_notification_comment!(current_member, @comment.id)
+      else
+        render 'errors'
+      end
+    end
+    #ここまで
   end
 
   def destroy

@@ -16,12 +16,25 @@ class Member < ApplicationRecord
   has_many :active_notifications,  class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
 
+  def create_notification_subscribe!(current_member)
+    mysub = Notification.where(["visiter_id = ? and visited_id = ? and action = ?", current_member.id, id, "subscribe"])
+    if mysub.blank?
+      notice = current_member.active_notifications.new(
+        visited_id: id,
+        action: "subscribe"
+      )
+      notice.save if notice.valid?
+    end
+  end
+
+  #会員ステータス
   enum is_active: { active: 0, banned: 1, inactive: 2 }
 
   def active_for_authentication?
    super && (is_active == 'active')
   end
 
+  #ゲストログイン機能
   GUEST_MEMBER_EMAIL = "guest@example.com"
 
   def self.guest

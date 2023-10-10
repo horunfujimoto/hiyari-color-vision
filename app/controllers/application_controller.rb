@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     @tags = Tag.all
   end
 
+  #通知機能
   def notice
     @notices = current_member.passive_notifications
     @unchecked_notices = current_member.passive_notifications.where(checked: false)

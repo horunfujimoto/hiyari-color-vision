@@ -13,6 +13,7 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 import "../packs/tab.js";
+import "../packs/scrollComment";
 
 Rails.start()
 Turbolinks.start()

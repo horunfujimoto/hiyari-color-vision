@@ -1,0 +1,10 @@
+<% notices.each do |notice| %>
+  <% visiter = notice.visiter %>
+  <% visited = notice.visited %>
+  <div class="d-flex">
+    <%= visiter.name %>さんが
+    <% if notice.action == 'comment' %>
+      <%= render 'public/notifications/comment_notice', notice: notice, visited: visited %>
+    <% end %>
+  </div>
+<% end %>

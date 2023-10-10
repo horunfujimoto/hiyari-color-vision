@@ -1,0 +1,38 @@
+<div class="notice-count-container">
+  <% if unchecked_notices.present? %> <!--通知があるときはアイコンが揺れる-->
+    <div data-toggle="modal" data-target="#noticeModal">
+      <i class="fa-regular fa-bell fa-shake"></i>
+    </div>
+  <% else %>
+    <div data-toggle="modal" data-target="#noticeModal">
+      <i class="fa-regular fa-bell "></i>
+    </div>
+  <% end %>
+
+
+  <div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="noticeLabel">通知</h5>
+          <% if notices.exists? %>
+            <%= link_to destroy_all_notifications_path, method: :delete, class:"text-dark text-end" do %>
+              <p class="mx-1">ALL<i class="fas fa-trash"></i></p>
+            <% end %>
+          <% end %>
+          <button type="button" class="btn-close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="notice">
+          <% notices = notices.where.not(visiter_id: current_member.id) %>
+          <% if notices.exists? %>
+            <%= render 'public/notifications/notice_modal_contents', unchecked_notices: unchecked_notices, notices: notices %>
+          <% else %>
+            <p id="nonNotice">通知はありません。</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
