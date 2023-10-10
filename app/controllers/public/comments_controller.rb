@@ -1,5 +1,5 @@
 class Public::CommentsController < ApplicationController
-  before_action :authenticate_member!
+  #before_action :authenticate_member!これを入れると管理者側でコメント削除ができない
 
   def create
     @post = Post.find(params[:post_id])

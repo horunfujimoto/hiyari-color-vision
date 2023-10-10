@@ -1,5 +1,6 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
+  before_action :authenticate_admin!
 
   def show
     @member = Member.find(params[:id])
