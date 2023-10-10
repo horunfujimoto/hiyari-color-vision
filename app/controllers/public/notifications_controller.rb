@@ -8,7 +8,7 @@ class Public::NotificationsController < ApplicationController
 
   def destroy_all
     current_member.passive_notifications.destroy_all
-    redirect_to request.referer
+    redirect_to root_path
   end
 
   def notice
