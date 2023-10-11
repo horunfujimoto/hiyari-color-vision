@@ -27,10 +27,10 @@ Rails.application.routes.draw do
       end
     end
     resources :posts, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-      resources :show_pdf, only: [:index]
       resources :comments, only: [:create, :destroy]
       resources :visions, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
         resource :favorites, only: [:create, :destroy]
+        resources :show_pdf, only: [:index]
       end
     end
 

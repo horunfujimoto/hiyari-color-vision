@@ -29,6 +29,9 @@
 
     <% if @post.member == current_member %>
       <div class = "mx-3">
+        <%= link_to "PDFを表示", post_vision_show_pdf_index_path(@post, @vision, format: "pdf"), class: "btn btn-dark" %>
+      </div>
+      <div class = "mx-3">
         <%= link_to "編集", edit_post_vision_path(@post, @vision), class: "btn btn-dark" %>
       </div>
       <div class = "mx-3">

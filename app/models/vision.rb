@@ -3,6 +3,7 @@ class Vision < ApplicationRecord
   belongs_to :member
   belongs_to :post
   has_many :favorites, dependent: :destroy
+  has_many :record_pdfs, dependent: :destroy
 
   validates :member_id,     presence: :true
   validates :post_id,       presence: :true
