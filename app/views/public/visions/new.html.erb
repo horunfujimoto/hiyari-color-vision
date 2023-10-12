@@ -1,34 +1,38 @@
 <div class="container py-5">
-  <div class="row mt-3 mb-3 offset-1 text-center">
-    <h3 class="px-4 title-background">改善案作成</h3>
-  </div>
+  <div class="row">
+    <div class="col-11 mx-auto">
+      <h3>改善案作成</h3>
 
-  <div class="row justify-content-center">
-  <%= form_with model: @vision, url: post_visions_path, local: true do |f| %>
-    <table class="table table-borderless">
-      <tr>
-        <td><%= f.label :タイトル %></td>
-        <td><%= @post.title %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :ヒヤリハット詳細 %></td>
-        <td><%= @post.body %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :改善案 %></td>
-        <td><%= f.text_area :improvement, class: "form-control", size: "50x10" %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :改善締切日 %></td>
-        <td><%= f.date_field :closing_day, class: "form-control" %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :確認者 %></td>
-        <td><%= f.text_field :double_check, class: "form-control" %></td>
-      </tr>
-    </table>
-    <%= f.submit '作成', class: "btn btn-dark px-4" %>
-  <% end %>
-  </div>
+      <div class="row justify-content-center">
+      <%= form_with model: @vision, url: post_visions_path, local: true do |f| %>
+        <table class="table table-borderless">
+          <div class="py-3">
+            <tr>
+              <td><%= f.label :タイトル %></td>
+              <td><%= @post.title %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :ヒヤリハット詳細 %></td>
+              <td><%= @post.body %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :改善案 %></td>
+              <td><%= f.text_area :improvement, class: "form-control", size: "50x10" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :改善締切日 %></td>
+              <td><%= f.date_field :closing_day, class: "form-control" %></td>
+            </tr>
+            <tr>
+              <td><%= f.label :確認者 %></td>
+              <td><%= f.text_field :double_check, class: "form-control" %></td>
+            </tr>
+          </div>
+        </table>
+        <%= f.submit '作成', class: "btn btn-dark px-4" %>
+      <% end %>
+      </div>
 
+    </div>
+  </div>
 </div>
