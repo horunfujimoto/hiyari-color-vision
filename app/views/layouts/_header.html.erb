@@ -3,9 +3,19 @@
 
     <!--タイトル-->
     <div class="row justify-content-center">
-      <%# ストリングパラメータを付与している(title_link: true) %>
-      <%= link_to root_path(title_link: true) do %>
-        <%= image_tag 'title.top.png', style: " width: 400px; height: 80px;" %>
+      <% if member_signed_in? %>
+        <%# ストリングパラメータを付与している(title_link: true) %>
+        <%= link_to root_path(title_link: true) do %>
+          <%= image_tag 'title.top.png', style: " width: 400px; height: 80px;" %>
+        <% end %>
+      <% elsif admin_signed_in? %>
+        <%= link_to admin_root_path do %>
+          <%= image_tag 'title.top.png', style: " width: 400px; height: 80px;" %>
+        <% end %>
+      <% else %>
+        <%= link_to root_path(title_link: true) do %>
+          <%= image_tag 'title.top.png', style: " width: 400px; height: 80px;" %>
+        <% end %>
       <% end %>
     </div>
 
@@ -84,5 +94,6 @@
         <% end %>
       </div>
     </div>
+
   </div>
 </header>
