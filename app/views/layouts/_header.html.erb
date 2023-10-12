@@ -11,33 +11,39 @@
     <!--ページ遷移-->
     <div class="row mx-auto">
       <div class="col-12">
-        <ul class="row justify-content-end my-2 list-unstyled">
-          <% if member_signed_in? %>
-            <!--検索機能-->
-            <li class="nav-item mx-2 mt-2">
-              <%= render 'public/searches/search', keyword: @keyword, tags: @tags %>
-            </li>
-            <!--通知機能-->
-            <li class="nav-item mx-2 mt-2">
-              <%= render 'public/notifications/notice_modal', notices: @notices, unchecked_notices: @unchecked_notices %>
-            </li>
-            <li class="nav-item mx-2 mt-2">
-              <i class="fa-regular fa-face-smile">
-              <%= link_to "マイページ", member_path(current_member), class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
-            </li>
-            <li class="nav-item mx-2 mt-2">
-              <i class="fa-regular fa-pen-to-square">
-              <%= link_to "投稿", new_post_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
-            </li>
-            <li class="nav-item mx-2 mt-2">
-              <i class="fa-regular fa-clipboard">
-              <%= link_to "ヒヤリ集", posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
-            </li>
-            <li class="nav-item mx-2 mt-2">
-              <i class="fa-solid fa-right-from-bracket">
-              <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
-            </li>
-          <% elsif admin_signed_in? %>
+        <% if member_signed_in? %>
+          <div class="d-flex justify-content-between"> <!--ログイン時左右に表示-->
+            <ul class="list-unstyled d-flex">
+              <!--検索機能-->
+              <li class="nav-item mx-2 mt-2">
+                <%= render 'public/searches/search', keyword: @keyword, tags: @tags %>
+              </li>
+              <!--通知機能-->
+              <li class="nav-item mx-2 mt-2">
+                <%= render 'public/notifications/notice_modal', notices: @notices, unchecked_notices: @unchecked_notices %>
+              </li>
+            </ul>
+            <ul class="list-unstyled d-flex">
+              <li class="nav-item mx-2 mt-2">
+                <i class="fa-regular fa-face-smile">
+                <%= link_to "マイページ", member_path(current_member), class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              </li>
+              <li class="nav-item mx-2 mt-2">
+                <i class="fa-regular fa-pen-to-square">
+                <%= link_to "投稿", new_post_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              </li>
+              <li class="nav-item mx-2 mt-2">
+                <i class="fa-regular fa-clipboard">
+                <%= link_to "ヒヤリ集", posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              </li>
+              <li class="nav-item mx-2 mt-2">
+                <i class="fa-solid fa-right-from-bracket">
+                <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              </li>
+            </ul>
+          </div>
+        <% elsif admin_signed_in? %>
+          <ul class="row justify-content-end my-2 list-unstyled">
             <li class="nav-item mx-2 mt-2">
               <i class="fa-regular fa-user">
               <%= link_to "会員一覧", admin_members_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
@@ -54,7 +60,9 @@
               <i class="fa-solid fa-right-from-bracket">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
-          <% else %>
+          </ul>
+        <% else %>
+          <ul class="row justify-content-end my-2 list-unstyled">
             <li class="nav-item mx-2 mt-2">
               <i class="fa-regular fa-heart">
               <%= link_to "使い方", about_path, class: "text-decoration-none align-middle align-middle", style: "color: #3B240B" %></i>
@@ -71,10 +79,9 @@
               <i class="fa-solid fa-arrow-right-to-bracket">
               <%= link_to "管理者ログイン", new_admin_session_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
-          <% end %>
-        </ul>
+          </ul>
+        <% end %>
       </div>
-
     </div>
   </div>
 </header>
