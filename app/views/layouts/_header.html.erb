@@ -3,7 +3,8 @@
 
     <!--タイトル-->
     <div class="row justify-content-center">
-      <%= link_to root_path do %>
+      <%# ストリングパラメータを付与している(title_link: true) %>
+      <%= link_to root_path(title_link: true) do %>
         <%= image_tag 'title.top.png', style: " width: 400px; height: 80px;" %>
       <% end %>
     </div>
@@ -75,7 +76,7 @@
               <i class="fa-solid fa-arrow-right-to-bracket">
               <%= link_to "会員ログイン", new_member_session_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>
-            <li class="nav-item mx-2 mt-2"> <!--後で消すかも-->
+            <li class="nav-item mx-2 mt-2"> <%#後で消すかも%>
               <i class="fa-solid fa-arrow-right-to-bracket">
               <%= link_to "管理者ログイン", new_admin_session_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
             </li>

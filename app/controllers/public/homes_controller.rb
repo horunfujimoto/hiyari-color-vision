@@ -4,6 +4,8 @@ class Public::HomesController < ApplicationController
                     .order(created_at: :desc)
                     .page(params[:page])
                     .per(10)
+    # 受け取ったストリングパラメーターが存在すればfalse、存在しなけばtrueをインスタンス変数に格納
+    @display = !params[:title_link]
   end
 
   def about
