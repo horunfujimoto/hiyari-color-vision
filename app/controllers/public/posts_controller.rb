@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
                   .where(members: { company_password: current_member.company_password })
                   .order(created_at: :desc)
                   .page(params[:page])
-                  .per(10)
+                  .per(6)
   end
 
   def show

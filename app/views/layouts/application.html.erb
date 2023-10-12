@@ -10,21 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <%= favicon_link_tag('favicon') %>
   </head>
 
-  <% c = controller %>
-  <%# homesのtopアクションの時はjsのアクションを実行 %>
-  <body style="background-color: #CEECF5; font-family: 'Kiwi Maru', serif;" id = "<%= (c.controller_name == 'homes' && c.action_name == 'top') ? 'top' : '' %>" >
-    <%# homesのtopアクションで、homesコントローラーで定義した@displayの時は'display:none;'は実行しない %>
-    <div class = "body" style= "<%= (c.controller_name == 'homes' && c.action_name == 'top' && @display ) ? 'display:none;' : '' %>" >
-      <div class="d-flex flex-column h-100">
-      <%= render 'layouts/header' %>
-      <%= flash[:notice] %>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
+    <% c = controller %>
+    <%# homesのtopアクションの時はjsのアクションを実行 %>
+    <body style="background-color: #CEECF5; font-family: 'Kiwi Maru', serif;" id = "<%= (c.controller_name == 'homes' && c.action_name == 'top') ? 'top' : '' %>" >
+      <%# homesのtopアクションで、homesコントローラーで定義した@displayの時は'display:none;'は実行しない %>
+      <div class = "body" style= "<%= (c.controller_name == 'homes' && c.action_name == 'top' && @display ) ? 'display:none;' : '' %>" >
+        <%= render 'layouts/header' %>
+          <main class="container flex-shrink-0" style="padding-bottom: 80px;">
+            <%= flash[:notice] %>
+            <%= yield %>
+          </main>
+        <%= render 'layouts/footer' %>
       </div>
-    </div>
-  </body>
+    </body>
 
 </html>
