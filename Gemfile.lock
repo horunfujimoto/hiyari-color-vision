@@ -273,6 +273,7 @@ DEPENDENCIES
   jquery-rails
   kaminari (~> 1.2.1)
   listen (~> 3.3)
+  matrix (~> 0.4.2)
   mysql2
   net-imap
   net-pop
