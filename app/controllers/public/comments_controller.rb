@@ -9,7 +9,7 @@ class Public::CommentsController < ApplicationController
     #ここから通知機能
     ActiveRecord::Base.transaction do
       if @comment.save
-        @post.create_notification_comment!(current_member, @comment.id)
+        @post.create_notification_comment!(current_member, @comment)
       else
         render 'errors'
       end
