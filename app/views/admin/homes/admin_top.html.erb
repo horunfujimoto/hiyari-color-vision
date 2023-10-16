@@ -1,2 +1,71 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container py-5">
+  <div class="col-11 mx-auto">
+    <h3 class="mb-4">データ</h3>
+
+    <div class="row py-2">
+      <div class="col-md-5">
+        <h5>合計登録者数</h5>
+      </div>
+      <div class="col-md-5">
+        <p><span class="count-up" style="font-size: 25px;"><%= @members_count %></span> 人 / 目標人数20人</p>
+      </div>
+    </div>
+
+    <div class="row py-2">
+      <div class="col-md-5">
+        <h5>合計投稿数</h5>
+      </div>
+      <div class="col-md-5">
+        <p><span class="count-up" style="font-size: 25px;"><%= @posts_count %></span> 件 / 目標件数50件</p>
+      </div>
+    </div>
+
+    <div class="row py-2">
+      <div class="col-md-5">
+        <h5>合計登録会社数</h5>
+      </div>
+      <div class="col-md-5">
+        <p><span class="count-up" style="font-size: 25px;"><%= @companies_count %></span> 社 / 目標数10社</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row py-2">
+    <canvas id="comparisonChart" width="400" height="200"></canvas>
+    <script>
+      var ctx = document.getElementById("comparisonChart").getContext('2d');
+      var comparisonChart = new Chart(ctx, {
+        type: 'bar', // グラフの種類を指定（例: 棒グラフ）
+        data: {
+          labels: ["登録者数", "投稿数", "登録会社数"],
+          datasets: [
+            {
+              label: '実績', // 実績データのラベル
+              data: [<%= @members_count %>, <%= @posts_count %>, <%= @companies_count %>],
+              backgroundColor: 'rgba(0,128,255, 0.2)',
+              borderColor: 'rgba(0,128,255, 1)',
+              borderWidth: 1
+            },
+            {
+              label: '目標', // 目標データのラベル
+              data: [20, 50, 10], // 目標値
+              backgroundColor: 'rgba(1,223,165, 0.2)', // 目標データの色
+              borderColor: 'rgba(1,223,165, 1)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          scales: {
+            x: {
+              beginAtZero: true
+            },
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+  </div>
+</div>
