@@ -13,20 +13,9 @@ class Member < ApplicationRecord
   has_many :record_pdfs, dependent: :destroy
 
   # 通知機能
-  # 外部キーを設定することで、Userモデルのidカラムが、Notificationモデルのvisitor_idとvisited_idと関連付けられる
+  # 外部キーを設定することで、memberモデルのidカラムが、Notificationモデルのvisitor_idとvisited_idと関連付けられる
   has_many :active_notifications,  class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
-
-  def create_notification_subscribe!(current_member)
-    mysub = Notification.where(["visiter_id = ? and visited_id = ? and action = ?", current_member.id, id, "subscribe"])
-    if mysub.blank?
-      notice = current_member.active_notifications.new(
-        visited_id: id,
-        action: "subscribe"
-      )
-      notice.save if notice.valid?
-    end
-  end
 
   #会員ステータス
   enum is_active: { active: 0, banned: 1, inactive: 2 }

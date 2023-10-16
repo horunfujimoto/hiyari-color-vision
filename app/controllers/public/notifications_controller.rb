@@ -2,8 +2,9 @@ class Public::NotificationsController < ApplicationController
   before_action :authenticate_member!
 
   def destroy
-    @notices = current_member.passive_notifications
     Notification.find(params[:id]).destroy
+    @notices = current_member.passive_notifications
+    @notices = @notices.where.not(visiter_id: current_member.id)
   end
 
   def destroy_all
@@ -16,6 +17,7 @@ class Public::NotificationsController < ApplicationController
     @notices.where(checked: false).each do |notice|
       notice.update(checked: true)
     end
+    @notices = @notices.where.not(visiter_id: current_member.id)
     @unchecked_notice = current_member.passive_notifications.where(checked: false)
   end
 

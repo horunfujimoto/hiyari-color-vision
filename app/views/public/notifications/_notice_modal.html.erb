@@ -25,7 +25,6 @@
           </button>
         </div>
         <div class="modal-body" id="notice">
-          <% notices = notices.where.not(visiter_id: current_member.id) %>
           <% if notices.exists? %>
             <%= render 'public/notifications/notice_modal_contents', unchecked_notices: unchecked_notices, notices: notices %>
           <% else %>
