@@ -31,6 +31,19 @@
   animation-fill-mode: forwards;
 }
 
+// ページネーション
 .pagination {
   justify-content: center;
+}
+
+.page-link {
+  color: #1184A4;
+}
+.page-item.active .page-link{
+  background-color: #6ABACD;
+  border-color: #6ABACD;
+}
+
+.top-border {
+  border-top: 1px dotted #4d4d4d;
 }
