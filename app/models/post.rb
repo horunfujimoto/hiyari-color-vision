@@ -22,6 +22,7 @@ class Post < ApplicationRecord
     image
   end
 
+  # 検索機能
   def self.search(keyword)
     where(["title LIKE? or body LIKE? or place LIKE?", "%#{keyword}%", "%#{keyword}%", "%#{keyword}%"])
   end
@@ -56,5 +57,11 @@ class Post < ApplicationRecord
 
   enum open_status: { disclosure: 0, unopened: 1, full_disclosure: 2 }
   enum level_status: { mild: 0, moderate: 1, severe: 2 }
+
+  # 並び替え
+  scope :latest, -> { order(created_at: :desc) }  # 登録新しい順
+  scope :old, -> { order(created_at: :asc) }      # 登録古い順
+  scope :level_high, -> { order(level_statuses: :desc) } # 重度高い順
+  scope :level_low, -> { order(level_statuses: :asc) }   # 重度低い順
 
 end
