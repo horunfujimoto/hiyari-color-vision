@@ -13,7 +13,7 @@ ja:
       level_status:
         mild: "軽度"
         moderate: "中等度"
-        severe: "高度"
+        severe: "重度"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
