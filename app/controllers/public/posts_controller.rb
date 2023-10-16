@@ -7,23 +7,23 @@ class Public::PostsController < ApplicationController
     if sort_by.present?
       case sort_by # 並び替えの値が何か
       when "latest"
-        @q = Post.latest
+        @sort = Post.latest
       when "old"
-        @q = Post.old
+        @sort = Post.old
       when "level_high"
-        @q = Post.level_high
+        @sort = Post.level_high
       when "level_low"
-        @q = Post.level_high
+        @sort = Post.level_high
       end
     else
       # デフォルトは「新着順」で並び替える
-      @q = Post.latest
+      @sort = Post.latest
     end
 
 
     # 公開もしくは全体公開のどちらかを選択した場合は表示される
     # current_member の company_password カラムと一致する投稿のみを取得
-    @open_posts = @q.where(open_status: [0, 2])
+    @open_posts = @sort.where(open_status: [0, 2])
                   .joins(:member) #これが必要
                   .where(members: { company_password: current_member.company_password })
                   .page(params[:page])

@@ -8,23 +8,23 @@
         <table class="table table-borderless">
           <div class="py-3">
             <tr>
-              <td><%= f.label :タイトル %></td>
+              <td>タイトル</td>
               <td><%= @post.title %></td>
             </tr>
             <tr>
-              <td><%= f.label :ヒヤリハット詳細 %></td>
+              <td>ヒヤリハット詳細</td>
               <td><%= @post.body %></td>
             </tr>
             <tr>
-              <td><%= f.label :改善案 %></td>
+              <td><%= f.label :improvement, "改善案" %></td>
               <td><%= f.text_area :improvement, class: "form-control", size: "50x10" %></td>
             </tr>
             <tr>
-              <td><%= f.label :改善締切日 %></td>
+              <td><%= f.label :closing_day, "改善締切日" %></td>
               <td><%= f.date_field :closing_day, class: "form-control" %></td>
             </tr>
             <tr>
-              <td><%= f.label :確認者 %></td>
+              <td><%= f.label :double_check, "確認者" %></td>
               <td><%= f.text_field :double_check, class: "form-control" %></td>
             </tr>
           </div>

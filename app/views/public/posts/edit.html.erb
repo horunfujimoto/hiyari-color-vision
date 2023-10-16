@@ -6,34 +6,36 @@
   <div class="row justify-content-center">
   <%= form_with model: @post, url: post_path(@post),method: :patch do |f| %>
     <table class="table table-borderless">
-      <tr>
-        <td><%= f.label :タイトル %></td>
-        <td><%= f.text_field :title, class: "form-control" %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :ヒヤリハット詳細説明 %></td>
-        <td><%= f.text_area :body, class: "form-control", rows: 5 %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :画像 %></td>
-        <td><%= f.file_field :image, accept: "image/*" %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :発生場所 %></td>
-        <td><%= f.text_field :place, class: "form-control" %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :タグ %></td>
-        <td><%= f.collection_select :tag_id, Tag.all, :id, :name, {}, {class:"form-control"} %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :重度 %></td>
-        <td><%= f.select :level_status,Post.level_statuses_i18n.invert, {}, {class:"form-control"} %></td>
-      </tr>
-      <tr>
-        <td><%= f.label :公開設定 %></td>
-        <td><%= f.select :open_status,Post.open_statuses_i18n.invert, {}, {class:"form-control"} %></td>
-      </tr>
+      <div class="py-3">
+        <tr>
+          <td><%= f.label :title, "タイトル" %></td>
+          <td><%= f.text_field :title, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :body, "ヒヤリハット詳細" %></td>
+          <td><%= f.text_area :body, class: "form-control", rows: 5 %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :image, "画像" %></td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :place, "発生場所" %></td>
+          <td><%= f.text_field :place, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :tag_id, "タグ" %></td>
+          <td><%= f.collection_select :tag_id, Tag.all, :id, :name, {}, {class:"form-control"} %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :level_status, "重度" %></td>
+          <td><%= f.select :level_status,Post.level_statuses_i18n.invert, {}, {class:"form-control"} %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :open_status, "公開設定" %></td>
+          <td><%= f.select :open_status,Post.open_statuses_i18n.invert, {}, {class:"form-control"} %></td>
+        </tr>
+      </div>
     </table>
     <%= f.submit "変更を保存", class: "btn btn-dark" %>
   <% end %>
