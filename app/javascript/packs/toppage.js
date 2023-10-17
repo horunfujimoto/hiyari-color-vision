@@ -1,6 +1,6 @@
 // application.jsに読み込みの記述を書く
 /* global $*/
-$(function () { //アプリケーションの起動時一度だけ実行される
+$(document).on('turbolinks:load', function() { //アプリケーションの起動時一度だけ実行される ※ここは毎回読み込まれる
     var hasVisited = sessionStorage.getItem('hasVisited');
 
     if (!hasVisited) {
@@ -13,7 +13,7 @@ $(function () { //アプリケーションの起動時一度だけ実行され�
         });
 
         const $fullscreenImage = $('<div class="fullscreen-image"></div>').appendTo('body');
-        const $image = $('<img src="/assets/top.png" alt="Full Screen Image">').appendTo($fullscreenImage);
+        const $image = $('<img src="'+$('#top_png').text()+'" alt="Full Screen Image">').appendTo($fullscreenImage);
 
         $fullscreenImage.css({
             'width': '100%',

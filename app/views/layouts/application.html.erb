@@ -24,6 +24,7 @@
           <main class="container flex-shrink-0" style="padding-bottom: 80px;">
             <%= flash[:notice] %>
             <%= yield %>
+            <div id="top_png" style="display:none;"><%= image_path("top.png")%></div>
           </main>
         <%= render 'layouts/footer' %>
       </div>
