@@ -5,7 +5,6 @@ class Post < ApplicationRecord
   has_one :vision, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
-  has_many :record_pdfs, dependent: :destroy
 
   validates :tag_id,      presence: :true
   validates :image,       presence: :false
@@ -49,10 +48,11 @@ class Post < ApplicationRecord
   enum open_status: { disclosure: 0, unopened: 1, full_disclosure: 2 }
   enum level_status: { mild: 0, moderate: 1, severe: 2 }
 
-  # 並び替え
+  # 並び替え・フィルター
   scope :latest, -> { order(created_at: :desc) }  # 登録新しい順
   scope :old, -> { order(created_at: :asc) }      # 登録古い順
+  scope :level_low, -> { order(level_statuses: :desc) }   # 重度低い順
+  scope :level_middle, -> { order(level_statuses: :desc) } # 重度高い順
   scope :level_high, -> { order(level_statuses: :desc) } # 重度高い順
-  scope :level_low, -> { order(level_statuses: :asc) }   # 重度低い順
 
 end

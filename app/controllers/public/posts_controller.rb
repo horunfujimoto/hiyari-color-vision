@@ -11,9 +11,11 @@ class Public::PostsController < ApplicationController
       when "old"
         @sort = Post.old
       when "level_high"
-        @sort = Post.level_high
+        @sort = Post.where(level_status: "severe").latest
+      when "level_middle"
+        @sort = Post.where(level_status: "moderate").latest
       when "level_low"
-        @sort = Post.level_high
+        @sort = Post.where(level_status: "mild").latest
       end
     else
       # デフォルトは「新着順」で並び替える

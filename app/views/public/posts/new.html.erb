@@ -25,15 +25,15 @@
             </tr>
             <tr>
               <td><%= f.label :tag_id, "タグ" %></td>
-              <td><%= f.collection_select :tag_id, Tag.all, :id, :name, {}, {class:"form-control"} %></td>
+              <td><%= f.collection_select :tag_id, Tag.all, :id, :name, {}, {class: "form-control"} %></td>
             </tr>
             <tr>
               <td><%= f.label :level_status, "重度" %></td>
-              <td><%= f.select :level_status,Post.level_statuses_i18n.invert, {}, {class:"form-control"} %></td>
+              <td><%= f.select :level_status,Post.level_statuses_i18n.invert, {}, {class: "form-control"} %></td>
             </tr>
             <tr>
               <td><%= f.label :open_status, "公開設定" %></td>
-              <td><%= f.select :open_status,Post.open_statuses_i18n.invert, {}, {class:"form-control"} %></td>
+              <td><%= f.select :open_status,Post.open_statuses_i18n.invert, {}, {class: "form-control"} %></td>
             </tr>
           </div>
         </table>
