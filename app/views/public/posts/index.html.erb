@@ -3,7 +3,7 @@
     <div class="col-11 mx-auto">
       <h3>社内ヒヤリハット一覧</h3>
 
-      <!--並び替えのリンク「.to_unsafe_h」は検索のパラメーターをハッシュに変換して保持している-->
+      <!--並び替えのリンク-->
       <%= link_to '新着順/', posts_path(sort_by: "latest") %>
       <%= link_to '古い順/', posts_path(sort_by: "old") %>
       <%= link_to '重度順(重)/', posts_path(sort_by: "level_high") %>
