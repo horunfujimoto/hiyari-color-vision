@@ -43,4 +43,14 @@ class Member < ApplicationRecord
     email == GUEST_MEMBER_EMAIL
   end
 
+  # #停止機能
+  # after_update :schedule_status_update, if: :status_changed_to_1?
+  # def status_changed_to_1?
+  #   status_changed? && is_active == 1
+  # end
+
+  # def schedule_status_update
+  #   UpdateStatusJob.set(wait: 1.minute).perform_later(self)
+  # end
+
 end

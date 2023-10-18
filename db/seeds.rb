@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+ActiveStorage::AnalyzeJob.queue_adapter = :inline
+ActiveStorage::PurgeJob.queue_adapter = :inline
+
 Admin.create!(
   email: '0@0',
   password: '000000',
@@ -28,91 +31,63 @@ Member.create!([
 Tag.create!([
   { name: '労働安全' },
   { name: '交通安全' },
+  { name: '食品安全' },
   { name: '製造業' },
   { name: '医療安全' },
   { name: 'ITセキュリティ' },
+  { name: 'データ漏洩' },
   { name: '環境安全' },
   { name: '教育訓練' },
   { name: '安全規定' }
 ])
 
-# # 投稿の作成メソッド
-# def create_posts(member, count, status_options, tags)
-#   initial_date = Time.now - (count - 1).days
-#   post_date = initial_date + i.days
+Post.create!([
+  { member_id: 1, tag_id: 1, title: "労働安全(全体公開)", body: "工場内で転倒事故発生。床が滑りやすかった。", place: "場所", level_status: "mild", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 2, tag_id: 2, title: "交通安全(全体公開)", body: "駐車場で接触事故。表示が不足していた。", place: "場所", level_status: "moderate", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 3, tag_id: 3, title: "食品安全(全体公開)", body: "賞味期限切れの商品販売。消費者に注意された。", place: "場所", level_status: "moderate", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 4, tag_id: 4, title: "製造業(全体公開)", body: "生産ラインで機械の故障。生産停止につながった。", place: "場所", level_status: "severe", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 5, tag_id: 5, title: "医療安全(全体公開)", body: "医療記録の紛失。患者情報の機密性が危険にさらされた。", place: "場所", level_status: "severe", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 6, tag_id: 6, title: "ITセキュリティ(全体公開)", body: "フィッシング攻撃により社内情報流出。機密情報が漏洩。", place: "場所", level_status: "severe", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 7, tag_id: 7, title: "データ漏洩(全体公開)", body: "従業員が誤って機密データを誤送信。データ漏洩が発生。", place: "場所", level_status: "severe", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 8, tag_id: 8, title: "環境安全(全体公開)", body: "化学物質の誤った廃棄。地元環境への悪影響が懸念された。", place: "場所", level_status: "moderate", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 9, tag_id: 9, title: "教育訓練(全体公開)", body: "社内トレーニングの効果が不足。知識不足の問題が残っている。", place: "場所", level_status: "mild", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 10, tag_id: 10, title: "安全規定(全体公開)", body: "緊急避難プロセスが不明瞭。従業員が混乱した。", place: "場所", level_status: "mild", open_status: "full_disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
 
-#   Post.find_or_create_by!(post_params) do |p|
-#     p.tag = 1
-#     p.user = 1
-#     p.title = "タイトル(全体公開)"
-#     p.body = "開発プロジェクトのスケジュールが遅れ、クライアントからの不満が高まっている。"
-#     p.place = "場所"
-#     p.level_status = 0
-#     p.open_status = 2
-#     p.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg")
-#     p.created_at = post_date
-#     p.updated_at = post_date
-#   end
-# end
+  { member_id: 1, tag_id: 1, title: "労働安全(社内公開)", body: "工場内で転倒事故発生。床が滑りやすかった。", place: "場所", level_status: "mild", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 2, tag_id: 2, title: "交通安全(社内公開)", body: "駐車場で接触事故。表示が不足していた。", place: "場所", level_status: "moderate", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 3, tag_id: 3, title: "食品安全(社内公開)", body: "賞味期限切れの商品販売。消費者に注意された。", place: "場所", level_status: "moderate", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 4, tag_id: 4, title: "製造業(社内公開)", body: "生産ラインで機械の故障。生産停止につながった。", place: "場所", level_status: "severe", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 5, tag_id: 5, title: "医療安全(社内公開)", body: "医療記録の紛失。患者情報の機密性が危険にさらされた。", place: "場所", level_status: "severe", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 6, tag_id: 6, title: "ITセキュリティ(社内公開)", body: "フィッシング攻撃により社内情報流出。機密情報が漏洩。", place: "場所", level_status: "severe", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 7, tag_id: 7, title: "データ漏洩(社内公開)", body: "従業員が誤って機密データを誤送信。データ漏洩が発生。", place: "場所", level_status: "severe", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 8, tag_id: 8, title: "環境安全(社内公開)", body: "化学物質の誤った廃棄。地元環境への悪影響が懸念された。", place: "場所", level_status: "moderate", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 9, tag_id: 9, title: "教育訓練(社内公開)", body: "社内トレーニングの効果が不足。知識不足の問題が残っている。", place: "場所", level_status: "mild", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 10, tag_id: 10, title: "安全規定(社内公開)", body: "緊急避難プロセスが不明瞭。従業員が混乱した。", place: "場所", level_status: "mild", open_status: "disclosure", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
 
-# # 投稿の作成メソッド2
-# initial_date = Time.now - (count - 1).days
-# post_date = initial_date + i.days
-# posts = ([
-#   { member_id: 1, tag_id: 1, title: "タイトル(全体公開)", body: "開発プロジェクトのスケジュールが遅れ、クライアントからの不満が高まっている。", place: "場所", level_status: 0, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg"),created_at: post_date, updated_at: post_date }
-#   ])
-# posts.each do |post|
-#   Post.find_or_create_by(post)
-# end
+  { member_id: 1, tag_id: 1, title: "労働安全(非公開)", body: "工場内で転倒事故発生。床が滑りやすかった。", place: "場所", level_status: "mild", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 2, tag_id: 2, title: "交通安全(非公開)", body: "駐車場で接触事故。表示が不足していた。", place: "場所", level_status: "moderate", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 3, tag_id: 3, title: "食品安全(非公開)", body: "賞味期限切れの商品販売。消費者に注意された。", place: "場所", level_status: "moderate", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 4, tag_id: 4, title: "製造業(非公開)", body: "生産ラインで機械の故障。生産停止につながった。", place: "場所", level_status: "severe", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 5, tag_id: 5, title: "医療安全(非公開)", body: "医療記録の紛失。患者情報の機密性が危険にさらされた。", place: "場所", level_status: "severe", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 6, tag_id: 6, title: "ITセキュリティ(非公開)", body: "フィッシング攻撃により社内情報流出。機密情報が漏洩。", place: "場所", level_status: "severe", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 7, tag_id: 7, title: "データ漏洩(非公開)", body: "従業員が誤って機密データを誤送信。データ漏洩が発生。", place: "場所", level_status: "severe", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 8, tag_id: 8, title: "環境安全(非公開)", body: "化学物質の誤った廃棄。地元環境への悪影響が懸念された。", place: "場所", level_status: "moderate", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 9, tag_id: 9, title: "教育訓練(非公開)", body: "社内トレーニングの効果が不足。知識不足の問題が残っている。", place: "場所", level_status: "mild", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") },
+  { member_id: 10, tag_id: 10, title: "安全規定(非公開)", body: "緊急避難プロセスが不明瞭。従業員が混乱した。", place: "場所", level_status: "mild", open_status: "unopened", image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/no_image.jpg"), filename:"no_image.jpg") }
+])
 
-## 投稿の作成メソッド3
-# Post.find_or_create_by!([
-#   { member_id: 1, tag_id: 1, title: "タイトル(全体公開)", body: "開発プロジェクトのスケジュールが遅れ、クライアントからの不満が高まっている。", place: "場所", level_status: 0, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 2, tag_id: 2, title: "タイトル(全体公開)", body: "品質管理が不十分で、不良品が市場に出回ってしまった。", place: "場所", level_status: 2, open_status: 0, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 3, tag_id: 3, title: "タイトル(全体公開)", body: "仕入れ先からのサプライチェーンの途中での遅延が発生し、在庫が足りない。", place: "", level_status: 1, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 4, tag_id: 4, title: "タイトル(全体公開)", body: "クレジットリスクの管理が不十分で、貸し倒れが急増している。", place: "場所", level_status: 2, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 5, tag_id: 5, title: "タイトル(全体公開)", body: "顧客からの不満が増加し、サービス品質が低下している。", place: "場所", level_status: 1, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 6, tag_id: 6, title: "タイトル(全体公開)", body: "クライアントの広告キャンペーンが予算を超過し、期待される成果が得られていない。", place: "場所", level_status: 0, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 7, tag_id: 7, title: "タイトル(全体公開)", body: "介護施設にて職員の人手不足から、利用者が転倒してしまった。", place: "場所", level_status: 2, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 8, tag_id: 8, title: "タイトル(全体公開)", body: "医療ミスが頻繁に発生しており、患者の安全が脅かされている。", place: "場所", level_status: 2, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 9, tag_id: 9, title: "タイトル(全体公開)", body: "公共インフラの保守不足により、安全性が懸念されている。", place: "場所", level_status: 0, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-#   { member_id: 10, tag_id: 10, title: "タイトル(全体公開)", body: "在庫管理が不確実で、品切れと在庫過剰が問題となっている。", place: "場所", level_status: 1, open_status: 2, image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}app/assets/images/no_image.jpg"), filename:"no_image.jpg") },
-
-#   { member_id: 1, tag_id: 1, title: "タイトル(社内公開)", body: "開発プロジェクトのスケジュールが遅れ、クライアントからの不満が高まっている。", place: "場所", level_status: 0, open_status: 1, image:File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 2, tag_id: 2, title: "タイトル(社内公開)", body: "品質管理が不十分で、不良品が市場に出回ってしまった。", place: "場所", level_status: 2, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 3, tag_id: 3, title: "タイトル(社内公開)", body: "仕入れ先からのサプライチェーンの途中での遅延が発生し、在庫が足りない。", place: "", level_status: 1, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 4, tag_id: 4, title: "タイトル(社内公開)", body: "クレジットリスクの管理が不十分で、貸し倒れが急増している。", place: "場所", level_status: 2, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 5, tag_id: 5, title: "タイトル(社内公開)", body: "顧客からの不満が増加し、サービス品質が低下している。", place: "場所", level_status: 1, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 6, tag_id: 6, title: "タイトル(社内公開)", body: "クライアントの広告キャンペーンが予算を超過し、期待される成果が得られていない。", place: "場所", level_status: 0, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 7, tag_id: 7, title: "タイトル(社内公開)", body: "介護施設にて職員の人手不足から、利用者が転倒してしまった。", place: "場所", level_status: 2, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 8, tag_id: 8, title: "タイトル(社内公開)", body: "医療ミスが頻繁に発生しており、患者の安全が脅かされている。", place: "場所", level_status: 2, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 9, tag_id: 9, title: "タイトル(社内公開)", body: "公共インフラの保守不足により、安全性が懸念されている。", place: "場所", level_status: 0, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 10, tag_id: 10, title: "タイトル(社内公開)", body: "在庫管理が不確実で、品切れと在庫過剰が問題となっている。", place: "場所", level_status: 1, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-
-#   { member_id: 1, tag_id: 1, title: "タイトル(非公開)", body: "開発プロジェクトのスケジュールが遅れ、クライアントからの不満が高まっている。", place: "場所", level_status: 0, open_status: 1, image:File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 2, tag_id: 2, title: "タイトル(非公開)", body: "品質管理が不十分で、不良品が市場に出回ってしまった。", place: "場所", level_status: 2, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 3, tag_id: 3, title: "タイトル(非公開)", body: "仕入れ先からのサプライチェーンの途中での遅延が発生し、在庫が足りない。", place: "", level_status: 1, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 4, tag_id: 4, title: "タイトル(非公開)", body: "クレジットリスクの管理が不十分で、貸し倒れが急増している。", place: "場所", level_status: 2, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 5, tag_id: 5, title: "タイトル(非公開)", body: "顧客からの不満が増加し、サービス品質が低下している。", place: "場所", level_status: 1, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 6, tag_id: 6, title: "タイトル(非公開)", body: "クライアントの広告キャンペーンが予算を超過し、期待される成果が得られていない。", place: "場所", level_status: 0, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 7, tag_id: 7, title: "タイトル(非公開)", body: "介護施設にて職員の人手不足から、利用者が転倒してしまった。", place: "場所", level_status: 2, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 8, tag_id: 8, title: "タイトル(非公開)", body: "医療ミスが頻繁に発生しており、患者の安全が脅かされている。", place: "場所", level_status: 2, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 9, tag_id: 9, title: "タイトル(非公開)", body: "公共インフラの保守不足により、安全性が懸念されている。", place: "場所", level_status: 0, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-#   { member_id: 10, tag_id: 10, title: "タイトル(非公開)", body: "在庫管理が不確実で、品切れと在庫過剰が問題となっている。", place: "場所", level_status: 1, open_status: 1, image: File.open("./app/assets/images/no_image.jpg") },
-# ])
-
-# Vision.find_or_create_by!([
-#   { member_id: 1, post_id: 1, improvement: "スケジュール管理を改善し、リアルタイムで進捗をモニタリングするプロジェクト管理ツールの導入や、アジャイル開発方法の採用を行う。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 2, post_id: 2, improvement: "品質管理プロセスの強化と監視を行い、製品の品質を向上させる。また、トレーサビリティを確保し、不良品の追跡とリコール手続きを迅速に行う。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 3, post_id: 3, improvement: "サプライチェーンの可視性を向上させ、リアルタイムで在庫と供給状況をモニタリングするためのテクノロジーを導入。予測モデルを使用して在庫レベルを最適化する。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 4, post_id: 4, improvement: "より厳格なクレジットリスク評価モデルを採用し、貸し倒れのリスクを最小限に抑える。また、ポートフォリオの多様化を検討し、リスク分散を図る。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 5, post_id: 5, improvement: "顧客フィードバックを積極的に収集し、サービス品質の改善に反映する仕組みを構築。トレーニングとスキル向上の機会を提供し、スタッフの満足度を向上させる。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 6, post_id: 6, improvement: "クライアントとのコミュニケーションを強化し、クリアな目標と予算を設定。広告キャンペーンの成果を定期的にモニタリングし、最適化を行う。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 7, post_id: 7, improvement: "職員の不足を解消するため、新しいスタッフを採用し、既存のスタッフのトレーニングを強化します。特に、転倒予防と応急処置のトレーニングを重点的に行う。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 8, post_id: 8, improvement: "医療スタッフのトレーニングと認証プロセスを強化し、医療手続きの品質管理を改善。エラーレポートの分析を通じて問題箇所を特定し、改善策を実施する。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 9, post_id: 9, improvement: "ルーチンな保守スケジュールを策定し、インフラの状態を監視。必要に応じて修理とメンテナンスを実施し、安全性を確保する。", closing_day: "", double_check: "Aさん" },
-#   { member_id: 10, post_id: 10, improvement: "販売予測の改善とリアルタイム在庫監視システムの導入。在庫の効率的な管理と供給チェーンの最適化を行い、在庫問題を軽減する。", closing_day: "", double_check: "Aさん" }
-# ])
+Vision.create!([
+  { member_id: 1, post_id: 1, improvement: "床に滑り止めマットを敷く。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 2, post_id: 2, improvement: "駐車場に追加の交通標識を設置する。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 3, post_id: 3, improvement: "商品の賞味期限を厳密に管理し、期限切れ品を撤去する。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 4, post_id: 4, improvement: "定期的なメンテナンススケジュールを導入し、機械の故障を予防する。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 5, post_id: 5, improvement: "電子健康記録システムを導入して、データのセキュリティを向上させる。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 6, post_id: 6, improvement: "従業員にセキュリティトレーニングを提供し、セキュリティ意識を高める。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 7, post_id: 7, improvement: "データ送信前に二重確認プロセスを導入し、誤送信を防ぐ。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 8, post_id: 8, improvement: "廃棄物管理プロセスを見直し、環境への影響を最小限に抑える。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 9, post_id: 9, improvement: "カスタマイズされたトレーニングプログラムを開発し、スキル向上を促進する。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" },
+  { member_id: 10, post_id: 10, improvement: "緊急避難手順を改善し、全従業員にトレーニングを提供する。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" }
+])
 
 # 9.times do |n|
 #   Comment.create!(
