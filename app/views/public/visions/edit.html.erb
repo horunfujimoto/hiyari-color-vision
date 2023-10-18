@@ -3,6 +3,9 @@
     <h3 class="px-4 title-background">改善案編集</h3>
   </div>
 
+  <!--バリデーション部分-->
+  <%= render 'layouts/error', obj: @vision %>
+
   <div class="row justify-content-center">
   <%= form_with model: @vision, url: post_vision_path(@post,@vision), method: :patch do |f| %>
     <table class="table table-borderless">

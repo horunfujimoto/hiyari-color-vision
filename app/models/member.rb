@@ -5,6 +5,9 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name,      presence: true
+  validates :email,             presence: true
+  validates :encrypted_password,presence: true
+  validates :company_password,  presence: true
 
   has_many :posts, dependent: :destroy
   has_many :visions, dependent: :destroy

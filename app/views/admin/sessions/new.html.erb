@@ -5,7 +5,7 @@
 
       <div class="py-3">
       <%= form_with model: @admin, url: admin_session_path do |f| %>
-        <%= render "public/shared/error_messages", resource: resource %>
+        <%= render "admin/shared/error_messages", resource: resource %>
 
         <div class="field">
           <%= f.label :email, "メールアドレス" %><br />

@@ -23,7 +23,6 @@ class Public::VisionsController < ApplicationController
       flash[:notice] = "投稿が完了しました。"
       redirect_to post_vision_path(@post,@vision)
     else
-      flash[:notice] = "投稿内容に不備があります。"
       render :new
     end
   end

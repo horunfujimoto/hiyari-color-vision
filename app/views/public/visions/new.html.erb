@@ -3,6 +3,9 @@
     <div class="col-11 mx-auto">
       <h3>改善案作成</h3>
 
+      <!--バリデーション部分-->
+      <%= render 'layouts/error', obj: @vision %>
+
       <div class="row justify-content-center">
       <%= form_with model: @vision, url: post_visions_path, local: true do |f| %>
         <table class="table table-borderless">

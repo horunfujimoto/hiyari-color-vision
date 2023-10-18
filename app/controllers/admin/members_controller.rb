@@ -42,7 +42,7 @@ class Admin::MembersController < ApplicationController
   #     @member.update(is_active: 1)
   #     # ステータスを1に更新後、1分後にステータスを0に戻す処理を追加
   #     UpdateStatusJob.set(wait: 1.minute).perform_later(@member)
-  #     flash[:notice] = "会員のステータスを1に更新しました. 1分後にステータスが0に戻ります."
+  #     flash[:notice] = "会員のステータスを1に更新しました。1分後にステータスが0に戻ります。"
   #     redirect_to admin_member_path(@member)
   #   else
   #     flash[:alert] = "ステータスの更新に失敗しました。"

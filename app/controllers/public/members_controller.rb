@@ -22,13 +22,12 @@ class Public::MembersController < ApplicationController
   end
 
   def update
-    member = current_member
-    if member.update(member_params)
+    @member = current_member
+    if @member.update(member_params)
       flash[:notice] = "プロフィールの編集が完了しました。"
       redirect_to member_path
     else
-      flash[:notice] = "編集内容に不備があります。"
-      redirect_to request.referer
+      render :edit
     end
   end
 

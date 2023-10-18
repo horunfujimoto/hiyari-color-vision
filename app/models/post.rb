@@ -6,11 +6,11 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
-  validates :tag_id,      presence: :true
-  validates :image,       presence: :false
   validates :title,       presence: :true, length: { in: 1..60 }
   validates :body,        presence: :true, length: { in: 1..500 }
+  validates :image,       presence: :false
   validates :place,       presence: :true
+  validates :tag_id,      presence: :true
 
   has_one_attached :image # imageカラムが追記されたかのように扱うことができる
   def get_image(width, height)

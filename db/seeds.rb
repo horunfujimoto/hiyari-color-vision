@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "seedの実行を開始"
 
 ActiveStorage::AnalyzeJob.queue_adapter = :inline
 ActiveStorage::PurgeJob.queue_adapter = :inline
@@ -96,3 +97,5 @@ Vision.create!([
     comment: "コメント"
   )
 end
+
+puts "seedの実行が完了しました"

@@ -3,6 +3,9 @@
     <h3 class="px-4 title-background">プロフィール編集</h3>
   </div>
 
+  <!--バリデーション部分-->
+  <%= render 'layouts/error', obj: @member %>
+
   <div class="row justify-content-center">
     <%= form_with model: @member, url: member_path, method: :patch do |f| %>
       <table class="table table-borderless">
