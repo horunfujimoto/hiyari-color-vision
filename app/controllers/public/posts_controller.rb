@@ -48,7 +48,6 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿が完了しました。"
       redirect_to post_path(@post)
     else
-      flash[:notice] = "投稿内容に不備があります。"
       render :new
     end
   end
@@ -63,7 +62,6 @@ class Public::PostsController < ApplicationController
       flash[:notice] = "投稿情報を更新しました。"
       redirect_to post_path(@post)
     else
-      flash[:notice] = "投稿内容に不備があります。"
       render :edit
     end
   end
