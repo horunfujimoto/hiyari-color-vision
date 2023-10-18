@@ -89,10 +89,10 @@ Vision.create!([
   { member_id: 10, post_id: 10, improvement: "緊急避難手順を改善し、全従業員にトレーニングを提供する。", closing_day: "2024-01-11 00:00:00", double_check: "Aさん" }
 ])
 
-# 9.times do |n|
-#   Comment.create!(
-#     member_id: n+1,
-#     post_id: n+1,
-#     comment: "コメント"
-#   )
-# end
+10.times do |n|
+  Comment.create!(
+    member_id: n+1,
+    post_id: n+1,
+    comment: "コメント"
+  )
+end
