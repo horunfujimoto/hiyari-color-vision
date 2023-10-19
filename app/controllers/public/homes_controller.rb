@@ -1,6 +1,26 @@
 class Public::HomesController < ApplicationController
   def top
-    @public_posts = Post.where(open_status: [2])
+    sort_by = params[:sort_by]
+
+    if sort_by.present?
+      case sort_by # 並び替えの値が何か
+      when "latest"
+        @sort = Post.latest
+      when "old"
+        @sort = Post.old
+      when "level_high"
+        @sort = Post.where(level_status: "severe").latest
+      when "level_middle"
+        @sort = Post.where(level_status: "moderate").latest
+      when "level_low"
+        @sort = Post.where(level_status: "mild").latest
+      end
+    else
+      # デフォルトは「新着順」で並び替える
+      @sort = Post.latest
+    end
+
+    @public_posts = @sort.where(open_status: [2])
                     .order(created_at: :desc)
                     .page(params[:page])
                     .per(6)

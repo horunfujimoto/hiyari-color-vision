@@ -4,9 +4,7 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name,      presence: true
-  validates :email,             presence: true
-  validates :encrypted_password,presence: true
+  validates :name,              presence: true
   validates :company_password,  presence: true
 
   has_many :posts, dependent: :destroy
@@ -45,15 +43,5 @@ class Member < ApplicationRecord
   def guest_member?
     email == GUEST_MEMBER_EMAIL
   end
-
-  # #停止機能
-  # after_update :schedule_status_update, if: :status_changed_to_1?
-  # def status_changed_to_1?
-  #   status_changed? && is_active == 1
-  # end
-
-  # def schedule_status_update
-  #   UpdateStatusJob.set(wait: 1.minute).perform_later(self)
-  # end
 
 end

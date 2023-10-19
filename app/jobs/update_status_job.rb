@@ -1,7 +1,8 @@
 class UpdateStatusJob < ApplicationJob
-  # queue_as :default
+  queue_as :default
 
-  # def perform(member)
-  #   member.update(is_active: 0)
-  # end
+  def perform(member)
+  puts "ジョブが実行されました。"
+    member.update(is_active: 0)
+  end
 end

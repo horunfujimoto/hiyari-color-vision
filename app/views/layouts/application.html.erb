@@ -22,7 +22,8 @@
     <div class = "body" style= "<%= (c.controller_name == 'homes' && c.action_name == 'top' && @display ) ? 'display:none;' : '' %>" >
       <%= render 'layouts/header' %>
         <main class="container flex-shrink-0" style="padding-bottom: 80px;">
-          <%= flash[:notice] %>
+          <div class="flash-message"><%= flash[:notice] %></div>
+          <div class="flash-message"><%= flash[:alert] %></div> <%# ログイン時のエラー表示 %>
           <%= yield %>
           <div id="top_png" style="display:none;"><%= image_path("top.png")%></div> <%#top画像読み込みのためにurlだけおいてidつける%>
         </main>

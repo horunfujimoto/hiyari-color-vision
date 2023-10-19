@@ -51,8 +51,8 @@ class Post < ApplicationRecord
   # 並び替え・フィルター
   scope :latest, -> { order(created_at: :desc) }  # 登録新しい順
   scope :old, -> { order(created_at: :asc) }      # 登録古い順
-  scope :level_low, -> { order(level_statuses: :desc) }   # 重度低い順
-  scope :level_middle, -> { order(level_statuses: :desc) } # 重度高い順
-  scope :level_high, -> { order(level_statuses: :desc) } # 重度高い順
+  scope :level_low, -> { order(level_statuses: :desc) }   # 軽度
+  scope :level_middle, -> { order(level_statuses: :desc) } # 中等度
+  scope :level_high, -> { order(level_statuses: :desc) } # 重度
 
 end

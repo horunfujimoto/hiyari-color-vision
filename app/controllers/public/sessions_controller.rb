@@ -5,10 +5,13 @@ class Public::SessionsController < Devise::SessionsController
   before_action :reject_invalid_member, only: [:create]
 
   def guest_sign_in
-    member = Member.guest
-    sign_in member
-    flash[:notice] = "guest memberでログインしました。"
-    redirect_to member_path(member)
+    if member = Member.guest
+      sign_in member
+      flash[:notice] = "guest memberでログインしました。"
+      redirect_to member_path(member)
+    else
+      render :new
+    end
   end
 
   # GET /resource/sign_in
@@ -28,16 +31,17 @@ class Public::SessionsController < Devise::SessionsController
 
   protected
 
+  # 退会もしくは停止中のアカウントがログインしようとしたときにエラーを出す
   def reject_invalid_member
     member = Member.find_by(email: params[:member][:email])
-    return unless member
+    return if !member || !member.inactive?
 
     return if member.valid_password?(params[:member][:password]) && member.active_for_authentication?
 
-    alert_message = if member.is_active == 'withdrawn'
-                      'You have already resigned'
+    alert_message = if member.inactive?
+                      'すでに退会済みのアカウントです。新しいメールアドレスで再登録をしてください。'
                     else
-                      'Your account is suspended'
+                      '現在アカウントは停止中です。24時間後に停止が解除されます。'
                     end
     redirect_to request.referer, alert: alert_message
   end

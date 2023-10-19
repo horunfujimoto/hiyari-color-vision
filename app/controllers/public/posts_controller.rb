@@ -22,7 +22,6 @@ class Public::PostsController < ApplicationController
       @sort = Post.latest
     end
 
-
     # 公開もしくは全体公開のどちらかを選択した場合は表示される
     # current_member の company_password カラムと一致する投稿のみを取得
     @open_posts = @sort.where(open_status: [0, 2])
