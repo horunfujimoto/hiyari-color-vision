@@ -29,9 +29,9 @@ class Admin::MembersController < ApplicationController
       redirect_to admin_member_path(@member)
     elsif @member.banned?
       @member.update(is_active: 1)
-      # ステータスを1に更新後、1分後にステータスを0に戻す処理を追加
-      UpdateStatusJob.set(wait: 1.minute).perform_later(@member) ## キューが開いたら自動で実行される
-      flash[:notice] = "会員のステータスを1に更新しました。1分後に自動で利用可能となります。"
+      # ステータスを停止中に更新後、24時間後にステータスを有効に戻す処理を追加
+      UpdateStatusJob.set(wait: 24.hours).perform_later(@member) # キューが開いたら自動で実行される
+      flash[:notice] = "会員ステータスを停止中に更新しました。24時間後に自動で有効に変更されます。"
       redirect_to admin_member_path(@member)
     else
       @favorite_posts = Vision.includes(:post, :favorites)

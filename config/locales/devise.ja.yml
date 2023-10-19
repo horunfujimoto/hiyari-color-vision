@@ -41,11 +41,12 @@ ja:
       send_paranoid_instructions: メールアドレスが登録済みの場合、本人確認用のメールが数分以内に送信されます。
     failure:
       already_authenticated: すでにログインしています。
-      inactive: アカウントが有効化されていません。メールに記載された手順にしたがって、アカウントを有効化してください。
-      invalid: "%{authentication_keys}またはパスワードが違います。"
+      banned: 現在アカウントは停止中です。24時間後に停止が解除されます。
+      inactive: すでに退会済みのアカウントです。新しいメールアドレスで再登録をしてください。
+      invalid: "%{authentication_keys}または個人パスワードが違います。"
       last_attempt: もう一回誤るとアカウントがロックされます。
       locked: アカウントはロックされています。
-      not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
+      not_found_in_database: "%{authentication_keys}または個人パスワードが違います。"
       timeout: セッションがタイムアウトしました。もう一度ログインしてください。
       unauthenticated: ログインもしくはアカウント登録してください。
       unconfirmed: メールアドレスの本人確認が必要です。
