@@ -30,6 +30,10 @@ class Admin::TagsController < ApplicationController
     end
   end
 
+  def destroy
+    Tag.find(params[:id]).destroy
+  end
+
   private
 
   def tag_params

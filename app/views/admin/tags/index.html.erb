@@ -15,25 +15,10 @@
         <% end %>
       </div>
 
-      <!--ジャンル一覧-->
-      <table class="table table-borderless">
-        <div class="py-1">
-          <thead>
-            <tr>
-              <th>タグ名</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-          <% @tags.each do |tag| %>
-            <tr>
-              <td><%= tag.name %></td>
-              <td><%= link_to "編集する", edit_admin_tag_path(tag.id), class: "btn btn-sm btn-dark" %></td>
-            </tr>
-          <%end%>
-          </tbody>
-        </div>
-      </table>
+      <!--タグ一覧-->
+      <div id ="tags">
+        <%= render "admin/tags/list", tags: @tags %>
+      </div>
 
     </div>
   </div>
