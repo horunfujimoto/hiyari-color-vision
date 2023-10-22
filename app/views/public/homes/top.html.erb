@@ -5,11 +5,13 @@
 
       <!--並び替え・フィルターのリンク-->
       <div class = "row m-3" >
-        <%= link_to '新着順/', root_path(sort_by: "latest") %>
-        <%= link_to '古い順/', root_path(sort_by: "old") %>
-        <%= link_to '軽度/', root_path(sort_by: "level_low") %>
-        <%= link_to '中等度/', root_path(sort_by: "level_middle") %>
-        <%= link_to '重度', root_path(sort_by: "level_high") %>
+        <%= link_to '新着順 / ', root_path(sort_by: "latest") %>
+        <%= link_to '古い順 / ', root_path(sort_by: "old") %>
+        <%= link_to '軽度 / ', root_path(sort_by: "level_low") %>
+        <%= link_to '中等度 / ', root_path(sort_by: "level_middle") %>
+        <%= link_to '重度 / ', root_path(sort_by: "level_high") %>
+        <%= link_to '改善案あり / ', root_path(sort_by: "vision_presence") %>
+        <%= link_to '改善案なし', root_path(sort_by: "vision_absence") %>
       </div>
 
       <!--一覧-->

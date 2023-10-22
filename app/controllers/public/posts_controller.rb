@@ -16,6 +16,10 @@ class Public::PostsController < ApplicationController
         @sort = Post.where(level_status: "moderate").latest
       when "level_low"
         @sort = Post.where(level_status: "mild").latest
+      when "vision_presence"
+        @sort = Post.vision_presence.latest
+      when "vision_absence"
+        @sort = Post.vision_absence.latest
       end
     else
       # デフォルトは「新着順」で並び替える

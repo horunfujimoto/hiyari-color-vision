@@ -54,5 +54,7 @@ class Post < ApplicationRecord
   scope :level_low, -> { order(level_statuses: :desc) }   # 軽度
   scope :level_middle, -> { order(level_statuses: :desc) } # 中等度
   scope :level_high, -> { order(level_statuses: :desc) } # 重度
+  scope :vision_presence, -> { joins(:vision).distinct } # 改善案がある
+  scope :vision_absence, -> { left_joins(:vision).where(visions: { id: nil }) }# 改善案がない
 
 end
