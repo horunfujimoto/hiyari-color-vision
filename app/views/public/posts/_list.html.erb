@@ -3,13 +3,14 @@
 
     <thead>
       <tr>
+        <th>投稿者</th>
         <th>作成日時</th> <!--発生日時にするかは後ほど検討-->
-          <% if member_signed_in? %>
-            <th>場所</th>
+        <th>タイトル</th>
+        <% if member_signed_in? %>
+            <th>重度レベル</th>
           <% else admin_signed_in? %>
             <th>公開ステータス</th>
           <% end %>
-        <th>タイトル</th>
         <th>改善案の有無</th>
         <th>コメント数</th>
       </tr>
@@ -18,32 +19,22 @@
     <tbody>
       <% posts.each do |post| %>
         <% if member_signed_in? %>
-          <tr>
+          <tr data-href='<%= post_path(post.id) %>'>
+            <td><%= post.member.name %></td>
             <td><%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-            <td><%= post.place %></td>
-            <td>
-              <u><%= link_to post.title, post_path(post), class: "text-reset" %></u>
-            </td>
-            <td>
-              <% if post.vision.present? %> <!-- post.vision.present? ? 'あり' : 'なし' %>でも記述できる！-->
-                <u><%= link_to 'あり', post_vision_path(post, post.vision), class: "text-reset" %></u>
-              <% else %>
-                なし
-              <% end %>
-            </td>
+            <td><%= post.title %></td>
+            <td><%= post.level_status_i18n %></td>
+            <td><%= post.vision.present? ? 'あり' : 'なし' %></td> <%#三項演算子の記述%>
             <td><span id = "comment_count" ><%= post.comments.count %></span></td>
           </tr>
 
         <% else admin_signed_in? %>
-          <tr>
+          <tr data-href='<%= admin_post_path(post.id) %>'>
+            <td><%= post.member.name %></td>
             <td><%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+            <td><%= post.title %></td>
             <td><%= post.open_status_i18n %></td>
-            <td>
-              <u><%= link_to post.title, admin_post_path(post), class: "text-reset" %></u>
-            </td>
-            <td>
-              <%= post.vision.present? ? 'あり' : 'なし' %> <!--三項演算子の記述-->
-            </td>
+            <td><%= post.vision.present? ? 'あり' : 'なし' %></td> <%#三項演算子の記述%>
             <td><span id = "comment_count" ><%= post.comments.count %></span></td>
           </tr>
         <% end %>

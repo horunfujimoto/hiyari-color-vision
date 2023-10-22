@@ -15,6 +15,7 @@ import "../stylesheets/application";
 import "../packs/toppage.js";
 import "../packs/tab.js";
 import "../packs/scrollComment";
+import "../packs/link.js";
 
 Rails.start()
 Turbolinks.start()

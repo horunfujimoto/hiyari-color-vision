@@ -13,7 +13,33 @@
       </div>
 
       <!--一覧-->
-      <%= render "public/posts/list", posts: @public_posts %>
+      <table class="table table-bordered">
+        <div class="py-2">
+
+          <thead>
+            <tr>
+              <th>作成日時</th> <!--発生日時にするかは後ほど検討-->
+              <th>タイトル</th>
+              <th>業界</th>
+              <th>タグ</th>
+              <th>改善案の有無</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @public_posts.each do |post| %>
+              <tr data-href='<%= post_path(post.id) %>'>
+                <td><%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+                <td><%= post.title %></td>
+                <td><%= post.member.industry %></td>
+                <td><%= post.tag.name %></td>
+                <td><%= post.vision.present? ? 'あり' : 'なし' %></td> <%#三項演算子の記述%>
+              </tr>
+            <% end %>
+          </tbody>
+
+        </div>
+      </table>
 
     </div>
   </div>
