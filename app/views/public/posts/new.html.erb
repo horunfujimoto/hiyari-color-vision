@@ -11,6 +11,10 @@
         <table class="table table-borderless">
           <div class="py-3">
             <tr>
+              <td><%= f.label :occurrence_at, "発生日時" %></td>
+              <td><%= f.date_field :occurrence_at, class: "form-control" %></td>
+            </tr>
+            <tr>
               <td><%= f.label :title, "タイトル" %></td>
               <td><%= f.text_field :title, class: "form-control" %></td>
             </tr>

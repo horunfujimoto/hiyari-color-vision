@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 2023_10_04_050532) do
     t.string "place", null: false
     t.integer "open_status", default: 0, null: false
     t.integer "level_status", default: 0, null: false
+    t.datetime "occurrence_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

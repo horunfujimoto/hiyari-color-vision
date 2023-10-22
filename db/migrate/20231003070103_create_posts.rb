@@ -9,6 +9,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.string :place, null: false
       t.integer :open_status, null: false, default: 0
       t.integer :level_status, null: false, default: 0
+      t.datetime :occurrence_at, null: false
 
       t.timestamps
     end

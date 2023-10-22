@@ -2,7 +2,7 @@ class ShowPdf < Prawn::Document
 
   def initialize(post,vision) #ここでインスタンス(@post)の値を受け取る
     super(page_size: 'A4') #A4サイズのPDFを新規作成
-    stroke_axis # 座標を表示
+    #stroke_axis # 座標を表示
     @post = post #受け取った値をインスタンス変数として定義
     @vision = vision
 
@@ -17,18 +17,23 @@ class ShowPdf < Prawn::Document
     text "ヒヤリハット報告書", size: 20, align: :center
     move_down 20
 
+    text @post.created_at.strftime("%Y年%m月%d日"), size: 11, align: :right
+    move_down 5
+
+    text @post.member.name, size: 11, align: :right
+    move_down 20
+
     text @post.title, size: 14
     move_down 10
 
     schedule = [
-      ["作成者氏名", @post.member.name],
-      ["発生日時or作成日時", @post.created_at.strftime("%Y年%m月%d日 %H時%M分")],
+      ["発生日時", @post.occurrence_at.strftime("%Y年%m月%d日 %H時%M分")],
       ["発生場所", @post.place],
       ["重度", @post.level_status_i18n],
       ["ヒヤリハット詳細", @post.body],
       ["改善案", @vision.improvement],
       ["確認者", @vision.double_check],
-      ["改善締切日", @vision.closing_day.strftime("%Y年%m月%d日")]
+      ["改善締切日", @vision.closing_day.strftime("%Y年%m月%d日 %H時%M分")]
     ]
 
     table schedule, cell_style: {height: 30},
@@ -40,8 +45,8 @@ class ShowPdf < Prawn::Document
       columns(-1).row(0..5).border_right_width = 2
       row(-1).border_bottom_width = 2
 
-      row(4).height = 5 * row(4).height # ヒヤリハット詳細の高さ5倍
-      row(5).height = 5 * row(5).height # 改善案の高さ5倍
+      row(3).height = 8 * row(3).height # ヒヤリハット詳細の高さ5倍
+      row(4).height = 8 * row(4).height # 改善案の高さ5倍
     end
 
   end
