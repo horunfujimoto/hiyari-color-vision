@@ -52,10 +52,18 @@
   border-top: 1px dotted #4d4d4d;
 }
 
+/*テーブルの選択時の動き*/
 tr[data-href]:hover {
   color: #FFF;
   background-color: #6ABACD; /* ホバー時の背景色を変更 */
   cursor: pointer; /* カーソルをポインターに変更（クリック可能な要素を示す） */
   transform: scale(1.05); /* ホバー時に要素を1.1倍に拡大 */
+  transition: transform 0.3s; /* 拡大アニメーションの速度を設定（任意の値） */
+}
+
+/*ヘッダーのボタンの動き*/
+.button:hover{
+  font-weight: bold; /* ホバー時に太字にする */
+  transform: scale(1.1); /* ホバー時に要素を1.1倍に拡大 */
   transition: transform 0.3s; /* 拡大アニメーションの速度を設定（任意の値） */
 }
