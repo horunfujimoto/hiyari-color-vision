@@ -26,11 +26,11 @@
           <div class="d-flex justify-content-between"> <!--ログイン時左右に表示-->
             <ul class="list-unstyled d-flex">
               <!--検索機能-->
-              <li class="nav-item button mx-2 mt-2">
+              <li class="nav-item mx-2 mt-2">
                 <%= render 'public/searches/search', keyword: @keyword, tags: @tags %>
               </li>
               <!--通知機能-->
-              <li class="nav-item button mx-2 mt-2">
+              <li class="nav-item mx-2 mt-2">
                 <%= render 'public/notifications/notice_modal', notices: @notices, unchecked_notices: @unchecked_notices %>
               </li>
             </ul>

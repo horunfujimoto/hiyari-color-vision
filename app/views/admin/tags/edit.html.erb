@@ -9,7 +9,7 @@
       <!--form部分-->
       <div class="py-3">
         <%= form_with model: @tag, url: admin_tag_path,method: :patch do |f| %>
-          <td><%= f.label :"タグ名", class: "mr-3" %></td>
+          <td><%= f.label :name,"タグ名", class: "mr-3" %></td>
           <td><%= f.text_field :name, placeholder: "タグ名",class: "mr-5" %></td>
           <td><%= f.submit "変更を保存", class: "btn btn-dark" %></td>
         <% end %>
