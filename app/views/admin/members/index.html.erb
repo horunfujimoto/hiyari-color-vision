@@ -17,8 +17,8 @@
 
           <tbody>
             <% @member.each do |member| %>
-              <tr>
-                <td><u><%= link_to member.name, admin_member_path(member), class: "text-reset" %></u></td>
+              <tr data-href='<%= admin_member_path(member) %>'>
+                <td><%= member.name %></td>
                 <td><%= member.industry %></td>
                 <td><%= member.company %></td>
                 <td><%= member.posts.count %></td>
