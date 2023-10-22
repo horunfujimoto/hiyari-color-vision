@@ -22,8 +22,18 @@
     <div class = "body" style= "<%= (c.controller_name == 'homes' && c.action_name == 'top' && @display ) ? 'display:none;' : '' %>" >
       <%= render 'layouts/header' %>
         <main class="container flex-shrink-0" style="padding-bottom: 80px;">
-          <div class="flash-message"><%= flash[:notice] %></div>
-          <div class="flash-message"><%= flash[:alert] %></div> <%# ログイン時のエラー表示 %>
+          <% if flash[:notice].present? %>
+            <div class="m-2">
+              <i class="fa-solid fa-bullhorn" style="font-size: 20px;"></i>
+              <%= flash[:notice] %>
+            </div>
+          <% end %>
+          <% if flash[:alart].present? %>  <%# ログイン時のエラー表示 %>
+            <div class="m-2">
+              <i class="fa-solid fa-bullhorn" style="font-size: 20px;"></i>
+              <%= flash[:alart] %>
+            </div>
+          <% end %>
           <%= yield %>
           <div id="top_png" style="display:none;"><%= image_path("top.png")%></div> <%#top画像読み込みのためにurlだけおいてidつける%>
         </main>

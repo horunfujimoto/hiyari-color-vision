@@ -9,9 +9,11 @@
   border-left: solid 1px #CCC;
   border-bottom: solid 1px #CCC;
 }
+
 .tab:first-child {
   border-left: none;
 }
+
 // タブがactiveのときのデザイン
 .tab-active {
   color: #FFF;
@@ -23,6 +25,7 @@
   display: none;
   padding: 15px;
 }
+
 // box-showクラスのものだけ表示
 .box-show {
   display: block;
@@ -39,6 +42,7 @@
 .page-link {
   color: #1184A4;
 }
+
 .page-item.active .page-link{
   background-color: #6ABACD;
   border-color: #6ABACD;
@@ -52,7 +56,6 @@ tr[data-href]:hover {
   color: #FFF;
   background-color: #6ABACD; /* ホバー時の背景色を変更 */
   cursor: pointer; /* カーソルをポインターに変更（クリック可能な要素を示す） */
-
   transform: scale(1.05); /* ホバー時に要素を1.1倍に拡大 */
   transition: transform 0.3s; /* 拡大アニメーションの速度を設定（任意の値） */
 }
