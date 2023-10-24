@@ -1,12 +1,9 @@
-<div class="container py-5">
-  <div class="row mt-3 mb-3 offset-1 text-center">
-    <h3 class="px-4 title-background">改善案編集</h3>
-  </div>
-
+<div class="mx-auto">
+  <h2 class="title">改善案編集</h2>
   <!--バリデーション部分-->
   <%= render 'layouts/error', obj: @vision %>
-
-  <div class="row justify-content-center">
+  <!--編集フォーム-->
+  <div class="row mt-4 justify-content-center">
   <%= form_with model: @vision, url: post_vision_path(@post,@vision), method: :patch do |f| %>
     <table class="table table-borderless">
       <div class="py-3">
@@ -34,5 +31,4 @@
     <%= f.submit "変更を保存", class: "btn btn-dark" %>
   <% end %>
   </div>
-
 </div>

@@ -1,4 +1,2 @@
-<div class="container">
-  <h4 class="my-5">”<b><%= @keyword %></b>”検索結果一覧</h4>
-  <%= render 'public/posts/list', posts: @posts %>
-</div>
+<h2 class="title">キーワード検索結果一覧 ”<u><%= @keyword %></u>”</h2>
+<%= render 'public/posts/list', posts: @posts %>

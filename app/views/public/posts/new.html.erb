@@ -1,53 +1,47 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="col-11 mx-auto">
-      <h3>ヒヤリハット作成</h3>
-
-      <!--バリデーション部分-->
-      <%= render 'layouts/error', obj: @post %>
-
-      <div class="row justify-content-center">
-      <%= form_with model: @post, local: true do |f| %>
-        <table class="table table-borderless">
-          <div class="py-3">
-            <tr>
-              <td><%= f.label :occurrence_at, "発生日時" %></td>
-              <td><%= f.datetime_local_field :occurrence_at, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :title, "タイトル" %></td>
-              <td><%= f.text_field :title, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :body, "ヒヤリハット詳細" %></td>
-              <td><%= f.text_area :body, class: "form-control", rows: 5 %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :image, "画像" %></td>
-              <td><%= f.file_field :image, accept: "image/*" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :place, "発生場所" %></td>
-              <td><%= f.text_field :place, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :tag_id, "タグ" %></td>
-              <td><%= f.collection_select :tag_id, Tag.all, :id, :name, {}, {class: "form-control"} %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :level_status, "重度" %></td>
-              <td><%= f.select :level_status,Post.level_statuses_i18n.invert, {}, {class: "form-control"} %></td>
-            </tr>
-            <tr>
-              <td><%= f.label :open_status, "公開設定" %></td>
-              <td><%= f.select :open_status,Post.open_statuses_i18n.invert, {}, {class: "form-control"} %></td>
-            </tr>
-          </div>
-        </table>
-        <%= f.submit '作成', class: "btn btn-dark px-4" %>
-      <% end %>
+<div class="mx-auto">
+  <h2 class="title">ヒヤリハット作成</h2>
+  <!--バリデーション部分-->
+  <%= render 'layouts/error', obj: @post %>
+  <!--投稿フォーム-->
+  <div class="row justify-content-center">
+  <%= form_with model: @post, local: true do |f| %>
+    <table class="table table-borderless">
+      <div class="py-3">
+        <tr>
+          <td><%= f.label :occurrence_at, "発生日時" %></td>
+          <td><%= f.datetime_local_field :occurrence_at, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :title, "タイトル" %></td>
+          <td><%= f.text_field :title, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :body, "ヒヤリハット詳細" %></td>
+          <td><%= f.text_area :body, class: "form-control", rows: 5 %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :image, "画像" %></td>
+          <td><%= f.file_field :image, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :place, "発生場所" %></td>
+          <td><%= f.text_field :place, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :tag_id, "タグ" %></td>
+          <td><%= f.collection_select :tag_id, Tag.all, :id, :name, {}, {class: "form-control"} %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :level_status, "重度" %></td>
+          <td><%= f.select :level_status,Post.level_statuses_i18n.invert, {}, {class: "form-control"} %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :open_status, "公開設定" %></td>
+          <td><%= f.select :open_status,Post.open_statuses_i18n.invert, {}, {class: "form-control"} %></td>
+        </tr>
       </div>
-
-    </div>
+    </table>
+    <%= f.submit '作成', class: "btn btn-dark px-4" %>
+  <% end %>
   </div>
 </div>

@@ -1,5 +1,2 @@
-<div class="container">
-  <h4 class="my-5">”<b><%= @tag.name %></b>” 一覧</h4>
-  <%= render 'public/posts/list', posts: @posts %>
-  </div>
-</div>
+<h2 class="title">タグ検索結果一覧 ”<u><%= @tag.name %></u>”</h2>
+<%= render 'public/posts/list', posts: @posts %>
