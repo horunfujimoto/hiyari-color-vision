@@ -21,22 +21,20 @@
     <%# homesのtopアクションで、homesコントローラーで定義した@displayの時は'display:none;'は実行しない %>
     <div class = "body" style= "<%= (c.controller_name == 'homes' && c.action_name == 'top' && @display ) ? 'display:none;' : '' %>" >
       <%= render 'layouts/header' %>
-        <main class="container flex-shrink-0" style="padding-bottom: 80px;">
-          <% if flash[:notice].present? %>
-            <div class="m-2">
-              <i class="fa-solid fa-bullhorn" style="font-size: 20px;"></i>
-              <%= flash[:notice] %>
-            </div>
-          <% end %>
-          <% if flash[:alart].present? %>  <%# ログイン時のエラー表示 %>
-            <div class="m-2">
-              <i class="fa-solid fa-bullhorn" style="font-size: 20px;"></i>
-              <%= flash[:alart] %>
-            </div>
-          <% end %>
-          <%= yield %>
-          <div id="top_png" style="display:none;"><%= image_path("top.png")%></div> <%#top画像読み込みのためにurlだけおいてidつける%>
-        </main>
+      <div class="mx-5 py-2">
+        <% if flash[:notice].present? %>
+          <i class="fa-solid fa-bullhorn" style="font-size:110%; color:#218390;">
+          <%= flash[:notice] %></i>
+        <% end %>
+        <% if flash[:alart].present? %>  <%# ログイン時のエラー表示 %>
+          <i class="fa-solid fa-bullhorn" style="font-size:110%; color:#218390;"></i>
+          <%= flash[:alart] %>
+        <% end %>
+      </div>
+      <main class="container flex-shrink-0" style="padding-top:2%; padding-bottom: 8%;">
+        <%= yield %>
+        <div id="top_png" style="display:none;"><%= image_path("top.png")%></div> <%#top画像読み込みのためにurlだけおいてidつける%>
+      </main>
       <%= render 'layouts/footer' %>
     </div>
   </body>

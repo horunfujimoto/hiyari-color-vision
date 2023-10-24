@@ -31,7 +31,7 @@ class Admin::TagsController < ApplicationController
   end
 
   def destroy
-   @tag.destroy
+    @tag.destroy
   end
 
   private
