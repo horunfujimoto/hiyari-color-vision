@@ -1,5 +1,6 @@
 class Public::MembersController < ApplicationController
   before_action :authenticate_member!
+  before_action :get_current_member, only: [:edit, :update, :destroy]
 
   def show
     @member = Member.find(params[:id])
@@ -18,11 +19,9 @@ class Public::MembersController < ApplicationController
   end
 
   def edit
-    @member = current_member
   end
 
   def update
-    @member = current_member
     if @member.update(member_params)
       flash[:notice] = "プロフィールの編集が完了しました。"
       redirect_to member_path
@@ -32,10 +31,9 @@ class Public::MembersController < ApplicationController
   end
 
   def destroy
-    @member = current_member
     @member.update(is_active: :inactive)
     sign_out(@member)
-    flash[:notice] = "退会しました。"
+    flash[:notice] = "退会しました。ご利用いただきありがとうございました。"
     redirect_to root_url
   end
 
@@ -45,6 +43,10 @@ class Public::MembersController < ApplicationController
 
   def member_params
     params.require(:member).permit(:email, :name, :company_password, :industry, :company, :is_active )
+  end
+
+  def get_current_member
+    @member = current_member
   end
 
   def ensure_guest_member

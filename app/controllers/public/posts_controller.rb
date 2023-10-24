@@ -1,5 +1,6 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_member!
+  before_action :get_post_id, only: [:show, :edit, :update, :destroy]
 
   def index
     sort_by = params[:sort_by]
@@ -36,7 +37,6 @@ class Public::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
     @comment = Comment.new
   end
 
@@ -56,11 +56,9 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "投稿情報を更新しました。"
       redirect_to post_path(@post)
@@ -70,7 +68,6 @@ class Public::PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     flash[:notice] = "投稿を削除しました。"
     redirect_to posts_path
@@ -80,6 +77,10 @@ class Public::PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body, :image, :place, :tag_id, :level_status,:open_status,:occurrence_at )
+  end
+
+  def get_post_id
+    @post = Post.find(params[:id])
   end
 
 end

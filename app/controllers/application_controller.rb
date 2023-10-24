@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # ここに記述することで、他のコントローラーでも下記アクションを実施
-  before_action :notice, if: :member_signed_in?
+  before_action :set_notifications, if: :member_signed_in?
   before_action :search_tag
   before_action :search_post
 
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   #通知機能
-  def notice
+  def set_notifications
     @notices = current_member.passive_notifications
     @notices = @notices.where.not(visiter_id: current_member.id)
     @unchecked_notices = @notices.where(checked: false)

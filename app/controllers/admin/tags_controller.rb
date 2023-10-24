@@ -1,6 +1,6 @@
 class Admin::TagsController < ApplicationController
   before_action :authenticate_admin!
-  before_action :get_genre_id, only: [:edit, :update]
+  before_action :get_tag_id, only: [:edit, :update, :destroy]
 
   def index
     @tag = Tag.new
@@ -31,7 +31,7 @@ class Admin::TagsController < ApplicationController
   end
 
   def destroy
-    Tag.find(params[:id]).destroy
+   @tag.destroy
   end
 
   private
@@ -40,7 +40,7 @@ class Admin::TagsController < ApplicationController
     params.require(:tag).permit(:name)
   end
 
-  def get_genre_id
+  def get_tag_id
     @tag = Tag.find(params[:id])
   end
 end

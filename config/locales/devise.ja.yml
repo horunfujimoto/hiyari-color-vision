@@ -7,6 +7,9 @@ ja:
         password: 個人パスワード
       member:
         name: 氏名
+        email: メールアドレス
+        password: 個人パスワード
+        password_confirmation: 個人パスワード（確認用）
         company_password: 社内パスワード
         company_password_confirmation: 社内パスワード（確認用）
         industry: 業界
@@ -19,14 +22,11 @@ ja:
         current_password: 現在の個人パスワード
         current_sign_in_at: 現在のログイン時刻
         current_sign_in_ip: 現在のログインIPアドレス
-        email: メールアドレス
         encrypted_password: 暗号化個人パスワード
         failed_attempts: 失敗したログイン試行回数
         last_sign_in_at: 最終ログイン時刻
         last_sign_in_ip: 最終ログインIPアドレス
         locked_at: ロック時刻
-        password: 個人パスワード
-        password_confirmation: 個人パスワード（確認用）
         remember_created_at: ログイン記憶時刻
         remember_me: ログインを記憶する
         reset_password_sent_at: パスワードリセット送信時刻

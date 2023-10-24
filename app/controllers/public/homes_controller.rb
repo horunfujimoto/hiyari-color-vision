@@ -1,7 +1,7 @@
 class Public::HomesController < ApplicationController
+
   def top
     sort_by = params[:sort_by]
-
     if sort_by.present?
       case sort_by # 並び替えの値が何か
       when "latest"
@@ -23,7 +23,6 @@ class Public::HomesController < ApplicationController
       # デフォルトは「新着順」で並び替える
       @sort = Post.latest
     end
-
     @public_posts = @sort.where(open_status: [2])
                     .order(created_at: :desc)
                     .page(params[:page])
@@ -32,6 +31,4 @@ class Public::HomesController < ApplicationController
     @display = !params[:title_link]
   end
 
-  def about
-  end
 end
