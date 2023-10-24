@@ -1,35 +1,30 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="col-11 mx-auto">
-      <h3>会員一覧</h3>
-
-      <table class="table table-bordered ">
-        <div class="py-2">
-          <thead>
-            <tr>
-              <th>氏名</th>
-              <th>業種</th>
-              <th>会社名</th>
-              <th>投稿数</th>
-              <th>会員ステータス</th>
+<div class="mx-auto">
+  <h2 class="title">会員一覧</h2>
+  <div class="row mt-4">
+    <table class="table table-bordered ">
+      <div class="py-2">
+        <thead>
+          <tr>
+            <th>氏名</th>
+            <th>業種</th>
+            <th>会社名</th>
+            <th>投稿数</th>
+            <th>会員ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @member.each do |member| %>
+            <tr data-href='<%= admin_member_path(member) %>'>
+              <td><%= member.name %></td>
+              <td><%= member.industry %></td>
+              <td><%= member.company %></td>
+              <td><%= member.posts.count %></td>
+              <td><%= member.is_active_i18n %></td>
             </tr>
-          </thead>
-
-          <tbody>
-            <% @member.each do |member| %>
-              <tr data-href='<%= admin_member_path(member) %>'>
-                <td><%= member.name %></td>
-                <td><%= member.industry %></td>
-                <td><%= member.company %></td>
-                <td><%= member.posts.count %></td>
-                <td><%= member.is_active_i18n %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </div>
-      </table>
-
-    </div>
+          <% end %>
+        </tbody>
+      </div>
+    </table>
   </div>
   <%= paginate @member %>
 </div>

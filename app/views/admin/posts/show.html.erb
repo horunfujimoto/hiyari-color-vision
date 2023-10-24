@@ -1,9 +1,6 @@
-<div class="container py-5">
-  <div class="row mt-3 mb-3 offset-1 text-center">
-    <h3 class="px-4 title-background">ヒヤリハット詳細</h3>
-  </div>
-
-  <div class="row justify-content-center">
+<div class="mx-auto">
+  <h2 class="title">ヒヤリハット詳細</h2>
+  <div class="row mt-4">
     <table class="table table-borderless">
       <tr>
         <td>タイトル</td>
@@ -15,7 +12,7 @@
       </tr>
       <tr>
         <td>画像</td>
-        <td><%= image_tag @post.get_image(300,250) %></td> <!--画像拡大機能を付けたいかも-->
+        <td><%= image_tag @post.get_image(300,250) %></td>
       </tr>
       <tr>
         <td>発生場所</td>
@@ -54,7 +51,6 @@
       <% end %>
     </table>
   </div>
-
   <!--コメント機能-->
   <h4 class="px-4 title-background">コメント</h4>
   <div id ="comments">

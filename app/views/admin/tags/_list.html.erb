@@ -1,19 +1,21 @@
-<table class="table table-borderless">
-  <div class="py-1">
-    <thead>
-      <tr>
-        <th>タグ名</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @tags.each do |tag| %>
-      <tr>
-        <td><%= tag.name %></td>
-        <td><%= link_to "編集", edit_admin_tag_path(tag.id), class: "btn btn-sm btn-dark" %></td>
-        <td><%= link_to "削除", admin_tag_path(tag.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-dark", remote: true %></td>
-      </tr>
-    <%end%>
-    </tbody>
-  </div>
-</table>
+<div class="row col-5 mt-4">
+  <table class="table table-borderless">
+    <div class="py-1">
+      <thead>
+        <tr>
+          <th>タグ名</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td><%= tag.name %></td>
+          <td><%= link_to "編集", edit_admin_tag_path(tag.id), class: "btn btn-sm btn-dark" %></td>
+          <td><%= link_to "削除", admin_tag_path(tag.id), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-dark", remote: true %></td>
+        </tr>
+      <%end%>
+      </tbody>
+    </div>
+  </table>
+</div>

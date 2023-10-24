@@ -1,45 +1,39 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="col-10 mx-auto">
-      <h3><%= "#{@member.name}さんのマイページ" %></h3>
-
-      <table class="table table-bordered">
-        <div class="py-2">
-          <tr>
-            <td>氏名</td>
-            <td><%= @member.name %></td>
-          </tr>
-          <tr>
-            <td>業種</td>
-            <td><%= @member.industry %></td>
-          </tr>
-          <tr>
-            <td>会社名</td>
-            <td><%= @member.company %></td>
-          </tr>
-          <tr>
-            <td>投稿数</td>
-            <td><%= @member.posts.count %></td>
-          </tr>
-        </div>
-      </table>
-
-      <div class="row">
-        <div class="col-12 text-center">
-          <%= form_with model: @member, url: admin_member_path, local: true do |f| %>
-            <div class="form-group d-flex justify-content-center">
-              <label for="member_is_active" class="mx-5">会員ステータス</label>
-                <%= f.select :is_active, Member.is_actives_i18n.invert, {}, { class: "form-control", style: "width: 300px;" } %>
-            </div>
-            <div class="text-center">
-              <%= f.submit "変更を保存", class: "btn btn-dark" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
+<div class="mx-auto">
+  <h2 class="title"><%= "#{@member.name}さんのマイページ" %></h2>
+  <div class="row col-6 mt-4 mx-auto text-center">
+    <table class="table">
+      <tbody>
+        <tr>
+          <td>氏名</td>
+          <td><%= @member.name %></td>
+        </tr>
+        <tr>
+          <td>業種</td>
+          <td><%= @member.industry %></td>
+        </tr>
+        <tr>
+          <td>会社名</td>
+          <td><%= @member.company %></td>
+        </tr>
+        <tr>
+          <td>投稿数</td>
+          <td><%= @member.posts.count %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <div class="row mt-4 justify-content-center">
+    <%= form_with model: @member, url: admin_member_path, local: true do |f| %>
+      <div class="form-group d-flex align-items-center">
+        <label for="member_is_active" class="mx-5">会員ステータス</label>
+        <%= f.select :is_active, Member.is_actives_i18n.invert, {}, { class: "form-control", style: "width: 300px;" } %>
+      </div>
+      <div class="text-center mt-3">
+        <%= f.submit "変更を保存", class: "btn btn-dark" %>
+      </div>
+    <% end %>
+  </div>
+  <!--タブ-->
   <div class="row justify-content-center">
    <%= render "public/members/tab", member_posts: @member_posts, unopened_posts: @unopened_posts,favorite_posts: @favorite_posts %> <!--@favorite_postsを後で追加-->
   </div>
