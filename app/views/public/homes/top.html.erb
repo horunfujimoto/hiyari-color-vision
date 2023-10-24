@@ -1,49 +1,41 @@
-<div class="container py-5">
-  <div class="row">
-    <div class="col-11 mx-auto">
-      <h3>全体公開ヒヤリハット一覧</h3>
-
-      <!--並び替え・フィルターのリンク-->
-      <div class = "row m-3" >
-        <%= link_to '新着順 / ', root_path(sort_by: "latest") %>
-        <%= link_to '古い順 / ', root_path(sort_by: "old") %>
-        <%= link_to '軽度 / ', root_path(sort_by: "level_low") %>
-        <%= link_to '中等度 / ', root_path(sort_by: "level_middle") %>
-        <%= link_to '重度 / ', root_path(sort_by: "level_high") %>
-        <%= link_to '改善案あり / ', root_path(sort_by: "vision_presence") %>
-        <%= link_to '改善案なし', root_path(sort_by: "vision_absence") %>
-      </div>
-
-      <!--一覧-->
-      <table class="table table-bordered">
-        <div class="py-2">
-
-          <thead>
-            <tr>
-              <th>作成日時</th> <!--発生日時にするかは後ほど検討-->
-              <th>タイトル</th>
-              <th>業界</th>
-              <th>タグ</th>
-              <th>改善案の有無</th>
+<div class="mx-auto">
+  <h2 class="title">全体公開ヒヤリハット一覧</h2>
+  <!--並び替え・フィルターのリンク-->
+  <div class = "row m-4" >
+    <%= link_to '新着順 / ', root_path(sort_by: "latest") %>
+    <%= link_to '古い順 / ', root_path(sort_by: "old") %>
+    <%= link_to '軽度 / ', root_path(sort_by: "level_low") %>
+    <%= link_to '中等度 / ', root_path(sort_by: "level_middle") %>
+    <%= link_to '重度 / ', root_path(sort_by: "level_high") %>
+    <%= link_to '改善案あり / ', root_path(sort_by: "vision_presence") %>
+    <%= link_to '改善案なし', root_path(sort_by: "vision_absence") %>
+  </div>
+  <!--一覧-->
+  <div class = "row m-4" >
+    <table class="table table-bordered">
+      <div class="py-2">
+        <thead>
+          <tr>
+            <th>作成日時</th> <!--発生日時にするかは後ほど検討-->
+            <th>タイトル</th>
+            <th>業界</th>
+            <th>タグ</th>
+            <th>改善案の有無</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @public_posts.each do |post| %>
+            <tr data-href='<%= post_path(post.id) %>'>
+              <td><%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+              <td><%= post.title %></td>
+              <td><%= post.member.industry %></td>
+              <td><%= post.tag.name %></td>
+              <td><%= post.vision.present? ? 'あり' : 'なし' %></td> <%#三項演算子の記述%>
             </tr>
-          </thead>
-
-          <tbody>
-            <% @public_posts.each do |post| %>
-              <tr data-href='<%= post_path(post.id) %>'>
-                <td><%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-                <td><%= post.title %></td>
-                <td><%= post.member.industry %></td>
-                <td><%= post.tag.name %></td>
-                <td><%= post.vision.present? ? 'あり' : 'なし' %></td> <%#三項演算子の記述%>
-              </tr>
-            <% end %>
-          </tbody>
-
-        </div>
-      </table>
-
-    </div>
+          <% end %>
+        </tbody>
+      </div>
+    </table>
   </div>
   <%= paginate @public_posts %>
 </div>

@@ -1,28 +1,28 @@
-<div class="container py-5">
-  <div class="row mt-3 mb-3 offset-1 text-center">
-    <h3 class="px-4 title-background">プロフィール編集</h3>
-  </div>
-
+<div class="mx-auto">
+  <h2 class="title">プロフィール編集</h2>
   <!--バリデーション部分-->
   <%= render 'layouts/error', obj: @member %>
-
-  <div class="row justify-content-center">
+  <!--編集フォーム-->
+  <div class="row mt-4 justify-content-center">
     <%= form_with model: @member, url: member_path, method: :patch do |f| %>
-      <table class="table table-borderless">
-        <tr>
-          <td>氏名</td>
-          <td><%= f.text_field :name %></td>
-        </tr>
-        <tr>
-          <td>業種</td>
-          <td><%= f.text_field :industry %></td>
-        </tr>
-        <tr>
-          <td>会社名</td>
-          <td><%= f.text_field :company %></td>
-        </tr>
-      </table>
-      <%= f.submit "変更を保存", class: "btn btn-dark" %>
+    <table class="table table-borderless">
+      <tr>
+        <td><%= f.label :name,"氏名", class: "mr-3" %></td>
+        <td><%= f.text_field :name, placeholder: "氏名" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :industry,"業種", class: "mr-3" %></td>
+        <td><%= f.text_field :industry, placeholder: "業種" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :industry,"会社名", class: "mr-3" %></td>
+        <td><%= f.text_field :company, placeholder: "会社名" %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= f.submit "変更を保存", class: "btn btn-dark" %></td>
+      </tr>
+    </table>
     <% end %>
   </div>
 </div>
