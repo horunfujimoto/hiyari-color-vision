@@ -37,7 +37,7 @@
       </div>
     <% end %>
     <!--いいね機能-->
-    <div id = "favorite_buttons_<%= @vision.id %>" >
+    <div id = "favorite_buttons_<%= @vision.id %>" class ="mx-3" >
       <%= render "public/favorites/favorite", vision: @vision, post: @post %>
     </div>
   </div>

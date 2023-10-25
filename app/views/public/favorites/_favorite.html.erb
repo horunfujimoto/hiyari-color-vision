@@ -1,15 +1,17 @@
 <% if vision.favorited_by?(current_member) %>
-  <div>
+  <div class="btn btn-dark" style="border: 1px solid #000;">
     <%= link_to post_vision_favorites_path(post, vision), method: :delete, remote: true, data: {"turbolinks" => false} do %>
-      <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-      <%= vision.favorites.count %> 既読
+      <i class="fa-solid fa-circle-check" aria-hidden="true" style="color: white">
+        <%= vision.favorites.count %> 既読
+      </i>
     <% end %>
   </div>
   <% else %>
-  <div>
+  <div class="btn btn-dark" style="border: 1px solid #000;">
     <%= link_to post_vision_favorites_path(post, vision), method: :post, remote: true, data: {"turbolinks" => false} do %>
-      <i class="fas fa-heart" aria-hidden="true"></i>
-      <%= vision.favorites.count %> 未読
+      <i class="fa-regular fa-circle-check" aria-hidden="true" style="color: white">
+        <%= vision.favorites.count %> 未読
+      </i>
     <% end %>
   </div>
 <% end %>
