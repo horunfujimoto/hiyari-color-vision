@@ -1,99 +1,108 @@
 <header style="background-color: #6ABACD;"> <%# ここで"fixed-top"を適応させるとモーダルウィンドウが動かない%>
   <div class="container-fluid">
-
     <!--タイトル-->
     <div class="row justify-content-center">
       <% if member_signed_in? %>
         <%# ストリングパラメータを付与している(title_link: true) %>
         <%= link_to root_path(title_link: true) do %>
-          <%= image_tag 'title.top.png', style: " width: 400px; height: 80px;" %>
+          <%= image_tag 'title.top.png', style: " width: 450px; height: 70px;" %>
         <% end %>
       <% elsif admin_signed_in? %>
         <%= link_to admin_root_path do %>
-          <%= image_tag 'title.top.png', style: " width: 400px; height: 80px;" %>
+          <%= image_tag 'title.top.png', style: " width: 450px; height: 70px;" %>
         <% end %>
       <% else %>
         <%= link_to root_path(title_link: true) do %>
-          <%= image_tag 'title.top.png', style: " width: 400px; height: 80px;" %>
+          <%= image_tag 'title.top.png', style: " width: 450px; height: 70px;" %>
         <% end %>
       <% end %>
     </div>
-
     <!--ページ遷移-->
     <div class="row mx-auto">
       <div class="col-12">
         <% if member_signed_in? %>
-          <div class="d-flex justify-content-between"> <!--ログイン時左右に表示-->
+          <div class="d-flex justify-content-between"> <%#ログイン時左右に表示%>
             <ul class="list-unstyled d-flex">
               <!--検索機能-->
-              <li class="nav-item mx-2 mt-2">
+              <li class="nav-item mx-2">
                 <%= render 'public/searches/search', keyword: @keyword, tags: @tags %>
               </li>
               <!--通知機能-->
-              <li class="nav-item mx-2 mt-2">
+              <li class="nav-item mx-2">
                 <%= render 'public/notifications/notice_modal', notices: @notices, unchecked_notices: @unchecked_notices %>
               </li>
             </ul>
             <ul class="list-unstyled d-flex">
-              <li class="nav-item button mx-2 mt-2">
+              <li class="nav-item button mx-2">
                 <i class="fa-regular fa-face-smile">
-                <%= link_to "マイページ", member_path(current_member), class: "link-color" %></i>
+                  <%= link_to "マイページ", member_path(current_member), class: "link-color" %>
+                </i>
               </li>
-              <li class="nav-item button mx-2 mt-2">
+              <li class="nav-item button mx-2">
                 <i class="fa-regular fa-pen-to-square">
-                <%= link_to "投稿", new_post_path, class: "link-color" %></i>
+                  <%= link_to "投稿", new_post_path, class: "link-color" %>
+                </i>
               </li>
-              <li class="nav-item button mx-2 mt-2">
+              <li class="nav-item button mx-2">
                 <i class="fa-regular fa-clipboard">
-                <%= link_to "ヒヤリ集", posts_path, class: "link-color" %></i>
+                  <%= link_to "ヒヤリ集", posts_path, class: "link-color" %>
+                </i>
               </li>
-              <li class="nav-item button mx-2 mt-2">
+              <li class="nav-item button mx-2">
                 <i class="fa-solid fa-right-from-bracket">
-                <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "link-color" %></i>
+                  <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "link-color" %>
+                </i>
               </li>
             </ul>
           </div>
         <% elsif admin_signed_in? %>
-          <ul class="row justify-content-end my-2 list-unstyled">
-            <li class="nav-item button mx-2 mt-2">
+          <ul class="row justify-content-end list-unstyled">
+            <li class="nav-item button mx-2">
               <i class="fa-regular fa-user">
-              <%= link_to "会員一覧", admin_members_path, class: "link-color" %></i>
+                <%= link_to "会員一覧", admin_members_path, class: "link-color" %>
+              </i>
             </li>
-            <li class="nav-item button mx-2 mt-2">
+            <li class="nav-item button mx-2">
               <i class="fa-regular fa-clipboard">
-              <%= link_to "ヒヤリ一覧", admin_posts_path, class: "link-color" %></i>
+                <%= link_to "ヒヤリ一覧", admin_posts_path, class: "link-color" %>
+              </i>
             </li>
-            <li class="nav-item button mx-2 mt-2">
+            <li class="nav-item button mx-2">
               <i class="fa-solid fa-tag">
-              <%= link_to "タグ一覧", admin_tags_path, class: "link-color" %></i>
+                <%= link_to "タグ一覧", admin_tags_path, class: "link-color" %>
+              </i>
             </li>
-            <li class="nav-item button mx-2 mt-2">
+            <li class="nav-item button mx-2">
               <i class="fa-solid fa-right-from-bracket">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "link-color" %></i>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "link-color" %>
+              </i>
             </li>
           </ul>
         <% else %>
-          <ul class="row justify-content-end my-2 list-unstyled">
-            <li class="nav-item button mx-2 mt-2">
+          <ul class="row justify-content-end list-unstyled">
+            <li class="nav-item button mx-2">
               <i class="fa-regular fa-heart">
-              <%= link_to "使い方", about_path, class: "link-color" %></i>
+                <%= link_to "使い方", about_path, class: "link-color" %>
+              </i>
             </li>
-            <li class="nav-item button mx-2 mt-2">
+            <li class="nav-item button mx-2">
               <i class="fa-regular fa-user">
-              <%= link_to "新規登録", new_member_registration_path, class: "link-color" %></i>
+                <%= link_to "新規登録", new_member_registration_path, class: "link-color" %>
+              </i>
             </li>
-            <li class="nav-item button mx-2 mt-2">
+            <li class="nav-item button mx-2">
               <i class="fa-solid fa-arrow-right-to-bracket">
-              <%= link_to "会員ログイン", new_member_session_path, class: "link-color" %></i>
+                <%= link_to "会員ログイン", new_member_session_path, class: "link-color" %>
+              </i>
             </li>
-            <li class="nav-item button mx-2 mt-2"> <%#後で消すかも%>
+            <li class="nav-item button mx-2"> <%#後で消すかも%>
               <i class="fa-solid fa-arrow-right-to-bracket">
-              <%= link_to "管理者ログイン", new_admin_session_path, class: "link-color" %></i>
+                <%= link_to "管理者ログイン", new_admin_session_path, class: "link-color" %>
+              </i>
             </li>
           </ul>
         <% end %>
       </div>
     </div>
-
   </div>
 </header>
