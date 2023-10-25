@@ -2,7 +2,7 @@
   <div class="btn btn-dark" style="border: 1px solid #000;">
     <%= link_to post_vision_favorites_path(post, vision), method: :delete, remote: true, data: {"turbolinks" => false} do %>
       <i class="fa-solid fa-circle-check" aria-hidden="true" style="color: white">
-        <%= vision.favorites.count %> 既読
+        <%= vision.favorites.count %> 未読に戻す
       </i>
     <% end %>
   </div>
@@ -10,7 +10,7 @@
   <div class="btn btn-dark" style="border: 1px solid #000;">
     <%= link_to post_vision_favorites_path(post, vision), method: :post, remote: true, data: {"turbolinks" => false} do %>
       <i class="fa-regular fa-circle-check" aria-hidden="true" style="color: white">
-        <%= vision.favorites.count %> 未読
+        <%= vision.favorites.count %> 既読する
       </i>
     <% end %>
   </div>

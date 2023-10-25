@@ -51,7 +51,7 @@
   border-top: 1px dotted #4d4d4d;
 }
 
-/*テーブルの選択時の動き*/
+// テーブルの選択時の動き
 tr[data-href]:hover {
   color: #FFF;
   background-color: #6ABACD; /* ホバー時の背景色を変更 */
@@ -60,7 +60,7 @@ tr[data-href]:hover {
   transition: transform 0.3s; /* 拡大アニメーションの速度を設定（任意の値） */
 }
 
-/*ヘッダーのボタンの動き*/
+// ヘッダーのボタンの動き
 .button:hover{
   font-weight: bold; /* ホバー時に太字にする */
   transform: scale(1.1); /* ホバー時に要素を1.1倍に拡大 */
@@ -71,7 +71,8 @@ tr[data-href]:hover {
   color: black;
 }
 
-/*ヘッダーの文字の位置のため*/
+// ヘッダーの文字の位置のため
 ul{
   margin-bottom: 0;
 }
+

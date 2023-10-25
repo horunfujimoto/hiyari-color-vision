@@ -29,7 +29,7 @@ class ShowPdf < Prawn::Document
     schedule = [
       ["発生日時", @post.occurrence_at.strftime("%Y年%m月%d日 %H時%M分")],
       ["発生場所", @post.place],
-      ["重度", @post.level_status_i18n],
+      ["重度レベル", @post.level_status_i18n],
       ["ヒヤリハット詳細", @post.body],
       ["改善案", @vision.improvement],
       ["確認者", @vision.double_check],
@@ -45,8 +45,8 @@ class ShowPdf < Prawn::Document
       columns(-1).row(0..5).border_right_width = 2
       row(-1).border_bottom_width = 2
 
-      row(3).height = 8 * row(3).height # ヒヤリハット詳細の高さ5倍
-      row(4).height = 8 * row(4).height # 改善案の高さ5倍
+      row(3).height = 6 * row(3).height # ヒヤリハット詳細の高さ5倍
+      row(4).height = 10 * row(4).height # 改善案の高さ5倍
     end
 
   end

@@ -1,6 +1,4 @@
-// application.jsに読み込みの記述を書く
-
-/* global $*/
+/* global $ */
 // turbolinksの無効化
 $(document).on('turbolinks:load', () => {
     // .tabがクリックされたときを指定

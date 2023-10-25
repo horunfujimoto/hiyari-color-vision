@@ -6,7 +6,7 @@ class Vision < ApplicationRecord
 
   validates :member_id,     presence: :true
   validates :post_id,       presence: :true
-  validates :improvement,   presence: :true, length: { in: 1..1000 }
+  validates :improvement,   presence: :true, length: { in: 1..1200 }
   validates :closing_day,   presence: :true
   validates :double_check,  presence: :true, length: { in: 1..20 }
 

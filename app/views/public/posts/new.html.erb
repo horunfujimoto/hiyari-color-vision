@@ -8,12 +8,20 @@
     <table class="table table-borderless">
       <div class="py-3">
         <tr>
+          <td><%= f.label :title, "タイトル" %></td>
+          <td><%= f.text_field :title, class: "form-control" %></td>
+        </tr>
+        <tr>
           <td><%= f.label :occurrence_at, "発生日時" %></td>
           <td><%= f.datetime_local_field :occurrence_at, class: "form-control" %></td>
         </tr>
         <tr>
-          <td><%= f.label :title, "タイトル" %></td>
-          <td><%= f.text_field :title, class: "form-control" %></td>
+          <td><%= f.label :place, "発生場所" %></td>
+          <td><%= f.text_field :place, class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :level_status, "重度レベル" %></td>
+          <td><%= f.select :level_status,Post.level_statuses_i18n.invert, {}, {class: "form-control"} %></td>
         </tr>
         <tr>
           <td><%= f.label :body, "ヒヤリハット詳細" %></td>
@@ -24,16 +32,8 @@
           <td><%= f.file_field :image, accept: "image/*" %></td>
         </tr>
         <tr>
-          <td><%= f.label :place, "発生場所" %></td>
-          <td><%= f.text_field :place, class: "form-control" %></td>
-        </tr>
-        <tr>
           <td><%= f.label :tag_id, "タグ" %></td>
           <td><%= f.collection_select :tag_id, Tag.all, :id, :name, {}, {class: "form-control"} %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :level_status, "重度" %></td>
-          <td><%= f.select :level_status,Post.level_statuses_i18n.invert, {}, {class: "form-control"} %></td>
         </tr>
         <tr>
           <td><%= f.label :open_status, "公開設定" %></td>

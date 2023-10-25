@@ -14,7 +14,7 @@ import "bootstrap";
 import "../stylesheets/application";
 import "../packs/toppage.js";
 import "../packs/tab.js";
-import "../packs/scrollComment";
+import "../packs/scrollComment.js";
 import "../packs/link.js";
 
 Rails.start()

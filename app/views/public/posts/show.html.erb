@@ -1,41 +1,28 @@
-<div id="comments_error"></div> <%#コメントのバリデーションチャックのため%>
+<div id="comments_error"></div><%#コメントのバリデーションチャックのため%>
 <div class="mx-auto">
-  <h2 class="title">ヒヤリハット詳細</h2>
+  <h2 class="title"><%= "ヒヤリハット詳細 : #{@post.open_status_i18n}" %></h2>
   <div class="row mt-4">
-    <table class="table table-borderless">
-      <tr>
-        <td>発生日時</td>
-        <td><%= @post.occurrence_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-      </tr>
-      <tr>
-        <td>タイトル</td>
-        <td><%= @post.title %></td>
-      </tr>
-      <tr>
-        <td>詳細説明</td>
-        <td><%= @post.body %></td>
-      </tr>
-      <tr>
-        <td>画像</td>
-        <td><%= image_tag @post.get_image(300,250) %></td>
-      </tr>
-      <tr>
-        <td>発生場所</td>
-        <td><%= @post.place %></td>
-      </tr>
-      <tr>
-        <td>タグ</td>
-        <td><%= @post.tag.name %></td> <%#tag_id.nameではなく"tagモデル内のnameカラム"を持ってくるためこの記述%>
-      </tr>
-      <tr>
-        <td>重度</td>
-        <td><%= @post.level_status_i18n %></td>
-      </tr>
-      <tr>
-        <td>公開設定</td>
-        <td><%= @post.open_status_i18n %></td>
-      </tr>
-    </table>
+    <div class="col-md-6">
+      <div class="text-break mt-3">
+        <%= "タイトル : #{@post.title}" %>
+      </div>
+      <div class="text-break mt-3">
+        <%="発生日時 : #{@post.occurrence_at.strftime("%Y年%m月%d日 %H時%M分")}" %>
+      </div>
+      <div class="text-break mt-3">
+        <%= "重度レベル : #{@post.level_status_i18n}" %>
+      </div>
+      <div class="text-break mt-3">
+        <%= "発生場所 : #{@post.place}" %>
+      </div>
+      <div class="text-break mt-3">
+        <%= "詳細説明 : " %><br>
+        <%= @post.body %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <%= image_tag @post.get_image(300, 250), class: "img-fluid" %>
+    </div>
   </div>
   <div class="row mt-4">
     <% if @post.member == current_member %>
@@ -48,22 +35,24 @@
     <% end %>
     <% if @post.vision.present? %> <%#改善案が作成済の場合は誰にでも表示%>
       <div class="mx-3">
-        <%= link_to "改善案表示", post_vision_path(@post, @post.vision), class: "btn btn-dark" %>
+        <%= link_to "改善案を表示", post_vision_path(@post, @post.vision), class: "btn btn-dark" %>
       </div>
     <% end %>
     <% if !@post.vision.present? && @post.member == current_member %> <%#改善案が未作成の場合は作成者にのみ表示%>
       <div class="mx-3">
-        <%= link_to "改善案作成", new_post_vision_path(@post), class: "btn btn-dark" %>
+        <%= link_to "改善案を作成", new_post_vision_path(@post), class: "btn btn-dark" %>
       </div>
     <% end %>
   </div>
   <!--コメント機能-->
-  <h4 class="px-4 title-background">コメント</h4>
-  <div class="row mt-2 mb-3 offset-1 ">
-    <div id ="comment-form">
+  <div class="row mt-4">
+    <h3 class="title-background">コメント</h3>
+  </div>
+  <div class="row mt-2">
+    <div id="comment-form">
       <%= render "public/comments/form", post: @post, comment: @comment %>
     </div>
-    <div id ="comments">
+    <div id="comments">
       <%= render "public/comments/show", post: @post, comment: @comment %>
     </div>
   </div>

@@ -1,44 +1,46 @@
 <div class="mx-auto">
   <h2 class="title">改善案詳細</h2>
   <div class="row mt-4">
-    <table class="table table-borderless">
-      <div class="py-2">
-        <tr>
-          <td>タイトル</td>
-          <td><%= @post.title %></td>
-        </tr>
-        <tr>
-          <td>ヒヤリハット詳細</td>
-          <td><%= @post.body %></td>
-        </tr>
-        <tr>
-          <td>改善案</td>
-          <td><%= @vision.improvement %></td>
-        </tr>
-        <tr>
-          <td>改善締切日</td>
-          <td><%= @vision.closing_day.strftime("%Y年%m月%d日 %H時%M分") %></td>
-        </tr>
-        <tr>
-          <td>確認者</td>
-          <td><%= @vision.double_check %></td>
-        </tr>
+    <div class="col-md-12">
+      <div class="text-break mt-3">
+        <%= "タイトル : #{@post.title}" %>
       </div>
-    </table>
+      <div class="text-break mt-3">
+        <%= "詳細説明 : " %><br>
+        <%= @post.body %>
+      </div>
+      <div class="text-break mt-3">
+        <%= "改善案 : " %><br>
+        <%= @vision.improvement %>
+      </div>
+      <div class="text-break mt-3">
+        <%= "改善締切日 : #{@vision.closing_day.strftime("%Y年%m月%d日 %H時%M分")}" %>
+      </div>
+      <div class="text-break mt-3">
+        <%= "確認者 : #{@vision.double_check}" %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="mx-3">
+      <%= link_to "ヒヤリハット詳細を表示", post_path(@post), class: "btn btn-dark" %>
+    </div>
     <% if @post.member == current_member %>
-      <div class = "mx-3">
-        <%= link_to "PDFを表示", post_vision_show_pdf_index_path(@post, @vision, format: "pdf"), class: "btn btn-dark" %>
-      </div>
       <div class = "mx-3">
         <%= link_to "編集", edit_post_vision_path(@post, @vision), class: "btn btn-dark" %>
       </div>
       <div class = "mx-3">
         <%= link_to "削除", post_vision_path(@post, @vision), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
       </div>
+      <div class = "mx-3">
+        <%= link_to "PDFを作成", post_vision_show_pdf_index_path(@post, @vision, format: "pdf"), class: "btn btn-dark" %>
+      </div>
+    <% else %>
+      <!--いいね機能-->
+      <div id = "favorite_buttons_<%= @vision.id %>" class ="mx-3" >
+        <%= render "public/favorites/favorite", vision: @vision, post: @post %>
+      </div>
     <% end %>
-    <!--いいね機能-->
-    <div id = "favorite_buttons_<%= @vision.id %>" class ="mx-3" >
-      <%= render "public/favorites/favorite", vision: @vision, post: @post %>
     </div>
   </div>
 </div>
