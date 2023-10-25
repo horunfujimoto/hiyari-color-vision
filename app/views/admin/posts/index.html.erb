@@ -1,14 +1,16 @@
 <div class="mx-auto">
   <h2 class="title">ヒヤリハット一覧</h2>
   <!--並び替え・フィルターのリンク-->
-  <div class = "row m-4" >
-    <%= link_to '新着順 / ', admin_posts_path(sort_by: "latest") %>
-    <%= link_to '古い順 / ', admin_posts_path(sort_by: "old") %>
-    <%= link_to '軽度 / ', admin_posts_path(sort_by: "level_low") %>
-    <%= link_to '中等度 / ', admin_posts_path(sort_by: "level_middle") %>
-    <%= link_to '重度 / ', admin_posts_path(sort_by: "level_high") %>
-    <%= link_to '改善案あり / ', admin_posts_path(sort_by: "vision_presence") %>
-    <%= link_to '改善案なし', admin_posts_path(sort_by: "vision_absence") %>
+  <div class="row m-4" >
+    <i class="fa-solid fa-filter">
+      <%= link_to '新しい順', admin_posts_path(sort_by: "latest"), class: "link-color" %>
+      <%= link_to '古い順', admin_posts_path(sort_by: "old"), class: "link-color mx-2" %>
+      <%= link_to '軽度', admin_posts_path(sort_by: "level_low"), class: "link-color" %>
+      <%= link_to '中等度', admin_posts_path(sort_by: "level_middle"), class: "link-color mx-2" %>
+      <%= link_to '重度', admin_posts_path(sort_by: "level_high"), class: "link-color" %>
+      <%= link_to '改善案あり', admin_posts_path(sort_by: "vision_presence"), class: "link-color mx-2" %>
+      <%= link_to '改善案なし', admin_posts_path(sort_by: "vision_absence"), class: "link-color" %>
+    </i>
   </div>
   <!--一覧-->
   <%= render "public/posts/list", posts: @posts %>

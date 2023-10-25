@@ -67,3 +67,7 @@ tr[data-href]:hover {
   transform: scale(1.1); /* ホバー時に要素を1.1倍に拡大 */
   transition: transform 0.3s; /* 拡大アニメーションの速度を設定（任意の値） */
 }
+
+.link-color {
+  color: black;
+}

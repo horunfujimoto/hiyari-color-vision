@@ -37,19 +37,19 @@
             <ul class="list-unstyled d-flex">
               <li class="nav-item button mx-2 mt-2">
                 <i class="fa-regular fa-face-smile">
-                <%= link_to "マイページ", member_path(current_member), class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+                <%= link_to "マイページ", member_path(current_member), class: "link-color" %></i>
               </li>
               <li class="nav-item button mx-2 mt-2">
                 <i class="fa-regular fa-pen-to-square">
-                <%= link_to "投稿", new_post_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+                <%= link_to "投稿", new_post_path, class: "link-color" %></i>
               </li>
               <li class="nav-item button mx-2 mt-2">
                 <i class="fa-regular fa-clipboard">
-                <%= link_to "ヒヤリ集", posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+                <%= link_to "ヒヤリ集", posts_path, class: "link-color" %></i>
               </li>
               <li class="nav-item button mx-2 mt-2">
                 <i class="fa-solid fa-right-from-bracket">
-                <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+                <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "link-color" %></i>
               </li>
             </ul>
           </div>
@@ -57,38 +57,38 @@
           <ul class="row justify-content-end my-2 list-unstyled">
             <li class="nav-item button mx-2 mt-2">
               <i class="fa-regular fa-user">
-              <%= link_to "会員一覧", admin_members_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              <%= link_to "会員一覧", admin_members_path, class: "link-color" %></i>
             </li>
             <li class="nav-item button mx-2 mt-2">
               <i class="fa-regular fa-clipboard">
-              <%= link_to "ヒヤリ一覧", admin_posts_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              <%= link_to "ヒヤリ一覧", admin_posts_path, class: "link-color" %></i>
             </li>
             <li class="nav-item button mx-2 mt-2">
               <i class="fa-solid fa-tag">
-              <%= link_to "タグ一覧", admin_tags_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              <%= link_to "タグ一覧", admin_tags_path, class: "link-color" %></i>
             </li>
             <li class="nav-item button mx-2 mt-2">
               <i class="fa-solid fa-right-from-bracket">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "link-color" %></i>
             </li>
           </ul>
         <% else %>
           <ul class="row justify-content-end my-2 list-unstyled">
             <li class="nav-item button mx-2 mt-2">
               <i class="fa-regular fa-heart">
-              <%= link_to "使い方", about_path, class: "text-decoration-none align-middle align-middle", style: "color: #3B240B" %></i>
+              <%= link_to "使い方", about_path, class: "link-color" %></i>
             </li>
             <li class="nav-item button mx-2 mt-2">
               <i class="fa-regular fa-user">
-              <%= link_to "新規登録", new_member_registration_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              <%= link_to "新規登録", new_member_registration_path, class: "link-color" %></i>
             </li>
             <li class="nav-item button mx-2 mt-2">
               <i class="fa-solid fa-arrow-right-to-bracket">
-              <%= link_to "会員ログイン", new_member_session_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              <%= link_to "会員ログイン", new_member_session_path, class: "link-color" %></i>
             </li>
             <li class="nav-item button mx-2 mt-2"> <%#後で消すかも%>
               <i class="fa-solid fa-arrow-right-to-bracket">
-              <%= link_to "管理者ログイン", new_admin_session_path, class: "text-decoration-none align-middle", style: "color: #3B240B" %></i>
+              <%= link_to "管理者ログイン", new_admin_session_path, class: "link-color" %></i>
             </li>
           </ul>
         <% end %>

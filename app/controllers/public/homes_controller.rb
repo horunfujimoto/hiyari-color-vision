@@ -23,7 +23,7 @@ class Public::HomesController < ApplicationController
       # デフォルトは「新着順」で並び替える
       @sort = Post.latest
     end
-    @public_posts = @sort.where(open_status: [2])
+    @public_posts = @sort.where(open_status: 2)
                     .order(created_at: :desc)
                     .page(params[:page])
                     .per(10)
