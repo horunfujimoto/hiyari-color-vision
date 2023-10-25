@@ -4,9 +4,8 @@ class Public::PostsController < ApplicationController
 
   def index
     sort_by = params[:sort_by]
-
     if sort_by.present?
-      case sort_by # 並び替えの値が何か
+      case sort_by # 並び替えの値が何かきめる
       when "latest"
         @sort = Post.latest
       when "old"
@@ -26,14 +25,13 @@ class Public::PostsController < ApplicationController
       # デフォルトは「新着順」で並び替える
       @sort = Post.latest
     end
-
     # 公開もしくは全体公開のどちらかを選択した場合は表示される
     # current_member の company_password カラムと一致する投稿のみを取得
     @open_posts = @sort.where(open_status: [0, 2])
                   .joins(:member) #これが必要
                   .where(members: { company_password: current_member.company_password })
                   .page(params[:page])
-                  .per(6)
+                  .per(10)
   end
 
   def show

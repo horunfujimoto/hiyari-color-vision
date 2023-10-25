@@ -9,7 +9,7 @@ class Public::TagsController < ApplicationController
             .where(members: { company_password: current_member.company_password })
             .search(params[:keyword])
             .page(params[:page])
-            .per(6)
+            .per(10)
   end
 
 end

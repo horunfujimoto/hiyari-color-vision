@@ -26,7 +26,7 @@ class Public::HomesController < ApplicationController
     @public_posts = @sort.where(open_status: [2])
                     .order(created_at: :desc)
                     .page(params[:page])
-                    .per(6)
+                    .per(10)
     # 受け取ったストリングパラメーターが存在すればfalse、存在しなけばtrueをインスタンス変数に格納
     @display = !params[:title_link]
   end
