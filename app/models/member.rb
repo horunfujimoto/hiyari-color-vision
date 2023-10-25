@@ -25,6 +25,17 @@ class Member < ApplicationRecord
    super && (is_active == 'active')
   end
 
+  #会員ステータスによるログイン時エラーメッセージ
+  def inactive_message
+    if is_active == "banned"
+      :banned #ここでja.ymlを呼び出す
+    elsif is_active == "inactive"
+      :inactive
+    else
+      super
+    end
+  end
+
   #ゲストログイン機能
   GUEST_MEMBER_EMAIL = "guest@example.com"
 

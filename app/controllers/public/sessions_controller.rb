@@ -35,15 +35,8 @@ class Public::SessionsController < Devise::SessionsController
   def reject_invalid_member
     member = Member.find_by(email: params[:member][:email])
     return if !member || !member.inactive?
-
     return if member.valid_password?(params[:member][:password]) && member.active_for_authentication?
-
-    alert_message = if member.inactive?
-                      'すでに退会済みのアカウントです。新しいメールアドレスで再登録をしてください。'
-                    else
-                      '現在アカウントは停止中です。24時間後に停止が解除されます。'
-                    end
-    redirect_to request.referer, alert: alert_message
+    redirect_to request.referer
   end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

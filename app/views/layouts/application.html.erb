@@ -26,12 +26,12 @@
           <i class="fa-solid fa-bullhorn" style="font-size:110%; color:#218390;">
           <%= flash[:notice] %></i>
         <% end %>
-        <% if flash[:alart].present? %>  <%# ログイン時のエラー表示 %>
+        <% if flash[:alert].present? %> <%# ログイン時のエラー表示 %>
           <i class="fa-solid fa-bullhorn" style="font-size:110%; color:#218390;"></i>
-          <%= flash[:alart] %>
+          <%= flash[:alert] %>
         <% end %>
       </div>
-      <main class="container flex-shrink-0" style="padding-top:0.5%; padding-bottom:5%;">
+      <main class="container flex-shrink-0" style="padding-top:0.4%; padding-bottom:6%;">
         <%= yield %>
         <div id="top_png" style="display:none;"><%= image_path("top.png")%></div> <%#top画像読み込みのためにurlだけおいてidつける%>
       </main>
