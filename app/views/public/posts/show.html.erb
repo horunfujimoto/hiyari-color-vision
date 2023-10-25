@@ -10,10 +10,10 @@
         <%="発生日時 : #{@post.occurrence_at.strftime("%Y年%m月%d日 %H時%M分")}" %>
       </div>
       <div class="text-break mt-3">
-        <%= "重度レベル : #{@post.level_status_i18n}" %>
+        <%= "発生場所 : #{@post.place}" %>
       </div>
       <div class="text-break mt-3">
-        <%= "発生場所 : #{@post.place}" %>
+        <%= "重度レベル : #{@post.level_status_i18n}" %>
       </div>
       <div class="text-break mt-3">
         <%= "詳細説明 : " %><br>
