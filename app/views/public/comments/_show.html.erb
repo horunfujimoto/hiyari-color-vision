@@ -1,12 +1,14 @@
 <table class='table'>
   <tbody>
     <% post.comments.each do |comment| %>
-    <tr>
-      <td><%= comment.member.name %></td>
-      <td><%= comment.comment %></td>
+    <tr class="text-break mt-3">
+      <td style="white-space: nowrap;"><%= comment.member.name %></td>
+      <td><%= comment.comment %>(<%= comment.created_at.strftime("%Y年%m月%d日 %H時%M分") %>)</td>
       <td>
         <% if comment.member == current_member || current_admin.present? %>
-          <%= link_to "削除", post_comment_path(post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark pull-right", remote: true %>
+          <%= link_to post_comment_path(post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark pull-right", remote: true do %>
+            <i class="fas fa-trash"></i>
+          <% end %>
         <% end %>
       </td>
     </tr>

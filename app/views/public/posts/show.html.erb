@@ -49,10 +49,10 @@
     <h3 class="title-background">コメント</h3>
   </div>
   <div class="row mt-2">
-    <div id="comment-form">
+    <div id="comment-form" class="col-md-4">
       <%= render "public/comments/form", post: @post, comment: @comment %>
     </div>
-    <div id="comments">
+    <div id="comments" class="col-md-8">
       <%= render "public/comments/show", post: @post, comment: @comment %>
     </div>
   </div>
