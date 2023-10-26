@@ -10,7 +10,6 @@ class Post < ApplicationRecord
   validates :occurrence_at, presence: :true
   validates :place, presence: :true, length: { in: 1..20 }
   validates :body, presence: :true, length: { in: 1..800 }
-  validates :image, presence: :false
   validates :tag_id, presence: :true
 
   has_one_attached :image # imageカラムが追記されたかのように扱うことができる
