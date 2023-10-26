@@ -23,12 +23,14 @@
       <%= render 'layouts/header' %>
       <div class="mx-5 py-2">
         <% if flash[:notice].present? %>
-          <i class="fa-solid fa-bullhorn" style="font-size:110%; color:#218390;">
-          <%= flash[:notice] %></i>
+          <i class="fa-solid fa-bullhorn" style="font-size:105%; color:#218390;">
+            <%= flash[:notice] %>
+          </i>
         <% end %>
         <% if flash[:alert].present? %> <%# ログイン時のエラー表示 %>
-          <i class="fa-solid fa-bullhorn" style="font-size:110%; color:#218390;"></i>
-          <%= flash[:alert] %>
+          <i class="fa-solid fa-bullhorn" style="font-size:105%; color:#218390;">
+            <%= flash[:alert] %>
+          </i>
         <% end %>
       </div>
       <main class="container flex-shrink-0" style="padding-top:0.4%; padding-bottom:10%;">

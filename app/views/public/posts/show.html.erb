@@ -2,7 +2,7 @@
 <div class="mx-auto">
   <h2 class="title"><%= "ヒヤリハット詳細 : #{@post.open_status_i18n}" %></h2>
   <div class="row mt-4">
-    <div class="col-md-6">
+    <div class="col-md-7">
       <div class="text-break mt-3">
         <%= "タイトル : #{@post.title}" %>
       </div>
@@ -20,7 +20,7 @@
         <%= @post.body %>
       </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
       <%= image_tag @post.get_image(300, 250), class: "img-fluid" %>
     </div>
   </div>

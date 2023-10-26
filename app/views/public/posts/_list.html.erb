@@ -30,7 +30,7 @@
             <tr data-href='<%= admin_post_path(post.id) %>'>
               <td><%= post.member.name %></td>
               <td><%= post.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
-              <td><%= post.title %></td>
+              <td><%= post.title.truncate(15, omission: '...') %></td>
               <td><%= post.open_status_i18n %></td>
               <td><%= post.vision.present? ? 'あり' : 'なし' %></td> <%#三項演算子の記述%>
               <td><span id = "comment_count" ><%= post.comments.count %></span></td>
