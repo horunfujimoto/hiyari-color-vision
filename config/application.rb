@@ -11,6 +11,7 @@ module HiyariColorVision
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.i18n.default_locale = :ja
+    config.paths.add 'lib', eager_load: true # 追加
 
     # Configuration for the application, engines, and railties goes here.
     #

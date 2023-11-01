@@ -3,7 +3,13 @@
     <% post.comments.each do |comment| %>
     <tr class="text-break mt-3">
       <td style="white-space: nowrap;"><%= comment.member.name %></td>
-      <td><%= comment.comment %>(<%= comment.created_at.strftime("%Y年%m月%d日 %H時%M分") %>)</td>
+      <td>
+        <%= comment.comment %>(<%= comment.created_at.strftime("%Y年%m月%d日 %H時%M分") %>)</br>
+        <p class="sentiment-score">感情分析スコア[<%= comment.score %>]</p>
+        <% if comment.score.present? && comment.score < 0.4 %> <%#この数値は後検討%>
+          <p class="translatable-text mt-2"><small class="text-secondary">※非常にネガティブなコメントです。トラブル回避のため、不要な場合は削除することを推奨します※</small></p>
+        <% end %>
+      </td>
       <td>
         <% if comment.member == current_member || current_admin.present? %>
           <%= link_to post_comment_path(post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark pull-right", remote: true do %>

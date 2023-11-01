@@ -5,6 +5,7 @@ class Public::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_member.comments.new(comment_params)
     @comment.post_id = @post.id
+    @comment.score = Language.get_data(comment_params[:comment])
 
     #ここから通知機能
     ActiveRecord::Base.transaction do

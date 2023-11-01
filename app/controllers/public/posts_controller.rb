@@ -44,6 +44,7 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.score = Language.get_data(post_params[:body])  #この行を追加
     @post.member_id = current_member.id
     if @post.save
       flash[:notice] = "投稿が完了しました。"
