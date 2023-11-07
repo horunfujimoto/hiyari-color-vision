@@ -7,15 +7,12 @@ class Public::MembersController < ApplicationController
     @favorite_posts = Vision.includes(:post, :favorites)
                       .where('favorites.member_id': @member.id)
                       .order('favorites.created_at DESC')
-                      .page(params[:page])
     # Vision モデルから Post モデルの情報を取得!これがないとvision内にpostのカラムがないとエラーが出る
     @favorite_posts = @favorite_posts.map(&:post)
     @member_posts = Post.where(member_id: @member, open_status: [0, 2])
                       .order(created_at: "DESC")
-                      .page(params[:page])
     @unopened_posts = Post.where(member_id: @member, open_status: 1)
                       .order(created_at: "DESC")
-                      .page(params[:page])
   end
 
   def edit

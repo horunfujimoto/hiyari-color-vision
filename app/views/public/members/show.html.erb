@@ -23,7 +23,7 @@
     </table>
   </div>
   <% unless @member.guest_member? %> <%#ゲストログインは編集できない%>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-3">
     <% if @member == current_member %>
       <div class = "mx-3">
         <%= link_to "編集", edit_member_path(current_member), class: "btn btn-dark" %>

@@ -16,7 +16,7 @@
       <% if favorite_posts.empty? %>
         <h6 class='mt-4'>既読した投稿はありません。</h6>
       <% else %>
-        <div class="d-flex flex-wrap">
+        <div class="d-flex justify-content-center flex-wrap">
           <%= render "public/posts/list", posts: favorite_posts %>
         </div>
       <% end %>
@@ -27,21 +27,20 @@
     <% if member_posts.empty? %>
       <h6 class='mt-4'>投稿はまだありません。</h6>
     <% else %>
-      <div class="d-flex flex-wrap">
+      <div class="d-flex justify-content-center flex-wrap">
         <%= render "public/posts/list", posts: member_posts %>
       </div>
     <% end %>
-    <div class="d-flex justify-content-center"><%= paginate member_posts %></div>
   </div>
   <!--タブ：非公開-->
   <div class="tabbox">
     <% if unopened_posts.empty? %>
       <h6 class='mt-4'>非公開の投稿はありません。</h6>
     <% else %>
-      <div class="d-flex flex-wrap">
+      <div class="d-flex justify-content-center flex-wrap">
         <%= render "public/posts/list", posts: unopened_posts %>
       </div>
     <% end %>
-    <div class="d-flex justify-content-center"><%= paginate unopened_posts %></div>
+
   </div>
 </div>
