@@ -5,7 +5,7 @@
   <!--編集フォーム-->
   <div class="row mt-4 justify-content-center">
   <%= form_with model: @post, url: post_path(@post),method: :patch do |f| %>
-    <table class="table table-borderless">
+    <table class="table table-borderless" style="background-color: #CEECF5;">
       <div class="py-3">
         <tr>
           <td><%= f.label :occurrence_at, "発生日時" %></td>

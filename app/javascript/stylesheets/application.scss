@@ -80,3 +80,11 @@ ul{
   margin-bottom: 0;
   background-color: #EFF8FB;
 }
+
+// バリデーションのエラーメッセージ
+.errors {
+  color: #262626;
+  text-align: left; /* テキストを左寄せにする */
+  padding: 12px;
+  font-weight: 850;
+}
