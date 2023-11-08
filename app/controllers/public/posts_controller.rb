@@ -36,6 +36,7 @@ class Public::PostsController < ApplicationController
 
   def show
     @comment = Comment.new
+    @member = @post.member
   end
 
   def new
