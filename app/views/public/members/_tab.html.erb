@@ -1,14 +1,16 @@
-<div class="col-10 mt-3">
-  <ul class="list-group list-group-horizontal">
+<div class="col-10 mt-3 text-center">
+  <ul class="list-group list-group-horizontal justify-content-center">
     <li class="list-group-item col-4 tab tab-active">
       <i class="fa-solid fa-bookmark">既読済み一覧</i>
     </li>
     <li class="list-group-item col-4 tab">
       <i class="fa-solid fa-rectangle-list">投稿一覧</i>
     </li>
-    <li class="list-group-item col-4 tab">
-      <i class="fa-solid fa-pen-to-square">非公開一覧</i>
-    </li>
+    <% if member == current_member %>
+      <li class="list-group-item col-4 tab">
+        <i class="fa-solid fa-pen-to-square">非公開一覧</i>
+      </li>
+    <% end %>
   </ul>
   <!--タブ：既読-->
   <div class="tabbox-contents">
@@ -33,14 +35,15 @@
     <% end %>
   </div>
   <!--タブ：非公開-->
-  <div class="tabbox">
-    <% if unopened_posts.empty? %>
-      <h6 class='mt-4'>非公開の投稿はありません。</h6>
-    <% else %>
-      <div class="d-flex justify-content-center flex-wrap">
-        <%= render "public/posts/list", posts: unopened_posts %>
-      </div>
-    <% end %>
-
-  </div>
+  <% if member == current_member %>
+    <div class="tabbox">
+      <% if unopened_posts.empty? %>
+        <h6 class='mt-4'>非公開の投稿はありません。</h6>
+      <% else %>
+        <div class="d-flex justify-content-center flex-wrap">
+          <%= render "public/posts/list", posts: unopened_posts %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
