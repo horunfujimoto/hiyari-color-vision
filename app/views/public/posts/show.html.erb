@@ -4,9 +4,7 @@
   <div class="row mt-4">
     <div class="col-md-7">
       <div class="text-break mt-3">
-        <%= link_to member_path(@member) do %>
-          <%= "投稿者 : #{@member.name}" %>
-        <% end %>
+        <%= "投稿者 : #{@member.name}" %>
       </div>
       <div class="text-break mt-3">
         <%= "タイトル : #{@post.title}" %>
@@ -39,6 +37,10 @@
       </div>
       <div class="mx-3">
         <%= link_to "削除", post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark" %>
+      </div>
+    <% elsif %>
+      <div class="mx-3">
+        <%= link_to "#{@member.name}のマイページ", member_path(@member), class: "btn btn-dark" %>
       </div>
     <% end %>
     <% if @post.vision.present? %> <%#改善案が作成済の場合は誰にでも表示%>
