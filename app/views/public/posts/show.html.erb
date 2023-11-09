@@ -40,7 +40,7 @@
       </div>
     <% elsif %>
       <div class="mx-3">
-        <%= link_to "#{@member.name}のマイページ", member_path(@member), class: "btn btn-dark" %>
+        <%= link_to "#{@member.name}さんのマイページ", member_path(@member), class: "btn btn-dark" %>
       </div>
     <% end %>
     <% if @post.vision.present? %> <%#改善案が作成済の場合は誰にでも表示%>
