@@ -36,7 +36,7 @@
           <%= "確認者 : #{@post.vision.double_check}" %>
         </div>
       <% else %>
-        <%= "改善案未作成" %>
+        <%= "<span style='font-weight: bold; font-size: larger;'>※改善案未作成</span>".html_safe %>
       <% end %>
     </div>
     <div class="col-md-5">
