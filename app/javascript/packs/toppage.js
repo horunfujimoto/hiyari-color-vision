@@ -40,7 +40,7 @@ $(document).on('turbolinks:load', function() { //アプリケーションの起�
 
                 $('.body').show(); //dispray:noneにした設定をここで表示
             });
-        }, 1000); // 画像を表示する時間（1秒後）を設定
+        }, 2000); // 画像を表示する時間（1秒後）を設定
       }
     } else {
       $('.body').show(); //dispray:noneにした設定をここで表示
