@@ -33,7 +33,6 @@ Rails.application.routes.draw do
         resources :show_pdf, only: [:index]
       end
     end
-
     resources :searches, only: [:index]
     resources :tags, only: [:show]
     resources :notifications, only: [:destroy] do
@@ -42,6 +41,7 @@ Rails.application.routes.draw do
         patch  'notice'
       end
     end
+    resources :reports, only: [:new, :create]
   end
 
   namespace :admin do

@@ -14,6 +14,14 @@ ja:
         mild: "軽度"
         moderate: "中等度"
         severe: "重度"
+    report:
+      reason:
+        malicious_expression: "悪意のある表現"
+        inappropriate_content: "不適切な表現"
+        misinformation: "誤った情報"
+        commercial_purposes: "商業目的"
+        spam: "スパム"
+        other: "その他"
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
