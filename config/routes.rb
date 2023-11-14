@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'reports/index'
+  end
   # 会員用
   # URL /members/sign_in ...
   devise_for :members,skip: [:passwords], controllers: {
