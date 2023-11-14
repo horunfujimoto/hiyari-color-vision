@@ -44,7 +44,7 @@ Rails.application.routes.draw do
         patch  'notice'
       end
     end
-    resources :reports, only: [:new, :create]
+    resources :reports, only: [:create]
   end
 
   namespace :admin do

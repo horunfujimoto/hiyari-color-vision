@@ -112,8 +112,7 @@ ActiveRecord::Schema.define(version: 2023_11_14_070743) do
   end
 
   create_table "reports", force: :cascade do |t|
-    t.integer "reporter_id", null: false
-    t.integer "reported_id", null: false
+    t.integer "member_id", null: false
     t.integer "post_id"
     t.integer "comment_id"
     t.integer "reason", null: false

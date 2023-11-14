@@ -12,15 +12,12 @@ class Member < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :record_pdfs, dependent: :destroy
+  has_many :reports, dependent: :destroy
 
   # 通知機能
   # 外部キーを設定することで、memberモデルのidカラムが、Notificationモデルのvisitor_idとvisited_idと関連付けられる
   has_many :active_notifications,  class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
   has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
-
-  # 通報機能
-  has_many :reporter, class_name: "Report", foreign_key: "reporter_id", dependent: :destroy
-  has_many :reported, class_name: "Report", foreign_key: "reported_id", dependent: :destroy
 
   #会員ステータス
   enum is_active: { active: 0, banned: 1, inactive: 2 }

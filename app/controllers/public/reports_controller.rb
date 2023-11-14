@@ -1,18 +1,12 @@
 class Public::ReportsController < ApplicationController
   before_action :authenticate_member!
 
-  def new
-    @report = Report.new
-    @post = Post.find(params[:post_id])
-    @comment = Comment.find(params[:comment_id])
-  end
-
   def create
-    # 通報作成のアクション
-    @report = current_member.reporter.build(report_params)
+    @report = Report.new(report_params)
     @comment = @report.comment
     @post = @comment.post
     @member = @post.member
+    @report.post_id = @post.id
     if @report.save
       flash[:notice] = "通報が送信されました。"
       redirect_to post_path(@post)
@@ -25,7 +19,7 @@ class Public::ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:reported_id, :reporter_id, :comment_id, :reason)
+    params.require(:report).permit(:member_id, :comment_id, :post_id, :reason)
   end
 
 end

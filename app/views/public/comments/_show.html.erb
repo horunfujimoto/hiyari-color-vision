@@ -15,11 +15,10 @@
           <%= link_to post_comment_path(post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark pull-right", remote: true do %>
             <i class="fas fa-trash"></i>
           <% end %>
+        <% elsif %>
+          <%= render "public/reports/form", comment: comment, member: member %>
         <% end %>
       </td>
-
-        <%= render "public/reports/form", comment: comment %>
-
     </tr>
   </tbody>
 </table>
