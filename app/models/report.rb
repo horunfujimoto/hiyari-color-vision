@@ -17,5 +17,6 @@ class Report < ApplicationRecord
     spam: 4,                      # スパム
     other: 5                      # その他
   }
+  validates :reason, inclusion: { in: Report.reasons.keys }
 
 end

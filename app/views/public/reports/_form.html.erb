@@ -1,0 +1,57 @@
+<div data-toggle="modal" data-target="#comment_<%= comment.id %>">
+  <i class="fa-solid fa-flag" style="font-size: 25px;"></i>
+</div>
+
+<div class="modal fade" id="comment_<%= comment.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content w-50 mx-auto">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">通報</h5>
+        <button type="button" class="btn-close btn btn-outline-secondary" data-dismiss="modal" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class= id="headerTag">
+            <%= form_with(model: Report.new(comment_id: comment.id)) do |f| %>
+              <%= f.hidden_field :comment_id %>
+              <%= f.hidden_field :reported_id, value: comment.member_id %>
+              <div class="form-check">
+                <%= f.radio_button :reason, "malicious_expression" %>
+                <%= f.label :reason_malicious_expression, I18n.t("enums.report.reason.malicious_expression"), class: "form-check-label" %>
+              </div>
+              <div class="form-check">
+                <%= f.radio_button :reason, "inappropriate_content" %>
+                <%= f.label :reason_inappropriate_content, I18n.t("enums.report.reason.inappropriate_content"), class: "form-check-label" %>
+              </div>
+              <div class="form-check">
+                <%= f.radio_button :reason, "misinformation" %>
+                <%= f.label :reason_misinformation, I18n.t("enums.report.reason.misinformation"), class: "form-check-label" %>
+              </div>
+              <div class="form-check">
+                <%= f.radio_button :reason, "commercial_purposes" %>
+                <%= f.label :reason_commercial_purposes, I18n.t("enums.report.reason.commercial_purposes"), class: "form-check-label" %>
+              </div>
+              <div class="form-check">
+                <%= f.radio_button :reason, "spam" %>
+                <%= f.label :reason_spam, I18n.t("enums.report.reason.spam"), class: "form-check-label" %>
+              </div>
+              <div class="form-check">
+                <%= f.radio_button :reason, "other" %>
+                <%= f.label :reason_other, I18n.t("enums.report.reason.other"), class: "form-check-label" %>
+              </div>
+              <div class="mt-3">
+                <%= f.submit "通報する", class: "btn btn-dark" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
