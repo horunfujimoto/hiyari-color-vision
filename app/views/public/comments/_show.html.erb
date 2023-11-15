@@ -23,15 +23,22 @@
                     <div class="col-4 mr-2">
                       ・<%= report.reason_i18n %>
                     </div>
+                    <%# 確認済みにするフォーム %>
                     <%= form_with model: report, url: admin_report_path(report.id), method: :patch do |f| %>
                       <%= f.hidden_field :checked, value: true %>
                       <div class="col-4 ml-auto">
-                        <%= f.submit "確認済みにする", class: "btn-sm btn-dark px-4" %>
+                        <%= f.submit "確認済みにする", class: "btn-sm btn-dark" %>
+                      </div>
+                    <% end %>
+                    <%# 未確認に戻すフォーム %>
+                    <%= form_with model: report, url: admin_report_path(report.id), method: :patch do |f| %>
+                      <%= f.hidden_field :checked, value: false %>
+                      <div class="col-4 ml-auto">
+                        <%= f.submit "未確認に戻す", class: "btn-sm btn-dark" %>
                       </div>
                     <% end %>
                   </div>
                 </div>
-
               <% end %>
             </div>
           </div>
