@@ -11,12 +11,13 @@ class Admin::ReportsController < ApplicationController
       flash[:notice] = "通報されたコメントの確認状況を更新しました。"
       redirect_to admin_post_path(@report.comment.post)
     else
-      render :edit
+      flash.now[:notice] = "確認状況を更新できませんでした。"
+      render 'public/posts/show'
     end
   end
 
   def report_params
     params.require(:report).permit(:checked)
   end
-  
+
 end

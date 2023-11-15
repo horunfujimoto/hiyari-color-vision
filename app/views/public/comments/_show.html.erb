@@ -18,13 +18,20 @@
           <div class="container-fluid">
             <div class="collapse" id="headerTag<%= comment.id %>">
               <% comment.reports.each do |report| %>
-                <div class="d-flex justify-content-between">
-                  ・<%= report.reason_i18n %><br>
-                  <%= form_with model: report, url: admin_report_path(report.id), method: :patch do |f| %>
-                    <%= f.hidden_field :checked, value: true %>
-                    <%= f.submit "確認済みにする" %>
-                  <% end %>
+                <div class="mt-3">
+                  <div class="d-flex">
+                    <div class="col-4 mr-2">
+                      ・<%= report.reason_i18n %>
+                    </div>
+                    <%= form_with model: report, url: admin_report_path(report.id), method: :patch do |f| %>
+                      <%= f.hidden_field :checked, value: true %>
+                      <div class="col-4 ml-auto">
+                        <%= f.submit "確認済みにする", class: "btn-sm btn-dark px-4" %>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
+
               <% end %>
             </div>
           </div>
