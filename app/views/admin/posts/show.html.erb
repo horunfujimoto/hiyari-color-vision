@@ -43,6 +43,9 @@
       <%= image_tag @post.get_image(300, 250), class: "img-fluid" %>
     </div>
   </div>
+  <div class="m-4">
+    <%= link_to "通報されたコメント一覧", admin_reports_path, class: "btn btn-dark" %>
+  </div>
   <!--コメント機能-->
   <div class="row mt-4">
     <h3 class="title-background">コメント</h3>
