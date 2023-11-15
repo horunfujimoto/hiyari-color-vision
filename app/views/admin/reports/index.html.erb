@@ -1,2 +1,44 @@
-<h1>Admin::Reports#index</h1>
-<p>Find me in app/views/admin/reports/index.html.erb</p>
+<div class="mx-auto">
+  <h2 class="title">ヒヤリハット一覧</h2>
+  <!--並び替え・フィルターのリンク-->
+  <div class="row m-4" >
+    <i class="fa-solid fa-filter">
+      <%= link_to '新しい順', admin_posts_path(sort_by: "latest"), class: "link-color" %>
+      <%= link_to '古い順', admin_posts_path(sort_by: "old"), class: "link-color mx-2" %>
+      <%= link_to '軽度', admin_posts_path(sort_by: "level_low"), class: "link-color" %>
+      <%= link_to '中等度', admin_posts_path(sort_by: "level_middle"), class: "link-color mx-2" %>
+      <%= link_to '重度', admin_posts_path(sort_by: "level_high"), class: "link-color" %>
+      <%= link_to '改善案あり', admin_posts_path(sort_by: "vision_presence"), class: "link-color mx-2" %>
+      <%= link_to '改善案なし', admin_posts_path(sort_by: "vision_absence"), class: "link-color" %>
+      <%= link_to '通報', admin_reports_path, class: "link-color mx-2" %>
+    </i>
+  </div>
+  <!--一覧-->
+  <div class="row mt-4">
+    <table class="table table-bordered">
+      <div class="py-2">
+        <thead>
+          <tr>
+            <th>コメント投稿者</th>
+            <th>通報日時</th>
+            <th>通報理由</th>
+            <th>該当コメント</th>
+            <th>対応</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reports.each do |report| %>
+            <tr data-href='<%= admin_post_path(report.comment.post.id) %>'>
+              <td><%= report.member.name %></td>
+              <td><%= report.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
+              <td><%= report.reason_i18n %></td>
+              <td><%= report.comment.comment.truncate(15, omission: '...') %></td>
+              <td><%= report.checked %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </div>
+    </table>
+  </div>
+  <%= paginate @reports %>
+</div>

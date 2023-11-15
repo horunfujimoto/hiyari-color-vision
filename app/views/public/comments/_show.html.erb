@@ -9,6 +9,20 @@
         <% if comment.score.present? && comment.score < 0.6 %> <%#この数値は後検討%>
           <p class="translatable-text"><small class="text-secondary">※非常にネガティブなコメントです。トラブル回避のため、不要な場合は削除することを推奨します。※</small></p>
         <% end %>
+        <% if admin_signed_in? && comment.reports.present? %>
+          <div class="container-fluid">
+            <a data-toggle="collapse" href="#headerTag<%= comment.id %>" aria-expanded="false" aria-controls="#headerTag<%= comment.id %>">
+              通報件数<%= comment.reports.count %>件<i class="fa-regular fa-circle-down"></i>
+            </a>
+          </div>
+          <div class="container-fluid">
+            <div class="collapse" id="headerTag<%= comment.id %>">
+              <% comment.reports.each do |report| %>
+                ・<%= report.reason_i18n %><br>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </td>
       <td>
         <% if comment.member == current_member || current_admin.present? %>

@@ -10,6 +10,7 @@
       <%= link_to '重度', admin_posts_path(sort_by: "level_high"), class: "link-color" %>
       <%= link_to '改善案あり', admin_posts_path(sort_by: "vision_presence"), class: "link-color mx-2" %>
       <%= link_to '改善案なし', admin_posts_path(sort_by: "vision_absence"), class: "link-color" %>
+      <%= link_to '通報されたコメント', admin_reports_path, class: "link-color mx-2" %>
     </i>
   </div>
   <!--一覧-->
