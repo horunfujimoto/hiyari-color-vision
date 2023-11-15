@@ -1,65 +1,72 @@
+<!-- フォーム -->
+<h2 class="title">データ</h2>
 <div class="mx-auto">
-  <h2 class="title">データ</h2>
-  <div class="row mt-4">
-    <div class="col-md-5">
-      <h5>合計登録者数</h5>
-    </div>
-    <div class="col-md-5">
-      <p><span class="count-up" style="font-size: 25px;"><%= @members_count %></span> 人 / 目標人数20人</p>
-    </div>
+  <div class="text-center" style="font-size: 120%;">
+    <form id="targetForm">
+      <p>
+      <span id="membersCount" class="count-up">合計登録者数<%= @members_count %></span> 人 /
+      <label for="membersTarget">目標人数:</label>
+      <input type="number" id="membersTarget" name="membersTarget" value="<%= @members_target %>">
+      </p>
+      <p>
+      <span id="postsCount" class="count-up">合計投稿数<%= @posts_count %></span> 件 /
+      <label for="postsTarget">目標件数:</label>
+      <input type="number" id="postsTarget" name="postsTarget" value="<%= @posts_target %>">
+      </p>
+      <p>
+      <span id="companiesCount" class="count-up">合計登録会社数<%= @companies_count %></span> 社 /
+      <label for="companiesTarget">目標会社数:</label>
+      <input type="number" id="companiesTarget" name="companiesTarget" value="<%= @companies_target %>">
+      </p>
+      <button type="button" onclick="updateTargets()" class="btn btn-dark pull-right ml-3">更新</button>
+    </form>
   </div>
+<!-- グラフ -->
   <div class="row mt-4">
-    <div class="col-md-5">
-      <h5>合計投稿数</h5>
-    </div>
-    <div class="col-md-5">
-      <p><span class="count-up" style="font-size: 25px;"><%= @posts_count %></span> 件 / 目標件数50件</p>
-    </div>
-  </div>
-  <div class="row mt-4">
-    <div class="col-md-5">
-      <h5>合計登録会社数</h5>
-    </div>
-    <div class="col-md-5">
-      <p><span class="count-up" style="font-size: 25px;"><%= @companies_count %></span> 社 / 目標数10社</p>
-    </div>
-  </div>
-</div>
-<div class="row mt-4">
-  <canvas id="comparisonChart" width="400" height="200"></canvas>
-  <script>
-    var ctx = document.getElementById("comparisonChart").getContext('2d');
-    var comparisonChart = new Chart(ctx, {
-      type: 'bar', // グラフの種類を指定（例: 棒グラフ）
-      data: {
-        labels: ["登録者数", "投稿数", "登録会社数"],
-        datasets: [
-          {
-            label: '実績', // 実績データのラベル
-            data: [<%= @members_count %>, <%= @posts_count %>, <%= @companies_count %>],
-            backgroundColor: 'rgba(0,128,255, 0.2)',
-            borderColor: 'rgba(0,128,255, 1)',
-            borderWidth: 1
-          },
-          {
-            label: '目標', // 目標データのラベル
-            data: [20, 50, 10], // 目標値
-            backgroundColor: 'rgba(1,223,165, 0.2)', // 目標データの色
-            borderColor: 'rgba(1,223,165, 1)',
-            borderWidth: 1
-          }
-        ]
-      },
-      options: {
-        scales: {
-          x: {
-            beginAtZero: true
-          },
-          y: {
-            beginAtZero: true
+    <canvas id="comparisonChart" width="400" height="200"></canvas>
+    <script>
+      var ctx = document.getElementById("comparisonChart").getContext('2d');
+      var comparisonChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ["登録者数", "投稿数", "登録会社数"],
+          datasets: [
+            {
+              label: '実績',
+              data: [<%= @members_count %>, <%= @posts_count %>, <%= @companies_count %>],
+              backgroundColor: 'rgba(0,128,255, 0.2)',
+              borderColor: 'rgba(0,128,255, 1)',
+              borderWidth: 1
+            },
+            {
+              label: '目標',
+              data: [<%= @members_target %>, <%= @posts_target %>, <%= @companies_target %>],
+              backgroundColor: 'rgba(1,223,165, 0.2)',
+              borderColor: 'rgba(1,223,165, 1)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          scales: {
+            x: {
+              beginAtZero: true
+            },
+            y: {
+              beginAtZero: true
+            }
           }
         }
+      });
+
+      function updateTargets() {
+        var membersTarget = document.getElementById("membersTarget").value;
+        var postsTarget = document.getElementById("postsTarget").value;
+        var companiesTarget = document.getElementById("companiesTarget").value;
+
+        comparisonChart.data.datasets[1].data = [membersTarget, postsTarget, companiesTarget];
+        comparisonChart.update();
       }
-    });
-  </script>
+    </script>
+  </div>
 </div>
