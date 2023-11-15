@@ -28,9 +28,13 @@
 - 組織内の安全管理のための策を考えたいとき
 ​
 ## 設計書
+- <a href="https://app.diagrams.net/#G1LEKCkGfB3jrvRiZKjx4vBj99lTSqvA6t" target="_blank">ER図</a>
+- <a https://app.diagrams.net/#G1MKxiq3JTA-0PP2aLgtpUWfnKSx5H73Fz" target="_blank">ワイヤーフレーム</a>
+- <a href="https://docs.google.com/spreadsheets/d/18cjYNkvnw-Y11Hge7jnl8g6BHBHD6zC10G_JVxhhjBs/edit#gid=0" target="_blank">テーブル定義書</a>
+- <a href="https://docs.google.com/spreadsheets/d/1jgfWGQTVGRKLVipoLx7J7eTWM6_rCRKSo8B03JyyQGE/edit#gid=0" target="_blank">アプリケーション詳細設計書</a>
 ​
 ## 開発環境
-- OS：Windows10pro
+- OS：Linux(Amazon Linux 2)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
