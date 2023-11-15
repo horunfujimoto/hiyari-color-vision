@@ -33,8 +33,7 @@
               <td><%= report.created_at.strftime("%Y年%m月%d日 %H時%M分") %></td>
               <td><%= report.reason_i18n %></td>
               <td><%= report.comment.comment.truncate(15, omission: '...') %></td>
-              <td><%= report.checked %></td>
-            </tr>
+              <td><%= report.checked ? "確認済" : "未確認" %></td>
           <% end %>
         </tbody>
       </div>

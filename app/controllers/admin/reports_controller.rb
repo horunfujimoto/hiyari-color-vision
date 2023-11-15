@@ -5,4 +5,18 @@ class Admin::ReportsController < ApplicationController
     @reports = Report.order("created_at DESC").page(params[:page])
   end
 
+  def update
+    @report = Report.find(params[:id])
+    if @report.update(report_params)
+      flash[:notice] = "通報されたコメントの確認状況を更新しました。"
+      redirect_to admin_post_path(@report.comment.post)
+    else
+      render :edit
+    end
+  end
+
+  def report_params
+    params.require(:report).permit(:checked)
+  end
+  
 end

@@ -18,7 +18,13 @@
           <div class="container-fluid">
             <div class="collapse" id="headerTag<%= comment.id %>">
               <% comment.reports.each do |report| %>
-                ・<%= report.reason_i18n %><br>
+                <div class="d-flex justify-content-between">
+                  ・<%= report.reason_i18n %><br>
+                  <%= form_with model: report, url: admin_report_path(report.id), method: :patch do |f| %>
+                    <%= f.hidden_field :checked, value: true %>
+                    <%= f.submit "確認済みにする" %>
+                  <% end %>
+                </div>
               <% end %>
             </div>
           </div>
@@ -29,7 +35,7 @@
           <%= link_to post_comment_path(post, comment), method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-dark pull-right", remote: true do %>
             <i class="fas fa-trash"></i>
           <% end %>
-        <% elsif %>
+        <% else %>
           <%= render "public/reports/form", comment: comment, member: member %>
         <% end %>
       </td>
