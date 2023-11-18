@@ -455,4 +455,77 @@ Post.create!([
   }
 ])
 
+Vision.create!([
+  {
+    member_id: 1,
+    post_id: 1,
+    improvement: "床に滑り止めマットを敷く。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 2,
+    post_id: 2,
+    improvement: "駐車場に追加の交通標識を設置する。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 3,
+    post_id: 3,
+    improvement: "商品の賞味期限を厳密に管理し、期限切れ品を撤去する。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 4,
+    post_id: 4,
+    improvement: "定期的なメンテナンススケジュールを導入し、機械の故障を予防する。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 5,
+    post_id: 5,
+    improvement: "電子健康記録システムを導入して、データのセキュリティを向上させる。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 6,
+    post_id: 6,
+    improvement: "従業員にセキュリティトレーニングを提供し、セキュリティ意識を高める。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 7,
+    post_id: 7,
+    improvement: "データ送信前に二重確認プロセスを導入し、誤送信を防ぐ。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 8,
+    post_id: 8,
+    improvement: "廃棄物管理プロセスを見直し、環境への影響を最小限に抑える。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 9,
+    post_id: 9,
+    improvement: "カスタマイズされたトレーニングプログラムを開発し、スキル向上を促進する。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  },
+  {
+    member_id: 10,
+    post_id: 10,
+    improvement: "緊急避難手順を改善し、全従業員にトレーニングを提供する。",
+    closing_day: "2024-01-11 00:00:00",
+    double_check: "Aさん"
+  }
+])
+
 puts "seedの実行が完了しました"
