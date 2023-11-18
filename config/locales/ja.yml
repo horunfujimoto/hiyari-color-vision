@@ -7,7 +7,7 @@ ja:
         inactive: "退会"
     post:
       open_status:
-        disclosure: "公開"
+        disclosure: "社内公開"
         unopened: "非公開"
         full_disclosure: "全体公開"
       level_status:
