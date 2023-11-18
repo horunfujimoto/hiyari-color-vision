@@ -15,6 +15,7 @@
   </div>
   <!--一覧-->
   <div class="row mt-4">
+    <% if @reports.exists? %>
     <table class="table table-bordered">
       <div class="py-2">
         <thead>
@@ -34,10 +35,14 @@
               <td><%= report.reason_i18n %></td>
               <td><%= report.comment.comment.truncate(15, omission: '...') %></td>
               <td><%= report.checked ? "済" : "未" %></td>
+            </tr>
           <% end %>
         </tbody>
       </div>
     </table>
+    <%else%>
+    通報されたコメントはありません。
+    <% end %>
   </div>
   <%= paginate @reports %>
 </div>

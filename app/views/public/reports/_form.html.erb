@@ -13,7 +13,7 @@
       <div class="modal-body">
         <div class="container-fluid">
           <div class= id="headerTag">
-            <%= form_with(model: Report.new(comment_id: comment.id,member_id: member.id)) do |f| %>
+            <%= form_with(model: Report.new(comment_id: comment.id, member_id: member.id)) do |f| %>
               <%= f.hidden_field :comment_id %>
               <%= f.hidden_field :member_id %>
               <div class="form-check">

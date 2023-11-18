@@ -455,12 +455,4 @@ Post.create!([
   }
 ])
 
-10.times do |n|
-  Comment.create!(
-    member_id: n+1,
-    post_id: n+1,
-    comment: "コメント"
-  )
-end
-
 puts "seedの実行が完了しました"
