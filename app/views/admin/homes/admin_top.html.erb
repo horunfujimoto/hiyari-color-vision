@@ -6,17 +6,17 @@
       <p>
       <span id="membersCount" class="count-up">合計登録者数<%= @members_count %></span> 人 /
       <label for="membersTarget">目標人数:</label>
-      <input type="number" id="membersTarget" name="membersTarget" value="<%= @members_target %>">
+      <input type="number" id="membersTarget" name="membersTarget" value="<%= @members_target %>" min="0">
       </p>
       <p>
       <span id="postsCount" class="count-up">合計投稿数<%= @posts_count %></span> 件 /
       <label for="postsTarget">目標件数:</label>
-      <input type="number" id="postsTarget" name="postsTarget" value="<%= @posts_target %>">
+      <input type="number" id="postsTarget" name="postsTarget" value="<%= @posts_target %>" min="0">
       </p>
       <p>
       <span id="companiesCount" class="count-up">合計登録会社数<%= @companies_count %></span> 社 /
       <label for="companiesTarget">目標会社数:</label>
-      <input type="number" id="companiesTarget" name="companiesTarget" value="<%= @companies_target %>">
+      <input type="number" id="companiesTarget" name="companiesTarget" value="<%= @companies_target %>" min="0">
       </p>
       <button type="button" onclick="updateTargets()" class="btn btn-dark pull-right ml-3">更新</button>
     </form>
