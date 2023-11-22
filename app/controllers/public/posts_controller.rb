@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   before_action :authenticate_member!
   before_action :get_post_id, only: [:show, :edit, :update, :destroy]
+  before_action :check_post_owner, only: [:edit, :update, :destroy]
 
   def index
     sort_by = params[:sort_by]
@@ -80,6 +81,13 @@ class Public::PostsController < ApplicationController
 
   def get_post_id
     @post = Post.find(params[:id])
+  end
+
+  def check_post_owner
+    unless @post.member == current_member
+      flash[:alert] = "アクセス権限がありません。"
+      redirect_to root_path
+    end
   end
 
 end
