@@ -2,6 +2,7 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_member!
   before_action :get_post_id, only: [:show, :edit, :update, :destroy]
   before_action :check_post_owner, only: [:edit, :update, :destroy]
+  before_action :check_post_visibility, only: [:show]
 
   def index
     sort_by = params[:sort_by]
@@ -86,6 +87,14 @@ class Public::PostsController < ApplicationController
   #投稿の編集削除は本人のみ
   def check_post_owner
     unless @post.member == current_member
+      flash[:alert] = "アクセス権限がありません。"
+      redirect_to root_path
+    end
+  end
+
+  #非公開の投稿閲覧は本人
+  def check_post_visibility
+    if @post.open_status == "unopened" && !(@post.member == current_member)
       flash[:alert] = "アクセス権限がありません。"
       redirect_to root_path
     end
