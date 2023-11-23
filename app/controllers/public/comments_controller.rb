@@ -20,8 +20,12 @@ class Public::CommentsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
-    @comment = Comment.new
-    Comment.find(params[:id]).destroy
+    @comment =  Comment.find(params[:id])
+    unless @comment.member == current_member
+      flash[:alert] = "アクセス権限がありません。"
+      redirect_to root_path
+    end
+    @comment.destroy
   end
 
   private

@@ -83,6 +83,7 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  #投稿の編集削除は本人のみ
   def check_post_owner
     unless @post.member == current_member
       flash[:alert] = "アクセス権限がありません。"

@@ -2,6 +2,7 @@ class Public::VisionsController < ApplicationController
   before_action :authenticate_member!
   before_action :get_post_id, only: [:show, :new, :create, :edit, :update, :destroy]
   before_action :get_vision_id, only: [:show, :edit, :update, :destroy]
+  before_action :check_vision_owner, only: [:edit, :update, :destroy]
 
   def show
   end
@@ -53,5 +54,14 @@ class Public::VisionsController < ApplicationController
   def get_vision_id
     @vision = Vision.find(params[:id])
   end
+
+  #投稿の編集削除は本人のみ
+  def check_vision_owner
+    unless @vision.member == current_member
+      flash[:alert] = "アクセス権限がありません。"
+      redirect_to root_path
+    end
+  end
+
 
 end
