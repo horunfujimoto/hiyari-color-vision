@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
   #before_action :authenticate_member!これを入れると管理者側でコメント削除ができない
+  before_action :check_post_owner, only: [:edit, :update, :destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -32,6 +33,14 @@ class Public::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment)
+  end
+
+  def check_post_owner
+    @comment =  Comment.find(params[:id])
+    unless @comment.member == current_member
+      flash[:alert] = "アクセス権限がありません。"
+      redirect_to root_path
+    end
   end
 
 end
