@@ -1,0 +1,28 @@
+version: '3'
+name: myrails-application
+services:
+  myrails:
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    # volumes:
+    #   - ./hiyari-color-vision:/hiyari-color-vision
+    ports:
+      - 8080:80
+    environment:
+      - DB_DATABASE=your_database_name
+      - DB_HOST=mysqlserver
+      - DB_USERNAME=your_username
+      - DB_PASSWORD=your_password
+      - GOOGLE_API_KEY="" #docker環境構築ファイルに記載
+  mysqlserver:
+    image: mysql:8.2.0
+    environment:
+      MYSQL_ROOT_PASSWORD: your_root_password
+      MYSQL_DATABASE: your_database_name
+      MYSQL_USER: your_username
+      MYSQL_PASSWORD: your_password
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
