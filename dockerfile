@@ -19,7 +19,7 @@ RUN npm install --global yarn
 WORKDIR /app
 
 # ソースコードをコピー
-COPY ../ ./
+COPY ./ ./
 
 # プロダクションに必要な環境変数
 ENV RAILS_ENV=production
@@ -32,11 +32,11 @@ RUN bundle install --path vendor/bundle --without test development
 RUN bundle exec rails assets:precompile RAILS_ENV=production; exit 0
 RUN bin/webpack
 
-# nginx設定ファイルをコピー
+# nginx設定ファイルをコピー(ngin.confと紐づけ)
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY rails.conf /etc/nginx/conf.d/rails.conf
 
-# 外部DB接続の為、ここで実施しない
+# 外部DB接続の為、ここで実施しない！
 # データベースのマイグレーションなど
 # RUN bundle exec rails db:create db:migrate db:seed RAILS_ENV=production
 
