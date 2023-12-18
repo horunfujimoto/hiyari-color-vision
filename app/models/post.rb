@@ -23,11 +23,8 @@ class Post < ApplicationRecord
 
   # 検索機能
   def self.search(keyword)
-    if ActiveRecord::Base.connection.adapter_name.downcase.include?("sqlite")
-      where("title LIKE :keyword OR body LIKE :keyword OR place LIKE :keyword", keyword: "%#{keyword}%")
-    else
-      where("title ILIKE :keyword OR body ILIKE :keyword OR place ILIKE :keyword", keyword: "%#{keyword}%")
-    end
+    sanitized_keyword = sanitize_sql_like(keyword)
+    where("title LIKE :keyword OR body LIKE :keyword OR place LIKE :keyword", keyword: "%#{sanitized_keyword}%")
   end
 
   # 投稿主にコメントがついたことを通知する
