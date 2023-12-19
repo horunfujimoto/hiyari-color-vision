@@ -29,13 +29,11 @@ class Public::PostsController < ApplicationController
     end
     # 公開もしくは全体公開のどちらかを選択した場合は表示される
     # current_member の company_password カラムと一致する投稿のみを取得
-    @open_posts = @sort.where(open_status: [0, 2])
-                  .joins(:member) #これが必要
-                  #joinsとともにselectメソッドを使って、必要なカラムを指定し、N+1問題を回避
-                  .select('posts.*, members.company_password AS member_company_password')
-                  .where(members: { company_password: current_member.company_password })
-                  .page(params[:page])
-                  .per(10)
+    # 関連する `Member` と必要に応じて他の関連レコードを事前に読み込む
+    @open_posts = @sort.eager_load(:member, :vision, :comments, :tag, :notifications)
+                       .where(open_status: [0, 2], members: { company_password: current_member.company_password })
+                       .page(params[:page])
+                       .per(10)
   end
 
   def show
