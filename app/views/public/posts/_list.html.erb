@@ -24,7 +24,7 @@
               <td><%= post.title.truncate(15, omission: '...') %></td> <%#15文字以上は...で省略%>
               <td><%= post.level_status_i18n %></td>
               <td><%= post.vision.present? ? 'あり' : 'なし' %></td> <%#三項演算子の記述%>
-              <td><span id = "comment_count" ><%= post.comments.count %></span></td>
+              <td><span id = "comment_count" ><%= post.comments.length %></span></td><%#countではなくlengthだと再度クエリを実行しない%>
             </tr>
           <% else admin_signed_in? %>
             <tr data-href='<%= admin_post_path(post.id) %>'>
@@ -33,7 +33,7 @@
               <td><%= post.title.truncate(15, omission: '...') %></td>
               <td><%= post.open_status_i18n %></td>
               <td><%= post.vision.present? ? 'あり' : 'なし' %></td> <%#三項演算子の記述%>
-              <td><span id = "comment_count" ><%= post.comments.count %></span></td>
+              <td><span id = "comment_count" ><%= post.comments.length %></span></td>
             </tr>
           <% end %>
         <% end %>
