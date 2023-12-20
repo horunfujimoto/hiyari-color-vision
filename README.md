@@ -39,3 +39,32 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+-
+## ローカル環境構築
+### 1. hiyari-color-visionをクローンする
+```
+git clone https://github.com/horunfujimoto/hiyari-color-vision.git
+```
+
+### 2. ディレクトリを移動する
+```
+cd hiyari-color-vision
+```
+
+### 3. dockerイメージをビルドする
+```
+docker-compose build
+```
+
+### 4. dockerコンテナを起動する
+```
+docker-compose up -d
+```
+
+### 5. DBテーブル・レコード作成する
+```
+docker exec -it myrails-application-myrails-1 bundle exec rails db:create db:migrate db:seed RAILS_ENV=production
+```
+
+# 6. ブラウザで開く
+http://localhost:8080/
