@@ -1,4 +1,5 @@
-# ヒヤリカラビジョン（現在ドメイン編集中のため本番環境アクセス不可）
+# ヒヤリカラビジョン
+##https://hiyari-color-vision.com
 ​
 ## サイト概要
 ### サイトテーマ
@@ -39,7 +40,7 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
--
+
 ## ローカル環境構築
 ### 1. hiyari-color-visionをクローンする
 ```
