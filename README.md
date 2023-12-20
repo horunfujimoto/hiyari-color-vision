@@ -66,5 +66,5 @@ docker-compose up -d
 docker exec -it myrails-application-myrails-1 bundle exec rails db:create db:migrate db:seed RAILS_ENV=production
 ```
 
-# 6. ブラウザで開く
+### 6. ブラウザで開く
 http://localhost:8080/
