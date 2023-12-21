@@ -23,7 +23,9 @@ class Public::HomesController < ApplicationController
       # デフォルトは「新着順」で並び替える
       @sort = Post.latest
     end
-    @public_posts = @sort.where(open_status: 2)
+    # 関連レコードを事前に読み込む:N+1問題解消
+    @public_posts = @sort.eager_load(:member, :vision, :tag, :notifications)
+                    .where(open_status: 2)
                     .order(created_at: :desc)
                     .page(params[:page])
                     .per(10)

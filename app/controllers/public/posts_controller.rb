@@ -29,7 +29,7 @@ class Public::PostsController < ApplicationController
     end
     # 公開もしくは全体公開のどちらかを選択した場合は表示される
     # current_member の company_password カラムと一致する投稿のみを取得
-    # 関連する `Member` と必要に応じて他の関連レコードを事前に読み込む
+    # 関連レコードを事前に読み込む:N+1問題
     @open_posts = @sort.eager_load(:member, :vision, :comments, :tag, :notifications)
                        .where(open_status: [0, 2], members: { company_password: current_member.company_password })
                        .page(params[:page])
