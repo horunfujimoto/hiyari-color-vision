@@ -1,5 +1,4 @@
 # ヒヤリカラビジョン
-https://hiyari-color-vision.com
 ​
 ## サイト概要
 ### サイトテーマ
